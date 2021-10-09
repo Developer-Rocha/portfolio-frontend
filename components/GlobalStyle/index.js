@@ -125,6 +125,22 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+
+  /**
+  * Mobile Navigation
+  */
+
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+  .mobile-nav-active #header {
+    left: 0;
+  }
+  .mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    background-color: #0563bb;
+  }
+
 `;
 
 export default GlobalStyle;

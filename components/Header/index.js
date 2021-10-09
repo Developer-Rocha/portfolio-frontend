@@ -14,6 +14,13 @@ const HeaderWraper = styled.header`
 	padding: 15px;
 	overflow-y: auto;
 
+	@media (max-width: 992px) {
+		width: 300px;
+		background: #fff;
+		border-right: 1px solid #e6e9ec;
+		left: -300px;
+	}
+
 	nav {
 		padding: 0;
 		display: block;
@@ -112,44 +119,64 @@ const HeaderWraper = styled.header`
 	}
 `;
 
+const MobileNavToggle = styled.i`
+	position: fixed;
+	right: 10px;
+	top: 10px;
+	z-index: 9998;
+	border: 0;
+	background: none;
+	font-size: 28px;
+	transition: all 0.4s;
+	outline: none !important;
+	line-height: 0;
+	cursor: pointer;
+	border-radius: 50px;
+	padding: 5px;
+	color: #45505b;
+`;
+
 function Header(props) {
 	return (
-		<HeaderWraper id="header">
-			<nav id="navbar" className="navbar nav-menu">
-				<ul>
-					<li>
-						<a href="#hero" className="nav-link scrollto active">
-							<i className="bx bx-home"></i> <span>Home</span>
-						</a>
-					</li>
-					<li>
-						<a href="#about" className="nav-link scrollto">
-							<i className="bx bx-user"></i> <span>About</span>
-						</a>
-					</li>
-					<li>
-						<a href="#resume" className="nav-link scrollto">
-							<i className="bx bx-file-blank"></i> <span>Resume</span>
-						</a>
-					</li>
-					<li>
-						<a href="#portfolio" className="nav-link scrollto">
-							<i className="bx bx-book-content"></i> <span>Portfolio</span>
-						</a>
-					</li>
-					<li>
-						<a href="#services" className="nav-link scrollto">
-							<i className="bx bx-server"></i> <span>Services</span>
-						</a>
-					</li>
-					<li>
-						<a href="#contact" className="nav-link scrollto">
-							<i className="bx bx-envelope"></i> <span>Contact</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</HeaderWraper>
+		<>
+			<MobileNavToggle className="bi bi-list mobile-nav-toggle d-xl-none" />
+			<HeaderWraper id="header">
+				<nav id="navbar" className="navbar nav-menu">
+					<ul>
+						<li>
+							<a href="#hero" className="nav-link scrollto active">
+								<i className="bx bx-home"></i> <span>Home</span>
+							</a>
+						</li>
+						<li>
+							<a href="#about" className="nav-link scrollto">
+								<i className="bx bx-user"></i> <span>About</span>
+							</a>
+						</li>
+						<li>
+							<a href="#resume" className="nav-link scrollto">
+								<i className="bx bx-file-blank"></i> <span>Resume</span>
+							</a>
+						</li>
+						<li>
+							<a href="#portfolio" className="nav-link scrollto">
+								<i className="bx bx-book-content"></i> <span>Portfolio</span>
+							</a>
+						</li>
+						<li>
+							<a href="#services" className="nav-link scrollto">
+								<i className="bx bx-server"></i> <span>Services</span>
+							</a>
+						</li>
+						<li>
+							<a href="#contact" className="nav-link scrollto">
+								<i className="bx bx-envelope"></i> <span>Contact</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</HeaderWraper>
+		</>
 	);
 }
 
