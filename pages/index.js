@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "../components/Header";
+import Hero from "../components/Hero";
 
 const Title = styled.h1`
 	font-size: 50px;
@@ -10,10 +11,7 @@ export default function Home(props) {
 	return (
 		<div>
 			<Header />
-			<section>
-				<Title>My page</Title>
-				<img src={props.avatar_url} />
-			</section>
+			<Hero />
 		</div>
 	);
 }
