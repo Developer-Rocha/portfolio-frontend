@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import Services from "../components/Services";
 
 const Title = styled.h1`
 	font-size: 50px;
@@ -12,6 +13,7 @@ export default function Home(props) {
 		<div>
 			<Header />
 			<Hero />
+			<Services />
 		</div>
 	);
 }

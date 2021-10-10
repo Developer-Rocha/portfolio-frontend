@@ -54,20 +54,23 @@ const GlobalStyle = createGlobalStyle`
     height: 40px;
     border-radius: 50px;
     transition: all 0.4s;
+    i {
+      font-size: 28px;
+      color: #fff;
+      line-height: 0;
+    }
+    &:hover {
+      background: #0678e3;
+      color: #fff;
+    }
+
+    &.active{
+      visibility: visible;
+      opacity: 1;
+    }
   }
-  .back-to-top i {
-    font-size: 28px;
-    color: #fff;
-    line-height: 0;
-  }
-  .back-to-top:hover {
-    background: #0678e3;
-    color: #fff;
-  }
-  .back-to-top.active {
-    visibility: visible;
-    opacity: 1;
-  }
+
+
 
   /*--------------------------------------------------------------
   # Preloader
@@ -81,22 +84,23 @@ const GlobalStyle = createGlobalStyle`
     z-index: 9999;
     overflow: hidden;
     background: #fff;
+
+    &:before{
+      content: "";
+      position: fixed;
+      top: calc(50% - 30px);
+      left: calc(50% - 30px);
+      border: 6px solid #0563bb;
+      border-top-color: #fff;
+      border-bottom-color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      -webkit-animation: animate-preloader 1s linear infinite;
+      animation: animate-preloader 1s linear infinite;
+    }
   }
 
-  #preloader:before {
-    content: "";
-    position: fixed;
-    top: calc(50% - 30px);
-    left: calc(50% - 30px);
-    border: 6px solid #0563bb;
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: animate-preloader 1s linear infinite;
-    animation: animate-preloader 1s linear infinite;
-  }
 
   @-webkit-keyframes animate-preloader {
     0% {
@@ -130,16 +134,62 @@ const GlobalStyle = createGlobalStyle`
   * Mobile Navigation
   */
 
-  .mobile-nav-active {
-    overflow: hidden;
-  }
-  .mobile-nav-active #header {
-    left: 0;
-  }
-  .mobile-nav-active .mobile-nav-toggle {
-    color: #fff;
-    background-color: #0563bb;
-  }
+   .mobile-nav-active {
+	overflow: hidden;
+	#header {
+		left: 0;
+	}
+	.mobile-nav-toggle {
+		color: #fff;
+		background-color: #0563bb;
+	}
+}
+
+
+  /*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+	padding: 60px 0;
+	overflow: hidden;
+}
+.section-title {
+	text-align: center;
+	padding-bottom: 30px;
+	h2 {
+		font-size: 32px;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+		padding-bottom: 20px;
+		position: relative;
+		color: #45505b;
+		&::before {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 120px;
+			height: 1px;
+			background: #ddd;
+			bottom: 1px;
+			left: calc(50% - 60px);
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 40px;
+			height: 3px;
+			background: #0563bb;
+			bottom: 0;
+			left: calc(50% - 20px);
+		}
+	}
+	p {
+		margin-bottom: 0;
+	}
+}
+
 
 `;
 
