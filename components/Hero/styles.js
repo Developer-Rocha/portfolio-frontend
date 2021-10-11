@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeroWraper = styled.section`
 	width: 100%;
 	height: 100vh;
-	background: url("../img/hero-bg.jpg") top right no-repeat;
+	/* background: url("../img/hero-bg.jpg") top right no-repeat; */
 	background-size: cover;
 	position: relative;
 

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { HeroWraper } from "./styles";
 import Typed from "typed.js";
 
-function Hero() {
+function Hero({ title }) {
 	// Create Ref element.
 	const el = useRef(null);
 
@@ -27,7 +27,7 @@ function Hero() {
 	return (
 		<HeroWraper id="hero" className="d-flex flex-column justify-content-center">
 			<div className="container" data-aos="zoom-in" data-aos-delay="100">
-				<h1>Fabrício Rocha</h1>
+				<h1>{title}</h1>
 				<p>
 					I'm <span className="typed" ref={el}></span>
 				</p>
