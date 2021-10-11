@@ -3,13 +3,18 @@ import { useEffect, useRef } from "react";
 import { HeroWraper } from "./styles";
 import Typed from "typed.js";
 
-function Hero({ title }) {
+function Hero({ title, typedAnimation }) {
 	// Create Ref element.
 	const el = useRef(null);
+	const staticText = typedAnimation.entity.fieldStaticText;
+
+	const typedArray = typedAnimation.entity.fieldTypedItem.map((item) => {
+		return item.entity.fieldTextItem;
+	});
 
 	useEffect(() => {
 		const typed = new Typed(el.current, {
-			strings: ["Website", "Developer", "Freelancer", "More Strings"], // Strings to display
+			strings: typedArray, // Strings to display
 			// Speed settings, try diffrent values untill you get good results
 			startDelay: 300,
 			typeSpeed: 100,
@@ -29,7 +34,7 @@ function Hero({ title }) {
 			<div className="container" data-aos="zoom-in" data-aos-delay="100">
 				<h1>{title}</h1>
 				<p>
-					I'm <span className="typed" ref={el}></span>
+					{staticText} <span className="typed" ref={el}></span>
 				</p>
 				<div className="social-links">
 					<a href="#" className="twitter">

@@ -17,7 +17,7 @@ const Title = styled.h1`
 `;
 
 export default function Home(props) {
-	const [state, setState] = useState(props.nodeInfo);
+	const [state, setState] = useState(props.nodeInfo.page);
 
 	useEffect(() => {
 		// here you can add your aos options
@@ -29,12 +29,14 @@ export default function Home(props) {
 		});
 	}, []);
 
+	console.log(state);
+
 	return (
 		<>
 			<div>
 				<Header />
 
-				<Hero title={state.page.title} />
+				<Hero title={state.title} typedAnimation={state.fieldTypedAnimation} />
 
 				<Services />
 			</div>
