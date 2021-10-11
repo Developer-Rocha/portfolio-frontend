@@ -7,6 +7,8 @@ export const ServicesWraper = styled.section`
 		transition: all ease-in-out 0.3s;
 		background: #fff;
 		box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+		width: 100%;
+
 		.icon {
 			margin: 0 auto;
 			width: 100px;

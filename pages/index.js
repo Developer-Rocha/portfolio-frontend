@@ -38,7 +38,10 @@ export default function Home(props) {
 
 				<Hero title={state.title} typedAnimation={state.fieldTypedAnimation} />
 
-				<Services />
+				<Services
+					data={state.fieldServices}
+					description={state.fieldServiceDescription}
+				/>
 			</div>
 		</>
 	);
