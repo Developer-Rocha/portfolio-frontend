@@ -29,7 +29,9 @@ export default function Home(props) {
 		});
 	}, []);
 
-	console.log(state);
+	if (!state) {
+		return <h1>Error with request content!</h1>;
+	}
 
 	return (
 		<>
