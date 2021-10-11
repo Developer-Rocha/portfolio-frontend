@@ -1,20 +1,13 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import AOS from "aos";
+
+// Components
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
-import Head from "next/head";
-import { useEffect, useState } from "react";
-
-// Styles
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "boxicons/css/boxicons.min.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import GlobalStyle from "../components/GlobalStyle";
 
 //API
-import { gql } from "@apollo/client";
 import client from "../lib/apollo/apolloClient";
 import { GET_HOME } from "../lib/apollo/queries/getHome";
 
@@ -38,11 +31,6 @@ export default function Home(props) {
 
 	return (
 		<>
-			<Head>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-			</Head>
-			<GlobalStyle />
-
 			<div>
 				<Header />
 
