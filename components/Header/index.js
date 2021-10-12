@@ -1,9 +1,12 @@
 import React from "react";
 import { MobileNavToggle, HeaderWraper } from "./styles";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Header(props) {
 	const { t } = useTranslation("common");
+	const router = useRouter();
 
 	return (
 		<>
@@ -41,6 +44,14 @@ function Header(props) {
 							<a href="#contact" className="nav-link scrollto">
 								<i className="bx bx-envelope"></i> <span>{t("contact")}</span>
 							</a>
+						</li>
+						<li>
+							<Link href="/" locale={router.locale === "en" ? "pt-PT" : "en"}>
+								<a className="nav-link scrollto">
+									<i className="bx bx-world"></i>{" "}
+									<span>{router.locale === "en" ? "PT" : "EN"}</span>
+								</a>
+							</Link>
 						</li>
 					</ul>
 				</nav>
