@@ -25,13 +25,8 @@ function Header(props) {
 							</a>
 						</li>
 						<li>
-							<a href="#resume" className="nav-link scrollto">
-								<i className="bx bx-file-blank"></i> <span>Resume</span>
-							</a>
-						</li>
-						<li>
 							<a href="#portfolio" className="nav-link scrollto">
-								<i className="bx bx-book-content"></i>{" "}
+								<i className="bx bx-book-content"></i>
 								<span>{t("portfolio")}</span>
 							</a>
 						</li>
@@ -48,7 +43,7 @@ function Header(props) {
 						<li>
 							<Link href="/" locale={router.locale === "en" ? "pt-PT" : "en"}>
 								<a className="nav-link scrollto">
-									<i className="bx bx-world"></i>{" "}
+									<i className="bx bx-world"></i>
 									<span>{router.locale === "en" ? "PT" : "EN"}</span>
 								</a>
 							</Link>
