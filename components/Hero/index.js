@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { HeroWraper } from "./styles";
 import Typed from "typed.js";
 
-function Hero({ title, typedAnimation }) {
+function Hero({ title, typedAnimation, socialLinks }) {
 	// Create Ref element.
 	const el = useRef(null);
 	const staticText = typedAnimation.entity.fieldStaticText;
@@ -37,21 +37,15 @@ function Hero({ title, typedAnimation }) {
 					{staticText} <span className="typed" ref={el}></span>
 				</p>
 				<div className="social-links">
-					<a href="#" className="twitter">
-						<i className="bx bxl-twitter"></i>
-					</a>
-					<a href="#" className="facebook">
-						<i className="bx bxl-facebook"></i>
-					</a>
-					<a href="#" className="instagram">
-						<i className="bx bxl-instagram"></i>
-					</a>
-					<a href="#" className="google-plus">
-						<i className="bx bxl-skype"></i>
-					</a>
-					<a href="#" className="linkedin">
-						<i className="bx bxl-linkedin"></i>
-					</a>
+					{socialLinks.links.map((item, index) => (
+						<a
+							href={item.url.path}
+							key={index}
+							className={item.label.toLowerCase()}
+						>
+							<i className={`bx bxl-${item.label.toLowerCase()}`}></i>
+						</a>
+					))}
 				</div>
 			</div>
 		</HeroWraper>

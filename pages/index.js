@@ -9,7 +9,7 @@ import Services from "../components/Services";
 
 //API
 import client from "../lib/apollo/apolloClient";
-import { GET_HOME } from "../lib/apollo/queries/getHome";
+import { GET_HOME, GET_SOCIAL } from "../lib/apollo/queries/getHome";
 
 const Title = styled.h1`
 	font-size: 50px;
@@ -38,7 +38,11 @@ export default function Home(props) {
 			<div>
 				<Header />
 
-				<Hero title={state.title} typedAnimation={state.fieldTypedAnimation} />
+				<Hero
+					title={state.title}
+					typedAnimation={state.fieldTypedAnimation}
+					socialLinks={props.socialLinks.social}
+				/>
 
 				<Services
 					data={state.fieldServices}
@@ -50,7 +54,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-	const { data } = await client.query({
+	const getHome = client.query({
 		query: GET_HOME,
 		variables: {
 			language: "EN",
@@ -58,9 +62,19 @@ export async function getStaticProps() {
 		},
 	});
 
+	const socialLink = client.query({
+		query: GET_SOCIAL,
+		variables: {
+			language: "EN",
+		},
+	});
+
+	const response = await Promise.all([getHome, socialLink]);
+
 	return {
 		props: {
-			nodeInfo: data,
+			nodeInfo: response[0].data,
+			socialLinks: response[1].data,
 		},
 	};
 }
