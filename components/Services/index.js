@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "next-i18next";
+
 // import { useEffect, useRef } from "react";
 import { ServicesWraper } from "./styles";
 
 function Hero({ data, description }) {
+	const { t } = useTranslation("common");
 	// useEffect(() => {
 
 	// 	// Destropying
@@ -14,7 +17,7 @@ function Hero({ data, description }) {
 		<ServicesWraper id="services" className="services">
 			<div className="container" data-aos="fade-up">
 				<div className="section-title">
-					<h2>Services</h2>
+					<h2>{t("services")}</h2>
 					<p>{description}</p>
 				</div>
 

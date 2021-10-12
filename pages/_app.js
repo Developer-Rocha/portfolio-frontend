@@ -1,4 +1,5 @@
 import { ThemeProvider } from "styled-components";
+import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
 
 // Styles
@@ -15,7 +16,7 @@ const theme = {
 	},
 };
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
 	return (
 		<>
 			<Head>
@@ -28,4 +29,6 @@ export default function App({ Component, pageProps }) {
 			</ThemeProvider>
 		</>
 	);
-}
+};
+
+export default appWithTranslation(App);

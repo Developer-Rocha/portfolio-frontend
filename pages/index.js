@@ -11,6 +11,9 @@ import Services from "../components/Services";
 import client from "../lib/apollo/apolloClient";
 import { GET_HOME, GET_SOCIAL } from "../lib/apollo/queries/getHome";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
 const Title = styled.h1`
 	font-size: 50px;
 	color: ${({ theme }) => theme.colors.primary};
@@ -18,6 +21,8 @@ const Title = styled.h1`
 
 export default function Home(props) {
 	const [state, setState] = useState(props.nodeInfo.page);
+
+	const { t } = useTranslation("common");
 
 	useEffect(() => {
 		// here you can add your aos options
@@ -53,7 +58,7 @@ export default function Home(props) {
 	);
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
 	const getHome = client.query({
 		query: GET_HOME,
 		variables: {
@@ -75,6 +80,7 @@ export async function getStaticProps() {
 		props: {
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
+			...(await serverSideTranslations(locale, ["common"])),
 		},
 	};
 }
