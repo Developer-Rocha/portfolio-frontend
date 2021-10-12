@@ -1,4 +1,7 @@
 {
   "services": "Serviços",
-  "test": "Olá mundo!!"
+  "home": "Home",
+  "about": "Sobre",
+  "portfolio": "Portfólio",
+  "contact": "Contacto"
 }
