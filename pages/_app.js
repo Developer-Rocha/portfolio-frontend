@@ -2,6 +2,8 @@ import { ThemeProvider } from "styled-components";
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
 
+import { useDefaultLocale } from "../utils/UseDefaultLocale";
+
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -17,6 +19,8 @@ const theme = {
 };
 
 const App = ({ Component, pageProps }) => {
+	useDefaultLocale();
+
 	return (
 		<>
 			<Head>
