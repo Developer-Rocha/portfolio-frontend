@@ -59,10 +59,12 @@ export default function Home(props) {
 }
 
 export async function getStaticProps({ locale }) {
+	const langcode = locale === "en" ? "EN" : "PT_PT";
+
 	const getHome = client.query({
 		query: GET_HOME,
 		variables: {
-			language: "EN",
+			language: langcode,
 			id: 1,
 		},
 	});
@@ -70,7 +72,7 @@ export async function getStaticProps({ locale }) {
 	const socialLink = client.query({
 		query: GET_SOCIAL,
 		variables: {
-			language: "EN",
+			language: langcode,
 		},
 	});
 
