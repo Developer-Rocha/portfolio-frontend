@@ -3,10 +3,12 @@ import { useState } from "react";
 // Components
 import Layout from "../components/Layout";
 import Services from "../components/Services";
+import Portfolio from "../components/Portfolio";
 
 //API
 import client from "../lib/apollo/apolloClient";
 import { GET_HOME, GET_SOCIAL } from "../lib/apollo/queries/getHome";
+import { GET_PORTFOLIO } from "../lib/apollo/queries/getPortfolio";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
@@ -17,7 +19,7 @@ export default function Home(props) {
 	const { t } = useTranslation("common");
 
 	if (!state) {
-		return <h1>Error with request content!</h1>;
+		return <h1>{t('query_error_message')}</h1>;
 	}
 
 	return (
@@ -26,6 +28,8 @@ export default function Home(props) {
 				data={state.fieldServices}
 				description={props.fieldServiceDescription}
 			/>
+
+			<Portfolio portfolio={props.portfolio.portfolio} />
 		</Layout>
 	);
 }
@@ -48,12 +52,20 @@ export async function getStaticProps({ locale }) {
 		},
 	});
 
-	const response = await Promise.all([getHome, socialLink]);
+	const portfolio = client.query({
+		query: GET_PORTFOLIO,
+		variables: {
+			language: langcode
+		}
+	})
+
+	const response = await Promise.all([getHome, socialLink, portfolio]);
 
 	return {
 		props: {
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
+			portfolio: response[2].data,
 			...(await serverSideTranslations(locale, ["common"])),
 		},
 	};

@@ -1,7 +1,8 @@
 {
-  "services": "Services",
-  "home": "Home",
-  "about": "About",
-  "portfolio": "Portfolio",
-  "contact": "Contact"
+	"services": "Services",
+	"home": "Home",
+	"about": "About",
+	"portfolio": "Portfolio",
+	"contact": "Contact",
+	"query_error_message": "Error with request content!"
 }

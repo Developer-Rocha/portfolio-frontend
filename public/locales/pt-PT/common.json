@@ -1,7 +1,8 @@
 {
-  "services": "Serviços",
-  "home": "Home",
-  "about": "Sobre",
-  "portfolio": "Portfólio",
-  "contact": "Contacto"
+	"services": "Serviços",
+	"home": "Home",
+	"about": "Sobre",
+	"portfolio": "Portfólio",
+	"contact": "Contacto",
+	"query_error_message": "Erro ao carregar os conteúdos."
 }
