@@ -4,5 +4,6 @@
 	"about": "Sobre",
 	"portfolio": "Portfólio",
 	"contact": "Contacto",
-	"query_error_message": "Erro ao carregar os conteúdos."
+	"query_error_message": "Erro ao carregar os conteúdos.",
+	"all": "Todos"
 }

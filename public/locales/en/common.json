@@ -4,5 +4,6 @@
 	"about": "About",
 	"portfolio": "Portfolio",
 	"contact": "Contact",
-	"query_error_message": "Error with request content!"
+	"query_error_message": "Error with request content!",
+	"all": "All"
 }

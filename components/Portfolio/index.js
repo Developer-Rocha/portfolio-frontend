@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { PortfolioWraper } from "./styles";
+import { useTranslation } from "next-i18next";
 
 function Portfolio({portfolio}) {
 	const [categories, setCategories] = useState([]);
+	const { t } = useTranslation("common");
 
 	useEffect(() => {
 		let isActive = true;
@@ -33,7 +35,7 @@ function Portfolio({portfolio}) {
 		<PortfolioWraper id="portfolio" className="portfolio section-bg">
 			<div className="container" data-aos="fade-up">
 				<div className="section-title">
-					<h2>Portfolio</h2>
+					<h2>{t('portfolio')}</h2>
 					<p>
 						Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
 						aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
@@ -50,10 +52,10 @@ function Portfolio({portfolio}) {
 					>
 						<ul id="portfolio-flters">
 							<li data-filter="*" className="filter-active">
-								All
+								{t('all')}
 							</li>
 							{categories.map((item, index) => (
-								<li data-filter={`.filter-${item}`}>{item}</li>
+								<li key={index} data-filter={`.filter-${item}`}>{item}</li>
 							))}
 						</ul>
 					</div>
@@ -65,7 +67,7 @@ function Portfolio({portfolio}) {
 					data-aos-delay="200"
 				>
 					{portfolio.entities.map((item, index) => (
-						<div key={index} className={`col-lg-4 col-md-6 portfolio-item ${item.category.map((item, key) => (
+						<div key={index} className={`col-lg-4 col-md-6 portfolio-item ${item.category.map((item) => (
 							"filter-" + item.entity.name.replace(/\s/g, "-").toLowerCase()
 						)).join(' ')}`}>
 							<div className="portfolio-wrap">
