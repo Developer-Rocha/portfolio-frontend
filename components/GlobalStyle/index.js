@@ -146,7 +146,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 
-  /*--------------------------------------------------------------
+/*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 section {
@@ -188,6 +188,64 @@ section {
 	p {
 		margin-bottom: 0;
 	}
+}
+
+
+
+/*--------------------------------------------------------------
+# Modal
+--------------------------------------------------------------*/
+.Modal {
+  position: absolute;
+  top: 40px;
+  left: 100px;
+  right: 100px;
+  bottom: 40px;
+  background-color: #fff;
+  padding: 25px;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.close-modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 0;
+
+  &::after,
+  &::before{
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 23px;
+    width: 2px;
+    background-color: #333;
+    top: 0;
+  }
+
+  &::before{
+    transform: rotate(45deg);
+  }
+
+  &::after{
+    transform: rotate(-45deg);
+  }
+
+  &:hover{
+    opacity: 0.5;
+  }
 }
 
 

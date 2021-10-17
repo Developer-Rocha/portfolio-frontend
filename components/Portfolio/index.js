@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { PortfolioWraper } from "./styles";
+import { PortfolioWraper, ReactModal } from "./styles";
 import { useTranslation } from "next-i18next";
+import Modal from 'react-modal';
+import ModalContent from '../ModalContent';
+
+Modal.setAppElement('#__next');
 
 function Portfolio({portfolio}) {
 	const [categories, setCategories] = useState([]);
 	const { t } = useTranslation("common");
+
+	const [modalIsOpen,setIsOpen] = useState(false);
+	const [currentPortfolio, setCurrentPortfolio] = useState([]);
+
+	const openModal = (data) => {
+		setCurrentPortfolio(data);
+		setIsOpen(true);
+	}
+
+	const closeModal = () => {
+		setIsOpen(false);
+	}
 
 	useEffect(() => {
 		let isActive = true;
@@ -91,7 +107,7 @@ function Portfolio({portfolio}) {
 											<i className="bx bx-plus"></i>
 										</a>
 										<a
-											href="portfolio-details.html"
+											onClick={() => openModal(item)}
 											className="portfolio-details-lightbox"
 											data-glightbox="type: external"
 											title="Portfolio Details"
@@ -103,10 +119,20 @@ function Portfolio({portfolio}) {
 							</div>
 						</div>
 					))}
-
-
 				</div>
 			</div>
+
+			<Modal
+				className="Modal"
+				overlayClassName="Overlay"
+				isOpen={modalIsOpen}
+				onRequestClose={closeModal}
+				contentLabel="Example Modal">
+
+				<button className="close-modal-button" onClick={closeModal}>X</button>
+				<ModalContent data={currentPortfolio} />
+			</Modal>
+
 		</PortfolioWraper>
 	);
 }

@@ -25,14 +25,14 @@ function Header(props) {
 							</a>
 						</li>
 						<li>
-							<a href="#portfolio" className="nav-link scrollto">
-								<i className="bx bx-book-content"></i>
-								<span>{t("portfolio")}</span>
+							<a href="#services" className="nav-link scrollto">
+								<i className="bx bx-server"></i> <span>{t("services")}</span>
 							</a>
 						</li>
 						<li>
-							<a href="#services" className="nav-link scrollto">
-								<i className="bx bx-server"></i> <span>{t("services")}</span>
+							<a href="#portfolio" className="nav-link scrollto">
+								<i className="bx bx-book-content"></i>
+								<span>{t("portfolio")}</span>
 							</a>
 						</li>
 						<li>
