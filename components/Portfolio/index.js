@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PortfolioWraper, ReactModal } from "./styles";
 import { useTranslation } from "next-i18next";
 import Modal from 'react-modal';
-import ModalContent from '../ModalContent';
+import PortfolioDetail from '../PortfolioDetail';
 
 Modal.setAppElement('#__next');
 
@@ -99,20 +99,10 @@ function Portfolio({portfolio}) {
 										)).join(' + ')}</p>
 									<div className="portfolio-links">
 										<a
-											href={item.fieldThumbnail.entity.fieldMediaImage.sm.url}
-											data-gallery="portfolioGallery"
-											className="portfolio-lightbox"
-											title="App 1"
-										>
-											<i className="bx bx-plus"></i>
-										</a>
-										<a
 											onClick={() => openModal(item)}
-											className="portfolio-details-lightbox"
-											data-glightbox="type: external"
 											title="Portfolio Details"
 										>
-											<i className="bx bx-link"></i>
+											<i className="bx bx-plus"></i>
 										</a>
 									</div>
 								</div>
@@ -127,10 +117,11 @@ function Portfolio({portfolio}) {
 				overlayClassName="Overlay"
 				isOpen={modalIsOpen}
 				onRequestClose={closeModal}
-				contentLabel="Example Modal">
+				contentLabel="Example Modal"
+				closeTimeoutMS={500}>
 
 				<button className="close-modal-button" onClick={closeModal}>X</button>
-				<ModalContent data={currentPortfolio} />
+				<PortfolioDetail data={currentPortfolio} />
 			</Modal>
 
 		</PortfolioWraper>

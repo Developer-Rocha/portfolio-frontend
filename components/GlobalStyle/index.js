@@ -203,6 +203,13 @@ section {
   bottom: 40px;
   background-color: #fff;
   padding: 25px;
+  overflow: auto;
+
+  @media (max-width: 992px) {
+    top: 60px;
+    left: 25px;
+    right: 25px;
+  }
 }
 
 .Overlay {
@@ -212,6 +219,22 @@ section {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: translateX(-100px);
 }
 
 .close-modal-button {

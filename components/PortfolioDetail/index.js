@@ -31,7 +31,7 @@ function ModalContent({data}) {
 	}, [])
 
     return(
-        <ModalContentWrapper id="portfolio-details" className="portfolio-details">
+        <ModalContentWrapper data-aos="zoom-in" data-aos-delay="200" id="portfolio-details" className="portfolio-details">
             <div className="container">
                 <div className="row gy-4">
                 <div className="col-lg-8">

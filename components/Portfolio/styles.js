@@ -107,6 +107,8 @@ export const PortfolioWraper = styled.section`
 		.portfolio-links {
 			text-align: center;
 			z-index: 4;
+			cursor: pointer;
+
 			a {
 				color: #45505b;
 				margin: 0 2px;
