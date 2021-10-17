@@ -7,7 +7,7 @@ import PortfolioDetail from '../PortfolioDetail';
 Modal.setAppElement('#__next');
 
 function Portfolio({portfolio}) {
-	const [categories, setCategories] = useState([]);
+	const [filters, setFilters] = useState([]);
 	const { t } = useTranslation("common");
 
 	const [modalIsOpen,setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ function Portfolio({portfolio}) {
 						arr.push(el.entity.name);
 					}
 				})
-				setCategories(arr);
+				setFilters(arr);
 			})
 		}
 
@@ -69,8 +69,8 @@ function Portfolio({portfolio}) {
 							<li data-filter="*" className="filter-active">
 								{t('all')}
 							</li>
-							{categories.map((item, index) => (
-								<li key={index} data-filter={`.filter-${item}`}>{item}</li>
+							{filters.map((f, index) => (
+								<li key={index} data-filter={`.filter-${f.replace(/\s/g, "-").toLowerCase()}`}>{f}</li>
 							))}
 						</ul>
 					</div>
