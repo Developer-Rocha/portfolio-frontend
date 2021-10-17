@@ -5,7 +5,7 @@ function Footer({socialLinks}) {
 
 	return (
         <FooterWraper id="footer">
-            <div class="container">
+            <div className="container">
                 <div className="social-links">
 					{socialLinks.links.map((item, index) => (
 						<a
@@ -17,10 +17,10 @@ function Footer({socialLinks}) {
 						</a>
 					))}
 				</div>
-                <div class="copyright">
+                <div className="copyright">
                     &copy; Copyright <strong><span>Developer Rocha</span></strong>. All Rights Reserved
                 </div>
-                <div class="credits">
+                <div className="credits">
                     Designed by <a href="/">Developer Rocha</a>
                 </div>
             </div>
