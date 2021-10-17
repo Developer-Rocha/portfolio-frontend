@@ -6,6 +6,7 @@ import AOS from "aos";
 // Components
 import Header from "./Header";
 import Hero from "./Hero";
+import Footer from './Footer';
 
 export default function Layout({ children, data, props }) {
 	useEffect(() => {
@@ -30,6 +31,8 @@ export default function Layout({ children, data, props }) {
 				/>
 
 				<main>{children}</main>
+
+				<Footer socialLinks={props.socialLinks.social} />
 			</div>
 		</>
 	);
