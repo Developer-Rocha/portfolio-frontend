@@ -13,15 +13,6 @@ function Portfolio({portfolio}) {
 	const [modalIsOpen,setIsOpen] = useState(false);
 	const [currentPortfolio, setCurrentPortfolio] = useState([]);
 
-	const openModal = (data) => {
-		setCurrentPortfolio(data);
-		setIsOpen(true);
-	}
-
-	const closeModal = () => {
-		setIsOpen(false);
-	}
-
 	useEffect(() => {
 		let isActive = true;
 		let arr = [];
@@ -46,6 +37,14 @@ function Portfolio({portfolio}) {
 		}
 	}, [])
 
+	const openModal = (data) => {
+		setCurrentPortfolio(data);
+		setIsOpen(true);
+	}
+
+	const closeModal = () => {
+		setIsOpen(false);
+	}
 
 	return (
 		<PortfolioWraper id="portfolio" className="portfolio section-bg">
