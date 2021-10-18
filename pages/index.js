@@ -4,11 +4,13 @@ import { useState } from "react";
 import Layout from "../components/Layout";
 import Services from "../components/Services";
 import Portfolio from "../components/Portfolio";
+import Contact from "../components/Contact";
 
 //API
 import client from "../lib/apollo/apolloClient";
 import { GET_HOME, GET_SOCIAL } from "../lib/apollo/queries/getHome";
 import { GET_PORTFOLIO } from "../lib/apollo/queries/getPortfolio";
+import { GET_WEBFORM } from "../lib/apollo/queries/getWebform";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
@@ -30,6 +32,8 @@ export default function Home(props) {
 			/>
 
 			<Portfolio portfolio={props.portfolio.portfolio} />
+
+			<Contact />
 		</Layout>
 	);
 }
@@ -56,6 +60,13 @@ export async function getStaticProps({ locale }) {
 		query: GET_PORTFOLIO,
 		variables: {
 			language: langcode
+		}
+	})
+
+	const webform = client.query({
+		query: GET_WEBFORM,
+		variables: {
+			webformId: "contact"
 		}
 	})
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalContentWrapper = styled.section`
+export const ModalContentWrapper = styled.div`
     padding-top: 40px;
 
     .portfolio-details-slider {
