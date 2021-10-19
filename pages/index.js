@@ -66,17 +66,18 @@ export async function getStaticProps({ locale }) {
 	const webform = client.query({
 		query: GET_WEBFORM,
 		variables: {
-			webformId: "contact"
+			id: "contact"
 		}
 	})
 
-	const response = await Promise.all([getHome, socialLink, portfolio]);
+	const response = await Promise.all([getHome, socialLink, portfolio, webform]);
 
 	return {
 		props: {
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
 			portfolio: response[2].data,
+			webform: response[3].data,
 			...(await serverSideTranslations(locale, ["common"])),
 		},
 	};

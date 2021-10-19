@@ -12,6 +12,10 @@ import "boxicons/css/boxicons.min.css";
 import "aos/dist/aos.css";
 import GlobalStyle from "../components/GlobalStyle";
 
+// API
+import { ApolloProvider } from "@apollo/client";
+import client from "../lib/apollo/apolloClient";
+
 const theme = {
 	colors: {
 		primary: "#0070f3",
@@ -28,9 +32,11 @@ const App = ({ Component, pageProps }) => {
 			</Head>
 			<GlobalStyle />
 
-			<ThemeProvider theme={theme}>
-				<Component {...pageProps} />
-			</ThemeProvider>
+			<ApolloProvider client={client}>
+				<ThemeProvider theme={theme}>
+					<Component {...pageProps} />
+				</ThemeProvider>
+			</ApolloProvider>
 		</>
 	);
 };

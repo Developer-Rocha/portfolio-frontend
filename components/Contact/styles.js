@@ -63,6 +63,10 @@ export const ContactWraper = styled.section`
             padding: 15px;
             font-weight: 600;
 
+            span {
+                display: block;
+            }
+
             br + br {
                 margin-top: 25px;
             }

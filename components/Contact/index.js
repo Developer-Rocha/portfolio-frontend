@@ -1,11 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { ContactWraper } from "./styles";
+import { useMutation } from "@apollo/client";
+import { POST_CONTACT } from "../../lib/apollo/mutations/postContact";
 
 function Contact() {
 
+	const [loading, setLoading ] = useState(false);
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState([]);
+
+	const submitContact = async (e) => {
+		e.preventDefault();
+
+		setLoading(true);
+
+		const arr = {
+			"webform_id":"contact",
+			"name": e.target.name.value,
+			"email": e.target.email.value,
+			"subject": e.target.subject.value,
+			"message": e.target.message.value,
+		}
+
+		await submitForm({variables: {values: JSON.stringify(arr)}})
+	}
+
+	const [submitForm] = useMutation(POST_CONTACT, {onCompleted({submitForm}) {
+
+		if (submitForm.errors.length > 0) {
+			setError(submitForm.errors);
+		}
+		else {
+			setSuccess(true);
+		}
+
+		setLoading(false);
+	}} )
+
 	return (
         <ContactWraper id="contact" className="contact">
-            <div className="container" data-aos="fade-up">
+			<div className="container" data-aos="fade-up">
 				<div className="section-title">
 					<h2>Contact</h2>
 				</div>
@@ -35,7 +69,7 @@ function Contact() {
 
 					<div className="col-lg-8 mt-5 mt-lg-0">
 
-						<form action="" method="post" role="form" className="php-email-form">
+						<form onSubmit={e => submitContact(e)} action="" method="post" role="form" className="php-email-form">
 							<div className="row">
 								<div className="col-md-6 form-group">
 									<input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required/>
@@ -51,11 +85,11 @@ function Contact() {
 								<textarea className="form-control" name="message" rows="5" placeholder="Message" required></textarea>
 							</div>
 							<div className="my-3">
-								<div className="loading">Loading</div>
-								<div className="error-message"></div>
-								<div className="sent-message">Your message has been sent. Thank you!</div>
+								<div className={"loading " + (loading ? "d-block" : "")}>Loading</div>
+								<div className={"error-message " + (error.length > 0 ? "d-block" : "")}>{ error.length > 0 ? error.map(item => <span>{item}</span>) : null }</div>
+								<div className={"sent-message " + (success ? "d-block" : "")}>Your message has been sent. Thank you!</div>
 							</div>
-							<div className="text-center"><button type="submit">Send Message</button></div>
+							<div className={"text-center " + (loading ? "d-none" : "")}><button type="submit">Send Message</button></div>
 						</form>
 					</div>
 				</div>
