@@ -11,22 +11,25 @@ import 'swiper/css/pagination';
 function ModalContent({data}) {
 
     useEffect(() => {
-        // configure Swiper to use modules
-        Swiper.use([Navigation, Pagination, Autoplay]);
 
-        new Swiper('.portfolio-details-slider', {
-            speed: 400,
-            loop: true,
-            autoplay: {
-              delay: 5000,
-              disableOnInteraction: false
-            },
-            pagination: {
-              el: '.swiper-pagination',
-              type: 'bullets',
-              clickable: true
-            }
-        });
+        if(data.fieldGallery.length) {
+            // configure Swiper to use modules
+            Swiper.use([Navigation, Pagination, Autoplay]);
+
+            new Swiper('.portfolio-details-slider', {
+                speed: 400,
+                loop: true,
+                autoplay: {
+                delay: 5000,
+                disableOnInteraction: false
+                },
+                pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: true
+                }
+            });
+        }
 
 	}, [])
 
