@@ -47,11 +47,11 @@ function Header(props) {
 								<span>{t("portfolio")}</span>
 							</a>
 						</li>
-						{/* <li>
-							<a href="#contact" className="nav-link scrollto">
+						<li>
+							<a onClick={handleActive} href="#contact" className="nav-link scrollto">
 								<i className="bx bx-envelope"></i> <span>{t("contact")}</span>
 							</a>
-						</li> */}
+						</li>
 						<li>
 							<Link href="/" locale={router.locale === "en" ? "pt-PT" : "en"}>
 								<a className="nav-link scrollto">
