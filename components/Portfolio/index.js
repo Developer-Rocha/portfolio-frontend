@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { PortfolioWraper, ReactModal } from './styles';
+import { PortfolioWraper } from './styles';
 import { useTranslation } from 'next-i18next';
 import Modal from 'react-modal';
 import PortfolioDetail from '../PortfolioDetail';
