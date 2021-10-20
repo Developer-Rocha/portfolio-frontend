@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { ThemeProvider } from "styled-components";
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
@@ -24,6 +25,28 @@ const theme = {
 
 const App = ({ Component, pageProps }) => {
 	useDefaultLocale();
+
+	useEffect(() => {
+
+		window.addEventListener('scroll', scrollHandler);
+
+	}, []);
+
+	const scrollHandler = () => {
+		const navbarLinks = document.getElementsByClassName('scrollto');
+		let position = window.scrollY + 200;
+
+		Array.prototype.map.call(navbarLinks, navbarLink => {
+			let id = navbarLink.hash.replace("#", "");
+			let section = document.getElementById(id);
+			if(!section) return
+			if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+				navbarLink.classList.add('active');
+			} else {
+				navbarLink.classList.remove('active');
+			}
+		})
+	}
 
 	return (
 		<>

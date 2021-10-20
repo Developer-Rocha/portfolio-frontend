@@ -8,18 +8,6 @@ function Header(props) {
 	const { t } = useTranslation("common");
 	const router = useRouter();
 
-	// const [active, setActive] = useState();
-
-	const handleActive = (e) => {
-		let navbarlinks = document.getElementsByClassName('scrollto');
-		let array = [... navbarlinks]
-
-		array.map((item) => (
-			item.classList.contains('active') ? item.classList.remove('active') : null
-		))
-		e.currentTarget.classList.add('active');
-	}
-
 	return (
 		<>
 			<MobileNavToggle className="bi bi-list mobile-nav-toggle d-xl-none" />
@@ -27,7 +15,7 @@ function Header(props) {
 				<nav id="navbar" className="navbar nav-menu">
 					<ul>
 						<li>
-							<a onClick={handleActive} href="#hero" className="nav-link scrollto active">
+							<a href="#hero" className="nav-link scrollto active">
 								<i className="bx bx-home"></i> <span>{t("home")}</span>
 							</a>
 						</li>
@@ -37,18 +25,18 @@ function Header(props) {
 							</a>
 						</li> */}
 						<li>
-							<a onClick={handleActive} href="#services" className="nav-link scrollto">
+							<a href="#services" className="nav-link scrollto">
 								<i className="bx bx-server"></i> <span>{t("services")}</span>
 							</a>
 						</li>
 						<li>
-							<a onClick={handleActive} href="#portfolio" className="nav-link scrollto">
+							<a href="#portfolio" className="nav-link scrollto">
 								<i className="bx bx-book-content"></i>
 								<span>{t("portfolio")}</span>
 							</a>
 						</li>
 						<li>
-							<a onClick={handleActive} href="#contact" className="nav-link scrollto">
+							<a href="#contact" className="nav-link scrollto">
 								<i className="bx bx-envelope"></i> <span>{t("contact")}</span>
 							</a>
 						</li>
