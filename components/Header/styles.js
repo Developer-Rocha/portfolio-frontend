@@ -3,10 +3,16 @@ import styled from "styled-components";
 
 export const SwitchWrapper = styled.div`
 	position: fixed;
-    right: 15px;
+    left: 15px;
     top: 15px;
     border-radius: 50%;
-	z-index: 500;
+	z-index: 1050;
+
+	@media (min-width: 1200px) {
+		right: 15px;
+		top: 15px;
+		left: initial;
+	}
 
 	i {
 		margin-right: 5px;
@@ -21,7 +27,7 @@ export const HeaderWraper = styled.header`
 	top: 0;
 	left: 0;
 	bottom: 0;
-	z-index: 9997;
+	z-index: 1007;
 	transition: all 0.5s;
 	padding: 15px;
 	overflow-y: auto;
@@ -135,7 +141,7 @@ export const MobileNavToggle = styled.i`
 	position: fixed;
 	right: 10px;
 	top: 10px;
-	z-index: 9998;
+	z-index: 1008;
 	border: 0;
 	background: none;
 	font-size: 28px;

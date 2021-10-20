@@ -76,7 +76,7 @@ export const PortfolioWraper = styled.section`
 				border-top: 3px solid #d7dce1;
 				border-left: 3px solid #d7dce1;
 				transition: all 0.5s ease 0s;
-				z-index: 9994;
+				z-index: 1004;
 			}
 			&::after {
 				display: block;
@@ -89,7 +89,7 @@ export const PortfolioWraper = styled.section`
 				border-bottom: 3px solid #d7dce1;
 				border-right: 3px solid #d7dce1;
 				transition: all 0.5s ease 0s;
-				z-index: 9994;
+				z-index: 1004;
 			}
 			h4 {
 				font-size: 20px;
