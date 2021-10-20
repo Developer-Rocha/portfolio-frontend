@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PortfolioWraper } from './styles';
 import { useTranslation } from 'next-i18next';
 import Modal from 'react-modal';
@@ -11,6 +11,8 @@ function Portfolio({portfolio}) {
 	const [filters, setFilters] = useState([]);
 	const [currentFilter, setCurrentFilter] = useState('*');
 	const [portfolios, setPortfolios ] = useState(portfolio.entities);
+	const [height, setHeight] = useState();
+	const el = useRef(null);
 
 	// For Modal
 	const [modalIsOpen,setIsOpen] = useState(false);
@@ -19,6 +21,9 @@ function Portfolio({portfolio}) {
 	useEffect(() => {
 		let isActive = true;
 		let arr = [];
+
+		let portfolioHeight = el.current.offsetHeight;
+		setHeight(portfolioHeight);
 
 		function getCategory() {
 			const response = portfolio.entities.map(function(item) {
@@ -101,9 +106,11 @@ function Portfolio({portfolio}) {
 				</div>
 
 				<div
+					style={{ minHeight: height }}
 					className="row portfolio-container"
 					data-aos="fade-up"
 					data-aos-delay="200"
+					ref={el}
 				>
 					{portfolios.map((item, index) => (
 						<div key={index} className={`col-lg-4 col-md-6 portfolio-item ${item.category.map((item) => (
