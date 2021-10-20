@@ -108,14 +108,14 @@ function Portfolio({portfolio}) {
 				<div
 					style={{ minHeight: height }}
 					className="row portfolio-container"
-					data-aos="fade-up"
-					data-aos-delay="200"
 					ref={el}
 				>
 					{portfolios.map((item, index) => (
-						<div key={index} className={`col-lg-4 col-md-6 portfolio-item ${item.category.map((item) => (
-							"filter-" + item.entity.name.replace(/\s/g, "-").toLowerCase()
-						)).join(' ')}`}>
+						<div
+						key={index}
+						data-aos="zoom-in"
+						data-aos-delay="100"
+						className="col-lg-4 col-md-6 portfolio-item">
 							<div className="portfolio-wrap">
 								<img
 									src={item.fieldThumbnail.entity.fieldMediaImage.sm.url}
