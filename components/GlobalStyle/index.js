@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
       opacity: .5;
     }
   }
+
   /*--------------------------------------------------------------
   # Back to top button
   --------------------------------------------------------------*/
@@ -219,6 +220,10 @@ section {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
 }
 
 .ReactModal__Overlay {
