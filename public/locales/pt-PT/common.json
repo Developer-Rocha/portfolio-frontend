@@ -5,5 +5,14 @@
 	"portfolio": "Portfólio",
 	"contact": "Contacto",
 	"query_error_message": "Erro ao carregar os conteúdos.",
-	"all": "Todos"
+	"all": "Todos",
+	"message-success": "Sua mensagem foi enviada. Obrigado!",
+	"loading": "Carregando",
+	"send": "Enviar Mensagem",
+	"location": "Morada",
+	"phone": "Telemóvel",
+	"your-name": "Nome",
+	"your-email": "Email",
+	"subject": "Assunto",
+	"message": "Mensagem"
 }

@@ -5,5 +5,14 @@
 	"portfolio": "Portfolio",
 	"contact": "Contact",
 	"query_error_message": "Error with request content!",
-	"all": "All"
+	"all": "All",
+	"message-success": "Your message has been sent. Thank you!",
+	"loading": "Loading",
+	"send": "Send Message",
+	"location": "Location",
+	"phone": "Phone",
+	"your-name": "Your Name",
+	"your-email": "Your Email",
+	"subject": "Subject",
+	"message": "Message"
 }

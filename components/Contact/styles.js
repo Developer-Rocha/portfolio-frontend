@@ -47,58 +47,60 @@ export const ContactWraper = styled.section`
         }
     }
 
+    .loading {
+        display: none;
+        background: #fff;
+        text-align: center;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        &:before {
+            content: "";
+            display: inline-block;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            margin: 0 10px -6px 0;
+            border: 3px solid #18d26e;
+            border-top-color: #eee;
+            -webkit-animation: animate-loading 1s linear infinite;
+            animation: animate-loading 1s linear infinite;
+        }
+    }
+
+    .error-message {
+        display: none;
+        color: #fff;
+        background: #ed3c0d;
+        text-align: left;
+        padding: 15px;
+        font-weight: 600;
+
+        span {
+            display: block;
+        }
+
+        br + br {
+            margin-top: 25px;
+        }
+    }
+
+    .sent-message {
+        display: none;
+        color: #fff;
+        background: #18d26e;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+    }
+
     .php-email-form {
         width: 100%;
         background: #fff;
 
         .form-group {
             padding-bottom: 8px;
-        }
-
-        .error-message {
-            display: none;
-            color: #fff;
-            background: #ed3c0d;
-            text-align: left;
-            padding: 15px;
-            font-weight: 600;
-
-            span {
-                display: block;
-            }
-
-            br + br {
-                margin-top: 25px;
-            }
-        }
-
-        .sent-message {
-            display: none;
-            color: #fff;
-            background: #18d26e;
-            text-align: center;
-            padding: 15px;
-            font-weight: 600;
-        }
-
-        .loading {
-            display: none;
-            background: #fff;
-            text-align: center;
-            padding: 15px;
-
-            &:before {
-                content: "";
-                display: inline-block;
-                border-radius: 50%;
-                width: 24px;
-                height: 24px;
-                margin: 0 10px -6px 0;
-                border: 3px solid #18d26e;
-                border-top-color: #eee;
-                -webkit-animation: animate-loading 1s linear infinite;
-                animation: animate-loading 1s linear infinite;
-            }
         }
 
         input,
