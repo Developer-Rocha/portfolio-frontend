@@ -8,9 +8,30 @@ function Header(props) {
 	const { t } = useTranslation("common");
 	const router = useRouter();
 
+	const handleMenu = (e) => {
+		e.preventDefault();
+
+		document.getElementsByTagName('body')[0].classList.toggle('mobile-nav-active');
+		e.currentTarget.classList.toggle('bi-list');
+		e.currentTarget.classList.toggle('bi-x');
+	}
+
+	const handleCloseMenu = (e) => {
+
+		let body = document.getElementsByTagName('body')[0];
+
+		if(body.classList.contains('mobile-nav-active')) {
+			let navbarToggle = document.getElementsByClassName('mobile-nav-toggle');
+			navbarToggle[0].classList.toggle('bi-list');
+			navbarToggle[0].classList.toggle('bi-x');
+			body.classList.remove('mobile-nav-active');
+
+		}
+	}
+
 	return (
 		<>
-			<MobileNavToggle className="bi bi-list mobile-nav-toggle d-xl-none" />
+			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle d-xl-none" />
 			<SwitchWrapper>
 				<Link href="/" locale={router.locale === "en" ? "pt-PT" : "en"}>
 					<a className="lang_switch">
@@ -23,7 +44,7 @@ function Header(props) {
 				<nav id="navbar" className="navbar nav-menu">
 					<ul>
 						<li>
-							<a href="#hero" className="nav-link scrollto active">
+							<a onClick={(e) => handleCloseMenu(e)} href="#hero" className="nav-link scrollto active">
 								<i className="bx bx-home"></i> <span>{t("home")}</span>
 							</a>
 						</li>
@@ -33,18 +54,18 @@ function Header(props) {
 							</a>
 						</li> */}
 						<li>
-							<a href="#services" className="nav-link scrollto">
+							<a onClick={(e) => handleCloseMenu(e)} href="#services" className="nav-link scrollto">
 								<i className="bx bx-server"></i> <span>{t("services")}</span>
 							</a>
 						</li>
 						<li>
-							<a href="#portfolio" className="nav-link scrollto">
+							<a onClick={(e) => handleCloseMenu(e)} href="#portfolio" className="nav-link scrollto">
 								<i className="bx bx-book-content"></i>
 								<span>{t("portfolio")}</span>
 							</a>
 						</li>
 						<li>
-							<a href="#contact" className="nav-link scrollto">
+							<a onClick={(e) => handleCloseMenu(e)} href="#contact" className="nav-link scrollto">
 								<i className="bx bx-envelope"></i> <span>{t("contact")}</span>
 							</a>
 						</li>
