@@ -17,7 +17,7 @@ function Header(props) {
 		array.map((item) => (
 			item.classList.contains('active') ? item.classList.remove('active') : null
 		))
-		e.currentTarget .classList.add('active');
+		e.currentTarget.classList.add('active');
 	}
 
 	return (
