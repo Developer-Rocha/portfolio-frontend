@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PortfolioWraper, ReactModal } from './styles';
 import { useTranslation } from 'next-i18next';
 import Modal from 'react-modal';
@@ -7,9 +7,13 @@ import PortfolioDetail from '../PortfolioDetail';
 Modal.setAppElement('#__next');
 
 function Portfolio({portfolio}) {
-	const [filters, setFilters] = useState([]);
 	const { t } = useTranslation("common");
+	const [filters, setFilters] = useState([]);
+	const [currentFilter, setCurrentFilter] = useState('*');
+	const [portfolios, setPortfolios ] = useState(portfolio.entities);
+	const el = useRef(null);
 
+	// For Modal
 	const [modalIsOpen,setIsOpen] = useState(false);
 	const [currentPortfolio, setCurrentPortfolio] = useState([]);
 
@@ -46,6 +50,27 @@ function Portfolio({portfolio}) {
 		setIsOpen(false);
 	}
 
+	const filter = (filterSelected) => {
+		if(filterSelected !== currentFilter) {
+			let portfolioFiltered = [];
+
+			if(filterSelected !== "*") {
+				portfolio.entities.map((item) => {
+					item.category.filter(row => {
+						if(row.entity.name === filterSelected) {
+							portfolioFiltered.push(item);
+						}
+					});
+				})
+				setPortfolios(portfolioFiltered);
+			}
+			else {
+				setPortfolios(portfolio.entities);
+			}
+			setCurrentFilter(filterSelected);
+		}
+	}
+
 	return (
 		<PortfolioWraper id="portfolio" className="portfolio section-bg">
 			<div className="container" data-aos="fade-up">
@@ -66,11 +91,11 @@ function Portfolio({portfolio}) {
 						data-aos-delay="100"
 					>
 						<ul id="portfolio-flters">
-							<li data-filter="*" className="filter-active">
+							<li onClick={() => filter("*")} className="filter-active">
 								{t('all')}
 							</li>
 							{filters.map((f, index) => (
-								<li key={index} data-filter={`.filter-${f.replace(/\s/g, "-").toLowerCase()}`}>{f}</li>
+								<li key={index} onClick={() => filter(f)}>{f}</li>
 							))}
 						</ul>
 					</div>
@@ -80,8 +105,9 @@ function Portfolio({portfolio}) {
 					className="row portfolio-container"
 					data-aos="fade-up"
 					data-aos-delay="200"
+					ref={el}
 				>
-					{portfolio.entities.map((item, index) => (
+					{portfolios.map((item, index) => (
 						<div key={index} className={`col-lg-4 col-md-6 portfolio-item ${item.category.map((item) => (
 							"filter-" + item.entity.name.replace(/\s/g, "-").toLowerCase()
 						)).join(' ')}`}>
