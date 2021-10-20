@@ -68,13 +68,19 @@ function Contact() {
 							<div className="email">
 								<i className="bi bi-envelope"></i>
 								<h4>Email:</h4>
-								<p>fabricio.lopesx@gmail.com</p>
+								<a href="mailto:fabricio.lopesx@gmail.com">
+									<p>fabricio.lopesx@gmail.com</p>
+								</a>
+
 							</div>
 
 							<div className="phone">
 								<i className="bi bi-phone"></i>
 								<h4>{t('phone')}:</h4>
-								<p>+351 939 678 026</p>
+								<a href="tel:+351 939 678 026">
+									<p>+351 939 678 026</p>
+								</a>
+
 							</div>
 						</div>
 					</div>
