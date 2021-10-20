@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+
+export const SwitchWrapper = styled.div`
+	position: fixed;
+    right: 15px;
+    top: 15px;
+    border-radius: 50%;
+	z-index: 500;
+
+	i {
+		margin-right: 5px;
+	}
+`;
+
 export const HeaderWraper = styled.header`
 	display: flex;
 	flex-direction: column;
