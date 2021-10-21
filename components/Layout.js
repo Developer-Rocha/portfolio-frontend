@@ -26,6 +26,7 @@ export default function Layout({ children, data, props }) {
 
 				<Hero
 					title={data.title}
+					backgroundImage={data.fieldHeroImage}
 					typedAnimation={data.fieldTypedAnimation}
 					socialLinks={props.socialLinks.social}
 				/>

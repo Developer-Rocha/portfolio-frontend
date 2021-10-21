@@ -1,4 +1,10 @@
 import { useState } from "react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+import { useRouter } from 'next/router'
+
+// SEO
+import { NextSeo } from 'next-seo';
 
 // Components
 import Layout from "../components/Layout";
@@ -12,19 +18,27 @@ import { GET_HOME, GET_SOCIAL } from "../lib/apollo/queries/getHome";
 import { GET_PORTFOLIO } from "../lib/apollo/queries/getPortfolio";
 import { GET_WEBFORM } from "../lib/apollo/queries/getWebform";
 
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
+
 
 export default function Home(props) {
-	const [state, setState] = useState(props.nodeInfo.page);
-
+	const router = useRouter()
 	const { t } = useTranslation("common");
+	const baseUrl = "http://localhost:3000"
+
+	const [state, setState] = useState(props.nodeInfo.page);
 
 	if (!state) {
 		return <h1>{t('query_error_message')}</h1>;
 	}
 
 	return (
+		<>
+		<NextSeo
+			title={state.title}
+			description={state.fieldSeoDescription}
+			canonical={baseUrl + router.pathname}
+		/>
+
 		<Layout data={state} props={props}>
 			<Services
 				data={state.fieldServices}
@@ -35,6 +49,7 @@ export default function Home(props) {
 
 			<Contact />
 		</Layout>
+		</>
 	);
 }
 

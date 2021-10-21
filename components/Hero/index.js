@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import { HeroWraper } from "./styles";
 import Typed from "typed.js";
 
-function Hero({ title, typedAnimation, socialLinks }) {
+function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 	// Create Ref element.
 	const el = useRef(null);
 	const staticText = typedAnimation.entity.fieldStaticText;
@@ -11,6 +11,8 @@ function Hero({ title, typedAnimation, socialLinks }) {
 	const typedArray = typedAnimation.entity.fieldTypedItem.map((item) => {
 		return item.entity.fieldTextItem;
 	});
+
+	const backgroundURL = backgroundImage.entity ? backgroundImage.entity.fieldMediaImage.lg.url : NULL;
 
 	useEffect(() => {
 		const typed = new Typed(el.current, {
@@ -30,7 +32,7 @@ function Hero({ title, typedAnimation, socialLinks }) {
 	}, []);
 
 	return (
-		<HeroWraper id="hero" className="d-flex flex-column justify-content-center">
+		<HeroWraper id="hero" style={{backgroundImage: "url(" + backgroundURL +")"}} className="d-flex flex-column justify-content-center">
 			<div className="container" data-aos="zoom-in" data-aos-delay="100">
 				<h1>{title}</h1>
 				<p>
