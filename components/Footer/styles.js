@@ -29,7 +29,7 @@ export const FooterWraper = styled.footer`
         a {
             font-size: 18px;
             display: inline-block;
-            background: #0563bb;
+            background: var(--primary);
             color: #fff;
             line-height: 1;
             padding: 8px 0;

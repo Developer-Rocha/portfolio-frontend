@@ -50,7 +50,7 @@ export const HeroWraper = styled.section`
 		}
 
 		span {
-			color: #0563bb;
+			color: var(--primary);
 			letter-spacing: 1px;
 		}
 	}
@@ -67,7 +67,7 @@ export const HeroWraper = styled.section`
 			transition: 0.3s;
 
 			&:hover {
-				color: #0563bb;
+				color: var(--primary);
 			}
 		}
 	}

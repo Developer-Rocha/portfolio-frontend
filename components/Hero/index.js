@@ -42,6 +42,7 @@ function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 					{socialLinks.links.map((item, index) => (
 						<a
 							href={item.url.path}
+							target="_blank"
 							key={index}
 							className={item.label.toLowerCase()}
 						>

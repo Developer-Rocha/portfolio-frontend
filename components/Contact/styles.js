@@ -7,7 +7,7 @@ export const ContactWraper = styled.section`
 
         i {
             font-size: 20px;
-            color: #0563bb;
+            color: var(--primary);
             float: left;
             width: 44px;
             height: 44px;
@@ -40,7 +40,7 @@ export const ContactWraper = styled.section`
 
             &:hover {
                 i {
-                    background: #0563bb;
+                    background: var(--primary);
                     color: #fff;
                 }
             }
@@ -119,7 +119,7 @@ export const ContactWraper = styled.section`
         }
 
         button[type="submit"] {
-            background: #0563bb;
+            background: var(--primary);
             border: 0;
             padding: 10px 35px;
             color: #fff;

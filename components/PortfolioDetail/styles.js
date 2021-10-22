@@ -17,11 +17,11 @@ export const ModalContentWrapper = styled.div`
                 height: 12px;
                 background-color: #fff;
                 opacity: 1;
-                border: 1px solid #0563bb;
+                border: 1px solid var(--primary);
             }
 
             .swiper-pagination-bullet-active {
-                background-color: #0563bb;
+                background-color: var(--primary);
             }
         }
     }

@@ -83,7 +83,7 @@ export const HeaderWraper = styled.header`
 		a {
 			&:hover {
 				color: #fff;
-				background: #0563bb;
+				background: var(--primary);
 				width: 100%;
 				color: #fff;
 				span {
@@ -94,10 +94,10 @@ export const HeaderWraper = styled.header`
 		}
 		.active {
 			color: #fff;
-			background: #0563bb;
+			background: var(--primary);
 			&:focus {
 				color: #fff;
-				background: #0563bb;
+				background: var(--primary);
 				span {
 					color: #fff;
 				}
@@ -110,7 +110,7 @@ export const HeaderWraper = styled.header`
 			&:hover {
 				> a {
 					color: #fff;
-					background: #0563bb;
+					background: var(--primary);
 					width: 100%;
 					color: #fff;
 					span {

@@ -24,14 +24,14 @@ export const PortfolioWraper = styled.section`
 			margin-bottom: 5px;
 			transition: all 0.3s ease-in-out;
 			&:hover {
-				color: #0563bb;
+				color: var(--primary);
 			}
 			&:last-child {
 				margin-right: 0;
 			}
 		}
 		li.filter-active {
-			color: #0563bb;
+			color: var(--primary);
 		}
 	}
 	.portfolio-wrap {

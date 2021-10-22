@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    --primary: #ff6a00;
+    --primary:  #519085;
   }
   * {
     font-family: "Open Sans", sans-serif;
@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-  color: #0563bb;
+  color: var(--primary);
   text-decoration: none;
   }
 
@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
     right: 15px;
     bottom: 15px;
     z-index: 996;
-    background: #0563bb;
+    background: var(--primary);
     width: 40px;
     height: 40px;
     border-radius: 50px;
@@ -91,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
       position: fixed;
       top: calc(50% - 30px);
       left: calc(50% - 30px);
-      border: 6px solid #0563bb;
+      border: 6px solid var(--primary);
       border-top-color: #fff;
       border-bottom-color: #fff;
       border-radius: 50%;
@@ -142,7 +142,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 	.mobile-nav-toggle {
 		color: #fff;
-		background-color: #0563bb;
+		background-color: var(--primary);
 	}
 }
 
@@ -181,7 +181,7 @@ section {
 			display: block;
 			width: 40px;
 			height: 3px;
-			background: #0563bb;
+			background: var(--primary);
 			bottom: 0;
 			left: calc(50% - 20px);
 		}
