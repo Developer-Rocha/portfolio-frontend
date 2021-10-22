@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Router from "next/router";
 import { ThemeProvider } from "styled-components";
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
-
 import { useDefaultLocale } from "../utils/UseDefaultLocale";
+
+// Components
+import Loading from "../components/Loading";
 
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,9 +29,16 @@ const theme = {
 const App = ({ Component, pageProps }) => {
 	useDefaultLocale();
 
-	useEffect(() => {
+	const [loading, setLoading] = useState(false);
 
-		window.addEventListener('scroll', scrollHandler);
+	useEffect(() => {
+		let unmounted   = false;
+
+		if(!unmounted ) {
+			window.addEventListener('scroll', scrollHandler);
+		}
+
+		return () => unmounted = true;
 
 	}, []);
 
@@ -48,6 +58,13 @@ const App = ({ Component, pageProps }) => {
 		})
 	}
 
+	Router.events.on("routeChangeStart", (url) => {
+		setLoading(true);
+	});
+	Router.events.on("routeChangeComplete", (url) => {
+		setLoading(false);
+	});
+
 	return (
 		<>
 			<Head>
@@ -57,7 +74,11 @@ const App = ({ Component, pageProps }) => {
 
 			<ApolloProvider client={client}>
 				<ThemeProvider theme={theme}>
-					<Component {...pageProps} />
+					{loading ? (
+						<Loading loading={loading} />
+					) : (
+						<Component {...pageProps} />
+					)}
 				</ThemeProvider>
 			</ApolloProvider>
 		</>
