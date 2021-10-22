@@ -188,6 +188,7 @@ section {
 	}
 	p {
 		margin-bottom: 0;
+    font-size: 20px;
 	}
 }
 

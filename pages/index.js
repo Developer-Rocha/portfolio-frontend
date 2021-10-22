@@ -42,7 +42,7 @@ export default function Home(props) {
 		<Layout data={state} props={props}>
 			<Services
 				data={state.fieldServices}
-				description={props.fieldServiceDescription}
+				description={state.fieldServiceDescription}
 			/>
 
 			<Portfolio portfolio={props.portfolio.portfolio} />
