@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PortfolioWraper } from './styles';
-import useTranslation from 'next-translate/useTranslation'
 import Modal from 'react-modal';
 import PortfolioDetail from '../PortfolioDetail';
 
 Modal.setAppElement('#__next');
 
 function Portfolio({portfolio}) {
-	const { t } = useTranslation("common");
 	const [filters, setFilters] = useState([]);
 	const [currentFilter, setCurrentFilter] = useState('*');
 	const [portfolios, setPortfolios ] = useState(portfolio.entities);
@@ -79,7 +77,7 @@ function Portfolio({portfolio}) {
 		<PortfolioWraper id="portfolio" className="portfolio section-bg">
 			<div className="container" data-aos="fade-up">
 				<div className="section-title">
-					<h2>{t('portfolio')}</h2>
+					<h2>Portfólio</h2>
 				</div>
 
 				<div className="row">
@@ -90,7 +88,7 @@ function Portfolio({portfolio}) {
 					>
 						<ul id="portfolio-flters">
 							<li onClick={() => filter("*")} className="filter-active">
-								{t('all')}
+								Tudo
 							</li>
 							{filters.map((f, index) => (
 								<li key={index} onClick={() => filter(f)}>{f}</li>
