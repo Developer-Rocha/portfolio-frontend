@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { MobileNavToggle, HeaderWraper, SwitchWrapper } from "./styles";
-import { useTranslation } from "next-i18next";
+import useTranslation from 'next-translate/useTranslation'
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -33,7 +33,7 @@ function Header(props) {
 		<>
 			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle d-xl-none" />
 			<SwitchWrapper>
-				<Link href="/" locale={router.locale === "en" ? "pt-PT" : "en"}>
+				<Link href="/" locale={router.locale === "en" ? "pt" : "en"}>
 					<a className="lang_switch">
 						<i className="bx bx-world"></i>
 						<span>{router.locale === "en" ? "PT" : "EN"}</span>

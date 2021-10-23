@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Router from "next/router";
 import { ThemeProvider } from "styled-components";
-import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
 import { useDefaultLocale } from "../utils/UseDefaultLocale";
 
@@ -85,4 +84,4 @@ const App = ({ Component, pageProps }) => {
 	);
 };
 
-export default appWithTranslation(App);
+export default App;

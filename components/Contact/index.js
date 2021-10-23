@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { ContactWraper } from "./styles";
 import { useMutation } from "@apollo/client";
 import { POST_CONTACT } from "../../lib/apollo/mutations/postContact";
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation'
 
 function Contact() {
 	const { t } = useTranslation("common");

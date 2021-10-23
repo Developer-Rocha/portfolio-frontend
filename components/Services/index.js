@@ -1,17 +1,11 @@
 import React from "react";
-import { useTranslation } from "next-i18next";
+import useTranslation from 'next-translate/useTranslation'
 
 // import { useEffect, useRef } from "react";
 import { ServicesWraper } from "./styles";
 
 function Services({ data, description }) {
 	const { t } = useTranslation("common");
-	// useEffect(() => {
-
-	// 	// Destropying
-	// 	return () => {
-	// 	};
-	// }, []);
 
 	return (
 		<ServicesWraper id="services" className="services">

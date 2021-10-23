@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
+import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 
 // SEO
@@ -93,7 +92,6 @@ export async function getStaticProps({ locale }) {
 			socialLinks: response[1].data,
 			portfolio: response[2].data,
 			webform: response[3].data,
-			...(await serverSideTranslations(locale, ["common"])),
 		},
 	};
 }
