@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Router from "next/router";
 import { ThemeProvider } from "styled-components";
 import Head from "next/head";
-import { useDefaultLocale } from "../utils/UseDefaultLocale";
 
 // Components
 import Loading from "../components/Loading";
@@ -26,8 +25,6 @@ const theme = {
 };
 
 const App = ({ Component, pageProps }) => {
-	useDefaultLocale();
-
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {

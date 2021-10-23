@@ -1,11 +1,9 @@
 import React, {useState} from "react";
 import { MobileNavToggle, HeaderWraper, SwitchWrapper } from "./styles";
-import useTranslation from 'next-translate/useTranslation'
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 function Header(props) {
-	const { t } = useTranslation("common");
 	const router = useRouter();
 
 	const handleMenu = (e) => {
@@ -32,20 +30,20 @@ function Header(props) {
 	return (
 		<>
 			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle d-xl-none" />
-			<SwitchWrapper>
+			{/* <SwitchWrapper>
 				<Link href="/" locale={router.locale === "en" ? "pt" : "en"}>
 					<a className="lang_switch">
 						<i className="bx bx-world"></i>
 						<span>{router.locale === "en" ? "PT" : "EN"}</span>
 					</a>
 				</Link>
-			</SwitchWrapper>
+			</SwitchWrapper> */}
 			<HeaderWraper id="header">
 				<nav id="navbar" className="navbar nav-menu">
 					<ul>
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#hero" className="nav-link scrollto active">
-								<i className="bx bx-home"></i> <span>{t("home")}</span>
+								<i className="bx bx-home"></i> <span>Home</span>
 							</a>
 						</li>
 						{/* <li>
@@ -55,18 +53,18 @@ function Header(props) {
 						</li> */}
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#services" className="nav-link scrollto">
-								<i className="bx bx-server"></i> <span>{t("services")}</span>
+								<i className="bx bx-server"></i> <span>Serviços</span>
 							</a>
 						</li>
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#portfolio" className="nav-link scrollto">
 								<i className="bx bx-book-content"></i>
-								<span>{t("portfolio")}</span>
+								<span>Portfólio</span>
 							</a>
 						</li>
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#contact" className="nav-link scrollto">
-								<i className="bx bx-envelope"></i> <span>{t("contact")}</span>
+								<i className="bx bx-envelope"></i> <span>Contacto</span>
 							</a>
 						</li>
 					</ul>

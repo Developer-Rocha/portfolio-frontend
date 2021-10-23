@@ -1,17 +1,15 @@
 import React from "react";
-import useTranslation from 'next-translate/useTranslation'
 
 // import { useEffect, useRef } from "react";
 import { ServicesWraper } from "./styles";
 
 function Services({ data, description }) {
-	const { t } = useTranslation("common");
 
 	return (
 		<ServicesWraper id="services" className="services">
 			<div className="container" data-aos="fade-up">
 				<div className="section-title">
-					<h2>{t("services")}</h2>
+					<h2>Serviços</h2>
 					<p>{description}</p>
 				</div>
 

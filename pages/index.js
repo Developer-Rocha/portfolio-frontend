@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
 
 // SEO
@@ -21,13 +20,12 @@ import { GET_WEBFORM } from "../lib/apollo/queries/getWebform";
 
 export default function Home(props) {
 	const router = useRouter()
-	const { t } = useTranslation("common");
 	const baseUrl = "http://localhost:3000"
 
 	const [state, setState] = useState(props.nodeInfo.page);
 
 	if (!state) {
-		return <h1>{t('query_error_message')}</h1>;
+		return <h1>Erro ao carregar os conteúdos.</h1>;
 	}
 
 	return (
@@ -52,8 +50,8 @@ export default function Home(props) {
 	);
 }
 
-export async function getStaticProps({ locale }) {
-	const langcode = locale === "en" ? "EN" : "PT_PT";
+export async function getStaticProps() {
+	const langcode = "PT_PT"
 
 	const getHome = client.query({
 		query: GET_HOME,
