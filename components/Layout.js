@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import i18next from 'i18next';
 
 import AOS from "aos";
-import GlobalStyle from "../components/GlobalStyle";
 
 // Components
 import Header from "./Header";
@@ -30,7 +29,6 @@ export default function Layout({ children, props }) {
 				<meta name="description" content="Learn how to build a personal website using Next.js" />
 				<meta name="og:title" content={i18next.t('siteMeta.title')} />
 			</Head>
-			<GlobalStyle />
 
 			<div>
 				<Header />

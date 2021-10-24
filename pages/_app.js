@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "boxicons/css/boxicons.min.css";
+import GlobalStyle from "../components/GlobalStyle";
 
 import "aos/dist/aos.css";
 
@@ -66,6 +67,7 @@ const App = ({ Component, pageProps }) => {
 
 	return (
 		<>
+			<GlobalStyle />
 			<ApolloProvider client={client}>
 				<ThemeProvider theme={theme}>
 					{loading ? (

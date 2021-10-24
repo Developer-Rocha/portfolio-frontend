@@ -3,8 +3,12 @@ import { MobileNavToggle, HeaderWraper, SwitchWrapper } from "./styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import i18next from 'i18next';
+import { languages } from '../../i18n/config';
+
 function Header(props) {
 	const router = useRouter();
+	const { pathname } = router;
 
 	const handleMenu = (e) => {
 		e.preventDefault();
@@ -30,14 +34,24 @@ function Header(props) {
 	return (
 		<>
 			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle d-xl-none" />
-			{/* <SwitchWrapper>
-				<Link href="/" locale={router.locale === "en" ? "pt" : "en"}>
-					<a className="lang_switch">
-						<i className="bx bx-world"></i>
-						<span>{router.locale === "en" ? "PT" : "EN"}</span>
-					</a>
-				</Link>
-			</SwitchWrapper> */}
+			<SwitchWrapper>
+				{languages.map((lang, index) => {
+
+					if(lang !== i18next.language) {
+						const path = pathname.replace(/\[lang\]/i, lang);
+
+						return (
+							<Link key={index} prefetch={false} href={pathname} as={path}>
+								<a className="lang_switch">
+									<i className="bx bx-world"></i>
+									<span>{i18next.language === "en" ? "PT" : "EN"}</span>
+								</a>
+							</Link>
+						);
+					}
+
+				})}
+			</SwitchWrapper>
 			<HeaderWraper id="header">
 				<nav id="navbar" className="navbar nav-menu">
 					<ul>
