@@ -95,7 +95,7 @@ export const ContactWraper = styled.section`
         font-weight: 600;
     }
 
-    .php-email-form {
+    .email-form {
         width: 100%;
         background: #fff;
 

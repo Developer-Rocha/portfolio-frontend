@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { ModalContentWrapper } from './styles';
 
+import i18next from 'i18next';
+
 // import Swiper JS
 import Swiper, { Navigation, Pagination, Autoplay } from 'swiper';
 // import Swiper styles
@@ -66,16 +68,16 @@ function ModalContent({data}) {
                     <div className="portfolio-info">
                         <h3>{data.client}</h3>
                         <ul>
-                            <li><strong>Category</strong>: {data.category.map((item) => (
+                            <li><strong>{i18next.t('category')}</strong>: {data.category.map((item) => (
 											item.entity.name
 										)).join(', ')}</li>
-                            <li><strong>Client</strong>: {data.client}</li>
-                            <li><strong>Project date</strong>: {data.date.value}</li>
-                            <li><strong>Project URL</strong>: <a target="_blank" href={data.url.url.path}>{data.client}</a></li>
+                            <li><strong>{i18next.t('client')}</strong>: {data.client}</li>
+                            <li><strong>{i18next.t('project-date')}</strong>: {data.date.value}</li>
+                            <li><strong>{i18next.t('project-url')}</strong>: <a target="_blank" href={data.url.url.path}>{data.client}</a></li>
                         </ul>
                     </div>
                     <div className="portfolio-description">
-                        <h2>Detail</h2>
+                        <h2>{i18next.t('detail')}</h2>
                         <div dangerouslySetInnerHTML={{__html: data.description.value }}></div>
                     </div>
                 </div>

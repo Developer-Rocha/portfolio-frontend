@@ -3,8 +3,12 @@ import { MobileNavToggle, HeaderWraper, SwitchWrapper } from "./styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import i18next from 'i18next';
+import { languages } from '../../i18n/config';
+
 function Header(props) {
 	const router = useRouter();
+	const { pathname } = router;
 
 	const handleMenu = (e) => {
 		e.preventDefault();
@@ -30,14 +34,24 @@ function Header(props) {
 	return (
 		<>
 			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle d-xl-none" />
-			{/* <SwitchWrapper>
-				<Link href="/" locale={router.locale === "en" ? "pt" : "en"}>
-					<a className="lang_switch">
-						<i className="bx bx-world"></i>
-						<span>{router.locale === "en" ? "PT" : "EN"}</span>
-					</a>
-				</Link>
-			</SwitchWrapper> */}
+			<SwitchWrapper>
+				{languages.map((lang, index) => {
+
+					if(lang !== i18next.language) {
+						const path = pathname.replace(/\[lang\]/i, lang);
+
+						return (
+							<Link key={index} prefetch={false} href={pathname} as={path}>
+								<a className="lang_switch">
+									<i className="bx bx-world"></i>
+									<span>{i18next.language === "en" ? "PT" : "EN"}</span>
+								</a>
+							</Link>
+						);
+					}
+
+				})}
+			</SwitchWrapper>
 			<HeaderWraper id="header">
 				<nav id="navbar" className="navbar nav-menu">
 					<ul>
@@ -53,18 +67,18 @@ function Header(props) {
 						</li> */}
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#services" className="nav-link scrollto">
-								<i className="bx bx-server"></i> <span>Serviços</span>
+								<i className="bx bx-server"></i> <span>{i18next.t('services')}</span>
 							</a>
 						</li>
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#portfolio" className="nav-link scrollto">
 								<i className="bx bx-book-content"></i>
-								<span>Portfólio</span>
+								<span>{i18next.t('portfolio')}</span>
 							</a>
 						</li>
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#contact" className="nav-link scrollto">
-								<i className="bx bx-envelope"></i> <span>Contacto</span>
+								<i className="bx bx-envelope"></i> <span>{i18next.t('contact')}</span>
 							</a>
 						</li>
 					</ul>

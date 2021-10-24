@@ -1,14 +1,16 @@
 import React from "react";
+import Head from "next/head";
 import { useEffect } from "react";
+
+import i18next from 'i18next';
 
 import AOS from "aos";
 
 // Components
 import Header from "./Header";
-import Hero from "./Hero";
 import Footer from './Footer';
 
-export default function Layout({ children, data, props }) {
+export default function Layout({ children, props }) {
 	useEffect(() => {
 		// here you can add your aos options
 		AOS.init({
@@ -21,15 +23,14 @@ export default function Layout({ children, data, props }) {
 
 	return (
 		<>
+			<Head>
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="description" content="Learn how to build a personal website using Next.js" />
+				<meta name="og:title" content={i18next.t('siteMeta.title')} />
+			</Head>
+
 			<div>
 				<Header />
-
-				<Hero
-					title={data.title}
-					backgroundImage={data.fieldHeroImage}
-					typedAnimation={data.fieldTypedAnimation}
-					socialLinks={props.socialLinks.social}
-				/>
 
 				<main>{children}</main>
 

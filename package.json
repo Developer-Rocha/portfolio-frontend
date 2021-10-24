@@ -6,6 +6,8 @@
 		"start": "next start"
 	},
 	"dependencies": {
+		"i18next": "^19.8.4",
+		"i18next-browser-languagedetector": "^6.0.1",
 		"@apollo/client": "^3.4.16",
 		"aos": "^2.3.4",
 		"bootstrap": "^5.0.0-beta3",

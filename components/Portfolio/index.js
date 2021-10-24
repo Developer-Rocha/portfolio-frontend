@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { PortfolioWraper } from './styles';
 import Modal from 'react-modal';
 import PortfolioDetail from '../PortfolioDetail';
+import i18next from 'i18next';
 
 Modal.setAppElement('#__next');
 
@@ -77,7 +78,7 @@ function Portfolio({portfolio}) {
 		<PortfolioWraper id="portfolio" className="portfolio section-bg">
 			<div className="container" data-aos="fade-up">
 				<div className="section-title">
-					<h2>Portfólio</h2>
+					<h2>{i18next.t('portfolio')}</h2>
 				</div>
 
 				<div className="row">
@@ -88,7 +89,7 @@ function Portfolio({portfolio}) {
 					>
 						<ul id="portfolio-flters">
 							<li onClick={() => filter("*")} className="filter-active">
-								Tudo
+								{i18next.t('all')}
 							</li>
 							{filters.map((f, index) => (
 								<li key={index} onClick={() => filter(f)}>{f}</li>
