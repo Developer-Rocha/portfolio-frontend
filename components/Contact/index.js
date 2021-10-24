@@ -87,7 +87,7 @@ function Contact() {
 					<div className="col-lg-8 mt-5 mt-lg-0" ref={el} style={{ minHeight: height }}>
 						<div className={"loading " + (loading ? "d-flex" : "")}>{i18next.t('loading')}</div>
 
-						<form onSubmit={e => submitContact(e)} action="" method="post" role="form" className={"php-email-form " + (loading || success ? "d-none" : "")}>
+						<form onSubmit={e => submitContact(e)} action="" method="post" role="form" className={"email-form " + (loading || success ? "d-none" : "")}>
 							<div className="row">
 								<div className="col-md-6 form-group">
 									<input type="text" name="name" className="form-control" id="name" placeholder={i18next.t('your-name')} required/>
