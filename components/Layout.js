@@ -8,7 +8,6 @@ import AOS from "aos";
 
 // Components
 import Header from "./Header";
-import Hero from "./Hero";
 import Footer from './Footer';
 
 export default function Layout({ children, props }) {
