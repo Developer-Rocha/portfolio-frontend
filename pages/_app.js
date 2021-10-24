@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Router from "next/router";
 import { ThemeProvider } from "styled-components";
-import Head from "next/head";
 
 // Components
 import Loading from "../components/Loading";
@@ -12,11 +11,14 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "boxicons/css/boxicons.min.css";
 
 import "aos/dist/aos.css";
-import GlobalStyle from "../components/GlobalStyle";
 
 // API
 import { ApolloProvider } from "@apollo/client";
 import client from "../lib/apollo/apolloClient";
+
+// i18n integration
+import '../i18n/init';
+import i18next from 'i18next';
 
 const theme = {
 	colors: {
@@ -25,6 +27,7 @@ const theme = {
 };
 
 const App = ({ Component, pageProps }) => {
+	i18next.changeLanguage(pageProps.language);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -63,11 +66,6 @@ const App = ({ Component, pageProps }) => {
 
 	return (
 		<>
-			<Head>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-			</Head>
-			<GlobalStyle />
-
 			<ApolloProvider client={client}>
 				<ThemeProvider theme={theme}>
 					{loading ? (
