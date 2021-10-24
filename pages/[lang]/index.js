@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useRouter } from 'next/router'
 
-import i18next from 'i18next';
-
 import { getAllLanguageSlugs, getLanguage } from '../../lib/lang';
 
 // SEO
@@ -17,7 +15,8 @@ import Contact from "../../components/Contact";
 
 //API
 import client from "../../lib/apollo/apolloClient";
-import { GET_HOME, GET_SOCIAL } from "../../lib/apollo/queries/getHome";
+import { GET_HOME } from "../../lib/apollo/queries/getHome";
+import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
 import { GET_PORTFOLIO } from "../../lib/apollo/queries/getPortfolio";
 import { GET_WEBFORM } from "../../lib/apollo/queries/getWebform";
 
@@ -39,13 +38,14 @@ export default function LangIndex( props ) {
 				canonical={baseUrl + router.pathname}
 			/>
 
-			<Layout data={state} props={props}>
+			<Layout props={props}>
 				<Hero
 					title={state.title}
 					backgroundImage={state.fieldHeroImage}
 					typedAnimation={state.fieldTypedAnimation}
 					socialLinks={props.socialLinks.social}
 				/>
+
 				<Services
 					data={state.fieldServices}
 					description={state.fieldServiceDescription}
