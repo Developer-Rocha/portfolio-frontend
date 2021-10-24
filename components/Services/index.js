@@ -1,6 +1,7 @@
 import React from "react";
 
-// import { useEffect, useRef } from "react";
+import i18next from 'i18next';
+
 import { ServicesWraper } from "./styles";
 
 function Services({ data, description }) {
@@ -9,7 +10,7 @@ function Services({ data, description }) {
 		<ServicesWraper id="services" className="services">
 			<div className="container" data-aos="fade-up">
 				<div className="section-title">
-					<h2>Serviços</h2>
+					<h2>{i18next.t('services')}</h2>
 					<p>{description}</p>
 				</div>
 

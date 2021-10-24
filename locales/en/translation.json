@@ -14,5 +14,10 @@
 	"your-name": "Your Name",
 	"your-email": "Your Email",
 	"subject": "Subject",
-	"message": "Message"
+	"message": "Message",
+	"category": "Category",
+	"client": "Client",
+	"project-date": "Project date",
+	"project-url": "Project URL",
+	"detail": "Detail"
 }
