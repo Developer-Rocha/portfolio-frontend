@@ -37,7 +37,7 @@ function Contact() {
 
 		// Fetch to API
 		const res = await fetch(
-			'http://portfolio.lndo.site/webform_rest/submit',
+			'https://fabricio-rocha.com/webform_rest/submit',
 			{
 				body: JSON.stringify(data),
 				headers: {
