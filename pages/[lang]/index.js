@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useRouter } from 'next/router'
 
-import { getAllLanguageSlugs, getLanguage } from '../../lib/lang';
+import { getAllLanguageSlugs, getLanguage } from "../../lib/lang";
 
-// SEO
-import { NextSeo } from 'next-seo';
 
 // Components
 import Layout from "../../components/Layout";
@@ -15,13 +13,13 @@ import Contact from "../../components/Contact";
 
 //API
 import client from "../../lib/apollo/apolloClient";
-import { GET_HOME } from "../../lib/apollo/queries/getHome";
+import { GET_NODE } from "../../lib/apollo/queries/getNode";
 import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
 import { GET_PORTFOLIO } from "../../lib/apollo/queries/getPortfolio";
 
 export default function LangIndex( props ) {
-	const router = useRouter()
-	const baseUrl = "http://localhost:3000"
+	const router = useRouter();
+	const { pathname } = router;
 
 	const [state, setState] = useState(props.nodeInfo.page);
 
@@ -31,12 +29,6 @@ export default function LangIndex( props ) {
 
 	return (
 		<>
-			<NextSeo
-				title={state.title}
-				description={state.fieldSeoDescription}
-				canonical={baseUrl + router.pathname}
-			/>
-
 			<Layout props={props}>
 				<Hero
 					title={state.title}
@@ -71,8 +63,8 @@ export async function getStaticProps({ params }) {
 
 	const langcode = language === "en" ? "EN" : "PT_PT"
 
-	const getHome = client.query({
-		query: GET_HOME,
+	const getNode = client.query({
+		query: GET_NODE,
 		variables: {
 			language: langcode,
 			id: 1,
@@ -93,7 +85,7 @@ export async function getStaticProps({ params }) {
 		}
 	})
 
-	const response = await Promise.all([getHome, socialLink, portfolio]);
+	const response = await Promise.all([getNode, socialLink, portfolio]);
 
 	return {
 		props: {
@@ -101,6 +93,8 @@ export async function getStaticProps({ params }) {
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
 			portfolio: response[2].data,
+			title: response[0].data ? response[0].data.page.title : 'Developer Rocha',
+			description: response[0].data ? response[0].data.page.fieldSeoDescription : null
 		},
 	};
 }

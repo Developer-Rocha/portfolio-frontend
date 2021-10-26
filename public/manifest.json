@@ -1,0 +1,30 @@
+{
+	"name": "Developer Rocha",
+	"short_name": "Developer Rocha",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#FFF",
+	"theme_color": "#519085",
+	"icons": [
+		{
+			"src": "/images/favicon/favicon-16x16.png",
+			"type": "image/png",
+			"sizes": "16x16"
+		},
+		{
+			"src": "/images/favicon/favicon-32x32.png",
+			"type": "image/png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "/images/favicon/logo-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/images/favicon/logo-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}

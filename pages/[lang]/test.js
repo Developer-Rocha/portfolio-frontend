@@ -46,6 +46,8 @@ export async function getStaticProps({ params }) {
 		props: {
             language,
 			socialLinks: response[0].data,
+			title: 'Developer Rocha',
+			description: 'Development of perfects websites'
 		},
 	};
 }
