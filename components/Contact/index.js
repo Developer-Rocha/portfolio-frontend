@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
 import { ContactWraper } from "./styles";
-import { useMutation } from "@apollo/client";
-import { POST_CONTACT } from "../../lib/apollo/mutations/postContact";
 import i18next from 'i18next';
 
 function Contact() {
@@ -15,17 +13,21 @@ function Contact() {
 	const submitContact = async (e) => {
 		e.preventDefault();
 
+		// set a min-height for the contact wrapper
 		let portfolioHeight = el.current.offsetHeight;
 		setHeight(portfolioHeight);
 
+		// Verify if the user is a human
 		if (e.target.email.value.length){
 			console.log('você preencheu o campo que nao devia!!');
 			setSuccess(true);
 			return
 		}
+
 		setLoading(true);
 
-		const arr = {
+		// Get Form data
+		const data = {
 			"webform_id":"contact",
 			"name": e.target.name.value,
 			"email": e.target.emailclient.value,
@@ -33,20 +35,32 @@ function Contact() {
 			"message": e.target.message.value,
 		}
 
-		await submitForm({variables: {values: JSON.stringify(arr)}})
-	}
+		// Fetch to API
+		const res = await fetch(
+			'http://portfolio.lndo.site/webform_rest/submit',
+			{
+				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				method: 'POST'
+			}
+		);
 
-	const [submitForm] = useMutation(POST_CONTACT, {onCompleted({submitForm}) {
+		const result = await res.json();
 
-		if (submitForm.errors.length > 0) {
-			setError(submitForm.errors);
+		if(result.error){
+			let err = Object.values(result.error);
+			console.log(err);
+
+			setError(err);
+			setLoading(false);
 		}
 		else {
 			setSuccess(true);
+			setLoading(false);
 		}
-
-		setLoading(false);
-	}} )
+	}
 
 	return (
         <ContactWraper id="contact" className="contact">
