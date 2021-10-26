@@ -18,7 +18,6 @@ import client from "../../lib/apollo/apolloClient";
 import { GET_HOME } from "../../lib/apollo/queries/getHome";
 import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
 import { GET_PORTFOLIO } from "../../lib/apollo/queries/getPortfolio";
-import { GET_WEBFORM } from "../../lib/apollo/queries/getWebform";
 
 export default function LangIndex( props ) {
 	const router = useRouter()
@@ -94,14 +93,7 @@ export async function getStaticProps({ params }) {
 		}
 	})
 
-	const webform = client.query({
-		query: GET_WEBFORM,
-		variables: {
-			id: "contact"
-		}
-	})
-
-	const response = await Promise.all([getHome, socialLink, portfolio, webform]);
+	const response = await Promise.all([getHome, socialLink, portfolio]);
 
 	return {
 		props: {
@@ -109,7 +101,6 @@ export async function getStaticProps({ params }) {
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
 			portfolio: response[2].data,
-			webform: response[3].data,
 		},
 	};
 }
