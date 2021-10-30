@@ -209,8 +209,8 @@ section {
 
   @media (max-width: 992px) {
     top: 60px;
-    left: 25px;
-    right: 25px;
+    left: 10px;
+    right: 10px;
   }
 }
 
