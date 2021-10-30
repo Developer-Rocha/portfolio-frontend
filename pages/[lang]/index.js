@@ -97,5 +97,10 @@ export async function getStaticProps({ params }) {
 			title: response[0].data ? response[0].data.page.title : 'Developer Rocha',
 			description: response[0].data ? response[0].data.page.fieldSeoDescription : null
 		},
+
+		// Next.js will attempt to re-generate the page:
+		// - When a request comes in
+		// - At most once every 10 seconds
+		revalidate: 10, // In seconds
 	};
 }
