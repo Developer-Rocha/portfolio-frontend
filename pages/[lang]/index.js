@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import { useState } from "react";
 import { useRouter } from 'next/router'
 
@@ -16,6 +18,8 @@ import client from "../../lib/apollo/apolloClient";
 import { GET_NODE } from "../../lib/apollo/queries/getNode";
 import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
 import { GET_PORTFOLIO } from "../../lib/apollo/queries/getPortfolio";
+
+const cacheFilePortfolio = '.dev-to-cache-portfolio.json'
 
 export default function LangIndex( props ) {
 	const router = useRouter();
@@ -53,6 +57,21 @@ export default function LangIndex( props ) {
 export async function getStaticPaths() {
 	const paths = getAllLanguageSlugs();
 
+	// Get the published Portfolios and cache them for use in getStaticProps
+	const portfolioQuery = client.query({
+		query: GET_PORTFOLIO,
+		variables: {
+			language: "EN"
+		}
+	})
+
+	const response = await Promise.all([portfolioQuery]);
+
+	const portfolio = response[0].data;
+
+	// Save portfolio data to cache file
+    fs.writeFileSync(path.join(process.cwd(), cacheFilePortfolio), JSON.stringify(portfolio))
+
 	return {
 		paths,
 		fallback: false,
@@ -61,7 +80,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const language = getLanguage(params.lang);
-
 	const langcode = language === "en" ? "EN" : "PT_PT"
 
 	const getNode = client.query({
@@ -79,21 +97,21 @@ export async function getStaticProps({ params }) {
 		},
 	});
 
-	const portfolio = client.query({
-		query: GET_PORTFOLIO,
-		variables: {
-			language: langcode
-		}
-	})
+	const response = await Promise.all([getNode, socialLink]);
 
-	const response = await Promise.all([getNode, socialLink, portfolio]);
+	// Read cache and parse to object
+    const cacheContents = fs.readFileSync(path.join(process.cwd(), cacheFilePortfolio), 'utf-8')
+    const cache = JSON.parse(cacheContents)
+
+	// Fetch the portfolio from the cache
+	const portfolio = cache;
 
 	return {
 		props: {
             language,
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
-			portfolio: response[2].data,
+			portfolio: portfolio,
 			title: response[0].data ? response[0].data.page.title : 'Developer Rocha',
 			description: response[0].data ? response[0].data.page.fieldSeoDescription : null
 		},
