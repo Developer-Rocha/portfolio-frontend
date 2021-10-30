@@ -52,6 +52,7 @@ export default function LangIndex( props ) {
 
 export async function getStaticPaths() {
 	const paths = getAllLanguageSlugs();
+
 	return {
 		paths,
 		fallback: false,
