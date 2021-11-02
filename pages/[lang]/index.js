@@ -55,7 +55,7 @@ export async function getStaticPaths() {
 	const paths = getAllLanguageSlugs();
 	return {
 		paths,
-		fallback: true,
+		fallback: false,
 	};
 }
 
