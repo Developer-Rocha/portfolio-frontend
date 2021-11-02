@@ -40,7 +40,7 @@ function Services({ data, description }) {
 									<i className={`bx ${item.entity.fieldIcon}`}></i>
 								</div>
 								<h4>
-									<a href="">{item.entity.fieldTitle}</a>
+									{item.entity.fieldTitle}
 								</h4>
 								<p>{item.entity.fieldDescription}</p>
 							</div>
