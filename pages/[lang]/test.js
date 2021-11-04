@@ -6,7 +6,7 @@ import { getAllLanguageSlugs, getLanguage } from '../../lib/lang';
 import Layout from '../../components/Layout';
 
 //API
-import client from "../../apollo/apolloClient";
+import { initializeApollo } from "../../apollo/apolloClient";
 import { GET_SOCIAL } from "../../apollo/queries/getSocial";
 
 const Test = (props) => {
@@ -32,8 +32,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
 	const language = getLanguage(params.lang);
 	const langcode = language === "en" ? "EN" : "PT_PT"
+	const apolloClient = initializeApollo();
 
-	const socialLink = client.query({
+	const socialLink = apolloClient.query({
 		query: GET_SOCIAL,
 		variables: {
 			language: langcode,

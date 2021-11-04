@@ -12,8 +12,7 @@ import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
 
 //API
-import { useQuery } from "@apollo/client";
-import { initializeApollo, addApolloState } from "../../apollo/apolloClient";
+import { initializeApollo } from "../../apollo/apolloClient";
 import { GET_NODE } from "../../apollo/queries/getNode";
 import { GET_SOCIAL } from "../../apollo/queries/getSocial";
 import { GET_PORTFOLIO } from "../../apollo/queries/getPortfolio";
