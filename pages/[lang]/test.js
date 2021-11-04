@@ -6,8 +6,8 @@ import { getAllLanguageSlugs, getLanguage } from '../../lib/lang';
 import Layout from '../../components/Layout';
 
 //API
-import client from "../../lib/apollo/apolloClient";
-import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
+import client from "../../apollo/apolloClient";
+import { GET_SOCIAL } from "../../apollo/queries/getSocial";
 
 const Test = (props) => {
 

@@ -15,7 +15,7 @@ import "aos/dist/aos.css";
 
 // API
 import { ApolloProvider } from "@apollo/client";
-import client from "../lib/apollo/apolloClient";
+import client from "../apollo/apolloClient";
 
 // i18n integration
 import '../i18n/init';

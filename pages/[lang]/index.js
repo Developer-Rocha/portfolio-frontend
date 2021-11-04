@@ -12,10 +12,10 @@ import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
 
 //API
-import client from "../../lib/apollo/apolloClient";
-import { GET_NODE } from "../../lib/apollo/queries/getNode";
-import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
-import { GET_PORTFOLIO } from "../../lib/apollo/queries/getPortfolio";
+import client from "../../apollo/apolloClient";
+import { GET_NODE } from "../../apollo/queries/getNode";
+import { GET_SOCIAL } from "../../apollo/queries/getSocial";
+import { GET_PORTFOLIO } from "../../apollo/queries/getPortfolio";
 
 export default function LangIndex( props ) {
 	const router = useRouter();
