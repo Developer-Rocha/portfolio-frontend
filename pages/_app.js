@@ -15,7 +15,7 @@ import "aos/dist/aos.css";
 
 // API
 import { ApolloProvider } from "@apollo/client";
-import client from "../apollo/apolloClient";
+import { useApollo } from "../apollo/apolloClient";
 
 // i18n integration
 import '../i18n/init';
@@ -30,6 +30,7 @@ const theme = {
 const App = ({ Component, pageProps }) => {
 	i18next.changeLanguage(pageProps.language);
 	const [loading, setLoading] = useState(false);
+	const apolloClient = useApollo(pageProps)
 
 	useEffect(() => {
 		let unmounted   = false;
@@ -68,7 +69,7 @@ const App = ({ Component, pageProps }) => {
 	return (
 		<>
 			<GlobalStyle />
-			<ApolloProvider client={client}>
+			<ApolloProvider client={apolloClient}>
 				<ThemeProvider theme={theme}>
 					{loading ? (
 						<Loading loading={loading} />

@@ -12,7 +12,8 @@ import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
 
 //API
-import client from "../../apollo/apolloClient";
+import { useQuery } from "@apollo/client";
+import { initializeApollo, addApolloState } from "../../apollo/apolloClient";
 import { GET_NODE } from "../../apollo/queries/getNode";
 import { GET_SOCIAL } from "../../apollo/queries/getSocial";
 import { GET_PORTFOLIO } from "../../apollo/queries/getPortfolio";
@@ -61,10 +62,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const language = getLanguage(params.lang);
-
 	const langcode = language === "en" ? "EN" : "PT_PT"
+	const apolloClient = initializeApollo();
 
-	const getNode = client.query({
+	const getNode = apolloClient.query({
 		query: GET_NODE,
 		variables: {
 			language: langcode,
@@ -72,14 +73,14 @@ export async function getStaticProps({ params }) {
 		},
 	});
 
-	const socialLink = client.query({
+	const socialLink = apolloClient.query({
 		query: GET_SOCIAL,
 		variables: {
 			language: langcode,
 		},
 	});
 
-	const portfolio = client.query({
+	const portfolio = apolloClient.query({
 		query: GET_PORTFOLIO,
 		variables: {
 			language: langcode
