@@ -23,6 +23,7 @@ export default Test;
 
 export async function getStaticPaths() {
 	const paths = getAllLanguageSlugs();
+
 	return {
 		paths,
 		fallback: false,
@@ -50,5 +51,6 @@ export async function getStaticProps({ params }) {
 			title: 'Developer Rocha',
 			description: 'Development of perfects websites'
 		},
+		revalidate: 1
 	};
 }

@@ -51,11 +51,11 @@ export default function LangIndex( props ) {
 }
 
 export async function getStaticPaths() {
-
 	const paths = getAllLanguageSlugs();
+
 	return {
 		paths,
-		fallback: 'blocking',
+		fallback: false,
 	};
 }
 
@@ -101,6 +101,6 @@ export async function getStaticProps({ params }) {
 		// Next.js will attempt to re-generate the page:
 		// - When a request comes in
 		// - At most once every 1 seconds
-		revalidate: 1, // In seconds
+		revalidate: 1 // In seconds
 	};
 }
