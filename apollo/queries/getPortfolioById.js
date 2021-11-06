@@ -1,32 +1,11 @@
 import { gql } from "@apollo/client";
 
-export const GET_PORTFOLIO = gql`
-	query portfolio($language: LanguageId!) {
-        portfolio: nodeQuery(
-            filter:{
-                conjunction: AND
-                conditions: [
-                    {
-                    field: "type"
-                    value: ["portfolio"]
-                    operator:EQUAL
-                    },
-                    {
-                        field: "status"
-                        value: ["1"]
-                        operator: EQUAL
-                    }
-                ]
-            },
-            sort: {
-              field: "field_project_date"
-              direction: DESC
-            }
-        )
-        {
-            count
-            entities(language: $language) {
-            ...on NodePortfolio {
+export const GET_PORTFOLIO_BY_ID = gql`
+	query portfolio($language: LanguageId!, $id: String!) {
+        portfolio: nodeById(language: $language, id: $id){
+            title
+            bundle: entityBundle
+                    ...on NodePortfolio {
                 id: entityId
                 title
                 entityUrl {
@@ -39,17 +18,17 @@ export const GET_PORTFOLIO = gql`
                     }
                 }
                 description: body {
-                value
+                    value
                 }
                 date: fieldProjectDate {
-                value
+                    value
                 }
                 category: fieldCategories{
-                entity {
-                    ...on TaxonomyTermCategory {
-                    name
+                    entity {
+                        ...on TaxonomyTermCategory {
+                        name
+                        }
                     }
-                }
                 }
                 fieldThumbnail{
                     entity{
@@ -78,7 +57,6 @@ export const GET_PORTFOLIO = gql`
                         }
                     }
                 }
-            }
             }
         }
     }

@@ -21,7 +21,7 @@ const Test = (props) => {
 
 export default Test;
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
 	const paths = getAllLanguageSlugs();
 
 	return {
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
 	const language = getLanguage(params.lang);
 	const langcode = language === "en" ? "EN" : "PT_PT"
 	const apolloClient = initializeApollo();

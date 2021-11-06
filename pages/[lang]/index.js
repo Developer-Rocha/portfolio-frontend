@@ -5,6 +5,7 @@ import { getAllLanguageSlugs, getLanguage } from "../../lib/lang";
 
 
 // Components
+import Loading from "../../components/Loading";
 import Layout from "../../components/Layout";
 import Hero from "../../components/Hero";
 import Services from "../../components/Services";
@@ -18,14 +19,17 @@ import { GET_SOCIAL } from "../../apollo/queries/getSocial";
 import { GET_PORTFOLIO } from "../../apollo/queries/getPortfolio";
 
 export default function LangIndex( props ) {
-	const router = useRouter();
-	const { pathname } = router;
+	const { isFallback } = useRouter();
 
 	const [state, setState] = useState(props.nodeInfo.page);
 
 	if (!state) {
 		return <h1>Erro ao carregar os conteúdos.</h1>;
 	}
+
+	if (isFallback) {
+        return <Loading />
+    }
 
 	return (
 		<>
@@ -50,7 +54,7 @@ export default function LangIndex( props ) {
 	);
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
 	const paths = getAllLanguageSlugs();
 
 	return {
@@ -59,7 +63,7 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
     const language = getLanguage(params.lang);
 	const langcode = language === "en" ? "EN" : "PT_PT"
 	const apolloClient = initializeApollo();
