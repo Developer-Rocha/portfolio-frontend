@@ -9,7 +9,7 @@ import Loading from "../../../components/Loading";
 //API
 import { initializeApollo } from "../../../apollo/apolloClient";
 import { GET_PORTFOLIO } from "../../../apollo/queries/getPortfolio";
-import { GET_PORTFOLIO_BY_ID } from "../../../apollo/queries/getPortfolioById";
+import { GET_PORTFOLIO_BY_PATH } from "../../../apollo/queries/getPortfolioById";
 
 const apolloClient = initializeApollo();
 
@@ -22,7 +22,8 @@ export default function Portfolio({ portfolio }) {
 
     return (
         <div>
-            <h1> { portfolio.portfolio.title }</h1>
+            <h1> { portfolio.portfolio.entity.title }</h1>
+            <div dangerouslySetInnerHTML={{__html: portfolio.portfolio.entity.description.value }}></div>
         </div>
     );
 }
@@ -65,15 +66,17 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
-    const { slug } = context.params; // TODO we need to use this slug to get the portfolio instead of using the ID.
-    const language = getLanguage(context.lang);
-	const lang = language === "en" ? "EN" : "PT_PT"
+    const { lang, slug  } = context.params;
+    let portfolioPath = slug;
+
+    if (lang === "pt") {
+        portfolioPath = "pt-pt/" + slug;
+    }
 
     const portfolio = apolloClient.query({
-		query: GET_PORTFOLIO_BY_ID,
+		query: GET_PORTFOLIO_BY_PATH,
 		variables: {
-			language: lang,
-            id: "3" // TODO change this id for a dynamic URL path
+            path: portfolioPath
 		}
 	})
 

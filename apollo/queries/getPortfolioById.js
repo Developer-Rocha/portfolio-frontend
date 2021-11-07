@@ -1,57 +1,58 @@
 import { gql } from "@apollo/client";
 
-export const GET_PORTFOLIO_BY_ID = gql`
-	query portfolio($language: LanguageId!, $id: String!) {
-        portfolio: nodeById(language: $language, id: $id){
-            title
-            bundle: entityBundle
-                ...on NodePortfolio {
-                    id: entityId
-                    title
-                    url: entityUrl {
-                        path
-                    }
-                    client: fieldClient
-                    projectUrl: fieldProjectUrl {
-                        url {
+export const GET_PORTFOLIO_BY_PATH = gql`
+	query portfolio($path: String!) {
+        portfolio: route(path: $path) {
+            ... on EntityCanonicalUrl {
+                entity {
+                    ... on NodePortfolio {
+                        id: entityId
+                        title
+                        url: entityUrl {
                             path
                         }
-                    }
-                    description: body {
-                        value
-                    }
-                    date: fieldProjectDate {
-                        value
-                    }
-                    category: fieldCategories{
-                        entity {
-                            ...on TaxonomyTermCategory {
-                            name
+                        client: fieldClient
+                        projectUrl: fieldProjectUrl {
+                            url {
+                                path
                             }
                         }
-                    }
-                    fieldThumbnail{
-                        entity{
-                            ...on MediaImage {
-                                fieldMediaImage{
-                                    alt
-                                    sm: derivative(style: MAX650X650){
-                                        url
+                        description: body {
+                            value
+                        }
+                        date: fieldProjectDate {
+                            value
+                        }
+                        category: fieldCategories{
+                            entity {
+                                ...on TaxonomyTermCategory {
+                                name
+                                }
+                            }
+                        }
+                        fieldThumbnail{
+                            entity{
+                                ...on MediaImage {
+                                    fieldMediaImage{
+                                        alt
+                                        sm: derivative(style: MAX650X650){
+                                            url
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                    fieldGallery{
-                        entity{
-                            ...on MediaImage {
-                                fieldMediaImage{
-                                    alt
-                                    sm: derivative(style: THUMBNAIL){
-                                        url
-                                    }
-                                    lg: derivative(style: MAX1300X1300) {
-                                        url
+                        fieldGallery{
+                            entity{
+                                ...on MediaImage {
+                                    fieldMediaImage{
+                                        alt
+                                        sm: derivative(style: THUMBNAIL){
+                                            url
+                                        }
+                                        lg: derivative(style: MAX1300X1300) {
+                                            url
+                                        }
                                     }
                                 }
                             }
@@ -59,6 +60,7 @@ export const GET_PORTFOLIO_BY_ID = gql`
                     }
                 }
             }
+        }
     }
 `;
 
