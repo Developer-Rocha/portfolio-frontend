@@ -32,7 +32,7 @@ function ModalContent({data}) {
                 }
             });
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
     return(
@@ -46,7 +46,10 @@ function ModalContent({data}) {
                         <div className="swiper-wrapper align-items-center">
                             {data.fieldGallery.map((item, index) => (
                                 <div key={index} className="swiper-slide">
-                                    <img src={item.entity.fieldMediaImage.lg.url} alt={item.entity.fieldMediaImage.alt} />
+                                    <img
+                                        src={item.entity.fieldMediaImage.lg.url}
+                                        alt={item.entity.fieldMediaImage.alt}
+                                    />
                                 </div>
                             ))}
                         </div>
@@ -56,7 +59,10 @@ function ModalContent({data}) {
                     <div className="portfolio-details-slider">
                         <div className="align-items-center">
                             <div className="image">
-                                <img src={data.fieldThumbnail.entity.fieldMediaImage.sm.url} alt={data.fieldThumbnail.entity.fieldMediaImage.alt} />
+                                <img
+                                    src={data.fieldThumbnail.entity.fieldMediaImage.sm.url}
+                                    alt={data.fieldThumbnail.entity.fieldMediaImage.alt}
+                                />
                             </div>
                         </div>
                     </div>
@@ -77,7 +83,7 @@ function ModalContent({data}) {
                             ) : null }
 
                             {data.projectUrl.url.path ? (
-                                <li><strong>{i18next.t('project-url')}</strong>: <a target="_blank" href={data.projectUrl.url.path}>{data.client}</a></li>
+                                <li><strong>{i18next.t('project-url')}</strong>: <a target="_blank" href={data.projectUrl.url.path} rel="noreferrer">{data.client}</a></li>
                             ) : null }
 
                         </ul>

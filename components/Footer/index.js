@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { FooterWraper } from "./styles";
 
 function Footer({socialLinks}) {
@@ -12,7 +13,7 @@ function Footer({socialLinks}) {
 							href={item.url.path}
 							target="_blank"
 							key={index}
-							className={item.label.toLowerCase()}
+							className={item.label.toLowerCase()} rel="noreferrer"
 						>
 							<i className={`bx bxl-${item.label.toLowerCase()}`}></i>
 						</a>
@@ -22,7 +23,7 @@ function Footer({socialLinks}) {
                     &copy; Copyright <strong><span>Developer Rocha</span></strong>. All Rights Reserved
                 </div>
                 <div className="credits">
-                    Designed by <a href="/">Developer Rocha</a>
+                    Designed by <Link href="/">Developer Rocha</Link>
                 </div>
             </div>
         </FooterWraper>

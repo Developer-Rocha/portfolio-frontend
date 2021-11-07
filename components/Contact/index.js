@@ -122,7 +122,7 @@ function Contact() {
 						</form>
 
 						<div className="my-3">
-							<div className={"error-message " + (error.length > 0 ? "d-block" : "")}>{ error.length > 0 ? error.map(item => <span>{item}</span>) : null }</div>
+							<div className={"error-message " + (error.length > 0 ? "d-block" : "")}>{ error.length > 0 ? error.map(item => <span key={item}>{item}</span>) : null }</div>
 							<div className={"sent-message " + (success ? "d-block" : "")}>{i18next.t('message-success')}</div>
 						</div>
 					</div>

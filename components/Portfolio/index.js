@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { PortfolioWraper } from './styles';
-import Modal from 'react-modal';
-import PortfolioDetail from '../PortfolioDetail';
-import i18next from 'i18next';
+import React, { useState, useEffect, useRef } from "react";
+import { PortfolioWraper } from "./styles";
+import Modal from "react-modal";
+import PortfolioDetail from "../PortfolioDetail";
+import i18next from "i18next";
 
 Modal.setAppElement('#__next');
 
@@ -42,6 +42,7 @@ function Portfolio({portfolio}) {
 		return () => {
 			isActive = false;
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const openModal = (data) => {
