@@ -28,38 +28,51 @@ export default function Portfolio({ portfolio }) {
 }
 
 export const getStaticPaths = async () => {
-
-    const portfolio = apolloClient.query({
+    // Get english translations
+    const portfolioEN = apolloClient.query({
 		query: GET_PORTFOLIO,
 		variables: {
-			language: "EN"
+			language: "EN",
+            langcode: "EN"
 		}
 	})
 
-    const response = await Promise.all([portfolio]);
+    // Get portuguese translations
+    const portfolioPT = apolloClient.query({
+		query: GET_PORTFOLIO,
+		variables: {
+			language: "PT_PT",
+            langcode: "pt-pt"
+		}
+	})
 
-    // Generate paths for each language
-    const paths = languages.map(( language ) =>
-        response[0].data.portfolio.entities.map(( portfolio ) => ({
-            params: {lang: language, slug: normalizeUrlAliases(portfolio.url.path) }
-        }))
-    ).flat()
+    const response = await Promise.all([portfolioEN, portfolioPT]);
+
+    // English Array
+    const pathsEN = response[0].data.portfolio.entities.map(( portfolio ) => ({
+        params: {lang: "en", slug: normalizeUrlAliases(portfolio.url.path) }
+    }));
+
+    // Portuguese Array
+    const pathsPT = response[1].data.portfolio.entities.map(( portfolio ) => ({
+        params: {lang: "pt", slug: normalizeUrlAliases(portfolio.url.path) }
+    }));
 
     return {
-        paths,
+        paths: pathsEN.concat(pathsPT),
         fallback: false,
     }
 }
 
 export const getStaticProps = async (context) => {
-    const { slug } = context.params;
+    const { slug } = context.params; // TODO we need to use this slug to get the portfolio instead of using the ID.
     const language = getLanguage(context.lang);
-	const langcode = language === "en" ? "EN" : "PT_PT"
+	const lang = language === "en" ? "EN" : "PT_PT"
 
     const portfolio = apolloClient.query({
 		query: GET_PORTFOLIO_BY_ID,
 		variables: {
-			language: langcode,
+			language: lang,
             id: "3" // TODO change this id for a dynamic URL path
 		}
 	})

@@ -64,13 +64,14 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
     const language = getLanguage(params.lang);
-	const langcode = language === "en" ? "EN" : "PT_PT"
+	const lang = language === "en" ? "EN" : "PT_PT";
+	const langcode = language === "en" ? "EN" : "pt-pt";
 	const apolloClient = initializeApollo();
 
 	const getNode = apolloClient.query({
 		query: GET_NODE,
 		variables: {
-			language: langcode,
+			language: lang,
 			id: 1,
 		},
 	});
@@ -78,14 +79,15 @@ export const getStaticProps = async ({ params }) => {
 	const socialLink = apolloClient.query({
 		query: GET_SOCIAL,
 		variables: {
-			language: langcode,
+			language: lang,
 		},
 	});
 
 	const portfolio = apolloClient.query({
 		query: GET_PORTFOLIO,
 		variables: {
-			language: langcode
+			language: lang,
+			langcode: langcode
 		}
 	})
 
