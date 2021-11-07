@@ -29,6 +29,7 @@ function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 		return () => {
 			typed.destroy();
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -45,6 +46,7 @@ function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 							target="_blank"
 							key={index}
 							className={item.label.toLowerCase()}
+							rel="noreferrer"
 						>
 							<i className={`bx bxl-${item.label.toLowerCase()}`}></i>
 						</a>
