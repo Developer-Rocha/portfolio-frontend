@@ -6,8 +6,8 @@ import { getAllLanguageSlugs, getLanguage } from '../../lib/lang';
 import Layout from '../../components/Layout';
 
 //API
-import client from "../../lib/apollo/apolloClient";
-import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
+import { initializeApollo } from "../../apollo/apolloClient";
+import { GET_SOCIAL } from "../../apollo/queries/getSocial";
 
 const Test = (props) => {
 
@@ -21,19 +21,21 @@ const Test = (props) => {
 
 export default Test;
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
 	const paths = getAllLanguageSlugs();
+
 	return {
 		paths,
 		fallback: false,
 	};
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
 	const language = getLanguage(params.lang);
 	const langcode = language === "en" ? "EN" : "PT_PT"
+	const apolloClient = initializeApollo();
 
-	const socialLink = client.query({
+	const socialLink = apolloClient.query({
 		query: GET_SOCIAL,
 		variables: {
 			language: langcode,
@@ -49,5 +51,6 @@ export async function getStaticProps({ params }) {
 			title: 'Developer Rocha',
 			description: 'Development of perfects websites'
 		},
+		revalidate: 1
 	};
 }

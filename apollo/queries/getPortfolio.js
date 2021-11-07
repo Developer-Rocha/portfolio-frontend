@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_PORTFOLIO = gql`
-	query portfolio($language: LanguageId!) {
+	query portfolio($language: LanguageId!, $langcode: [String!]) {
         portfolio: nodeQuery(
             filter:{
                 conjunction: AND
@@ -15,12 +15,17 @@ export const GET_PORTFOLIO = gql`
                         field: "status"
                         value: ["1"]
                         operator: EQUAL
+                    },
+                    {
+                        field: "langcode",
+                        value: $langcode,
+                        operator: EQUAL
                     }
                 ]
             },
             sort: {
-              field: "field_project_date"
-              direction: DESC
+                field: "field_project_date"
+                direction: DESC
             }
         )
         {
@@ -29,8 +34,11 @@ export const GET_PORTFOLIO = gql`
             ...on NodePortfolio {
                 id: entityId
                 title
+                url: entityUrl {
+                    path
+                }
                 client: fieldClient
-                url: fieldProjectUrl {
+                projectUrl: fieldProjectUrl {
                     url {
                         path
                     }

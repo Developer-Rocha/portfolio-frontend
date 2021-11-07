@@ -1,3 +1,3 @@
-export const languages = ['en', 'pt'];
+export const languages = ["en", "pt"];
 
-export const defaultLanguage = 'en';
+export const defaultLanguage = "en";

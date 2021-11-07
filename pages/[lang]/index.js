@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 
 import { getAllLanguageSlugs, getLanguage } from "../../lib/lang";
 
-
 // Components
+import Loading from "../../components/Loading";
 import Layout from "../../components/Layout";
 import Hero from "../../components/Hero";
 import Services from "../../components/Services";
@@ -12,20 +12,23 @@ import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
 
 //API
-import client from "../../lib/apollo/apolloClient";
-import { GET_NODE } from "../../lib/apollo/queries/getNode";
-import { GET_SOCIAL } from "../../lib/apollo/queries/getSocial";
-import { GET_PORTFOLIO } from "../../lib/apollo/queries/getPortfolio";
+import { initializeApollo } from "../../apollo/apolloClient";
+import { GET_NODE } from "../../apollo/queries/getNode";
+import { GET_SOCIAL } from "../../apollo/queries/getSocial";
+import { GET_PORTFOLIO } from "../../apollo/queries/getPortfolio";
 
 export default function LangIndex( props ) {
-	const router = useRouter();
-	const { pathname } = router;
+	const { isFallback } = useRouter();
 
 	const [state, setState] = useState(props.nodeInfo.page);
 
 	if (!state) {
 		return <h1>Erro ao carregar os conteúdos.</h1>;
 	}
+
+	if (isFallback) {
+        return <Loading />
+    }
 
 	return (
 		<>
@@ -50,39 +53,41 @@ export default function LangIndex( props ) {
 	);
 }
 
-export async function getStaticPaths() {
-
+export const getStaticPaths = async () => {
 	const paths = getAllLanguageSlugs();
+
 	return {
 		paths,
 		fallback: false,
 	};
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
     const language = getLanguage(params.lang);
+	const lang = language === "en" ? "EN" : "PT_PT";
+	const langcode = language === "en" ? "EN" : "pt-pt";
+	const apolloClient = initializeApollo();
 
-	const langcode = language === "en" ? "EN" : "PT_PT"
-
-	const getNode = client.query({
+	const getNode = apolloClient.query({
 		query: GET_NODE,
 		variables: {
-			language: langcode,
+			language: lang,
 			id: 1,
 		},
 	});
 
-	const socialLink = client.query({
+	const socialLink = apolloClient.query({
 		query: GET_SOCIAL,
 		variables: {
-			language: langcode,
+			language: lang,
 		},
 	});
 
-	const portfolio = client.query({
+	const portfolio = apolloClient.query({
 		query: GET_PORTFOLIO,
 		variables: {
-			language: langcode
+			language: lang,
+			langcode: langcode
 		}
 	})
 
@@ -101,6 +106,6 @@ export async function getStaticProps({ params }) {
 		// Next.js will attempt to re-generate the page:
 		// - When a request comes in
 		// - At most once every 1 seconds
-		revalidate: 1, // In seconds
+		revalidate: 1 // In seconds
 	};
 }
