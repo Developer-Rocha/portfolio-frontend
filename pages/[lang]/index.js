@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 
 import { getAllLanguageSlugs, getLanguage } from "../../lib/lang";
 
-
 // Components
 import Loading from "../../components/Loading";
 import Layout from "../../components/Layout";

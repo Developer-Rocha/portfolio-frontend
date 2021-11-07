@@ -5,60 +5,60 @@ export const GET_PORTFOLIO_BY_ID = gql`
         portfolio: nodeById(language: $language, id: $id){
             title
             bundle: entityBundle
-                    ...on NodePortfolio {
-                id: entityId
-                title
-                entityUrl {
-                    path
-                }
-                client: fieldClient
-                url: fieldProjectUrl {
-                    url {
+                ...on NodePortfolio {
+                    id: entityId
+                    title
+                    url: entityUrl {
                         path
                     }
-                }
-                description: body {
-                    value
-                }
-                date: fieldProjectDate {
-                    value
-                }
-                category: fieldCategories{
-                    entity {
-                        ...on TaxonomyTermCategory {
-                        name
+                    client: fieldClient
+                    projectUrl: fieldProjectUrl {
+                        url {
+                            path
                         }
                     }
-                }
-                fieldThumbnail{
-                    entity{
-                        ...on MediaImage {
-                            fieldMediaImage{
-                                alt
-                                sm: derivative(style: MAX650X650){
-                                    url
+                    description: body {
+                        value
+                    }
+                    date: fieldProjectDate {
+                        value
+                    }
+                    category: fieldCategories{
+                        entity {
+                            ...on TaxonomyTermCategory {
+                            name
+                            }
+                        }
+                    }
+                    fieldThumbnail{
+                        entity{
+                            ...on MediaImage {
+                                fieldMediaImage{
+                                    alt
+                                    sm: derivative(style: MAX650X650){
+                                        url
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                fieldGallery{
-                    entity{
-                        ...on MediaImage {
-                            fieldMediaImage{
-                                alt
-                                sm: derivative(style: THUMBNAIL){
-                                    url
-                                }
-                                lg: derivative(style: MAX1300X1300) {
-                                    url
+                    fieldGallery{
+                        entity{
+                            ...on MediaImage {
+                                fieldMediaImage{
+                                    alt
+                                    sm: derivative(style: THUMBNAIL){
+                                        url
+                                    }
+                                    lg: derivative(style: MAX1300X1300) {
+                                        url
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
     }
 `;
 

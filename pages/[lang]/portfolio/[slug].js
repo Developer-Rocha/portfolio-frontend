@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import { getLanguage } from "../../../lib/lang";
-import Loading from "../../../components/Loading";
+import { languages } from '../../../i18n/config';
 
+import { normalizeUrlAliases } from "../../../utils/helpers";
+
+// Components
+import Loading from "../../../components/Loading";
 //API
 import { initializeApollo } from "../../../apollo/apolloClient";
 import { GET_PORTFOLIO } from "../../../apollo/queries/getPortfolio";
@@ -34,18 +38,12 @@ export const getStaticPaths = async () => {
 
     const response = await Promise.all([portfolio]);
 
-    const paths = response[0].data.portfolio.entities.map(portfolio => {
-        return {
-            params: {
-                lang: "en",
-                slug: portfolio.id
-            },
-            params: {
-                lang: "pt",
-                slug: portfolio.id
-            }
-        }
-    })
+    // Generate paths for each language
+    const paths = languages.map(( language ) =>
+        response[0].data.portfolio.entities.map(( portfolio ) => ({
+            params: {lang: language, slug: normalizeUrlAliases(portfolio.url.path) }
+        }))
+    ).flat()
 
     return {
         paths,
@@ -62,7 +60,7 @@ export const getStaticProps = async (context) => {
 		query: GET_PORTFOLIO_BY_ID,
 		variables: {
 			language: langcode,
-            id: slug
+            id: "3" // TODO change this id for a dynamic URL path
 		}
 	})
 

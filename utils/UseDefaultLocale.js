@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+// import { useEffect } from "react";
+// import { useRouter } from "next/router";
 
-export const useDefaultLocale = () => {
-	const router = useRouter();
+// export const useDefaultLocale = () => {
+// 	const router = useRouter();
 
-	useEffect(() => {
-		if (router.locale === router.defaultLocale) {
-			router.push(`/${router.locale}${router.asPath}`, undefined, {
-				locale: false,
-				shallow: true, // Optionally add this if you don't want to rerun data fetching methods
-			});
-		}
-	}, [router.asPath]);
-};
+// 	useEffect(() => {
+// 		if (router.locale === router.defaultLocale) {
+// 			router.push(`/${router.locale}${router.asPath}`, undefined, {
+// 				locale: false,
+// 				shallow: true, // Optionally add this if you don't want to rerun data fetching methods
+// 			});
+// 		}
+// 	}, [router.asPath]);
+// };

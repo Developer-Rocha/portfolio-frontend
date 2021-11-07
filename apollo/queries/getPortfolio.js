@@ -29,11 +29,11 @@ export const GET_PORTFOLIO = gql`
             ...on NodePortfolio {
                 id: entityId
                 title
-                entityUrl {
+                url: entityUrl {
                     path
                 }
                 client: fieldClient
-                url: fieldProjectUrl {
+                projectUrl: fieldProjectUrl {
                     url {
                         path
                     }
