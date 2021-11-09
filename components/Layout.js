@@ -56,16 +56,16 @@ export default function Layout({ children, props }) {
 					description: props.description,
 					images: [
 						{
-						url: `${BASE_URL}/images/logo_size.jpg`,
-						width: 192,
-						height: 192,
-						alt: 'Developer Rocha - Creative Websites',
+							url: `${BASE_URL}/images/logo_size_invert.jpg`,
+							width: 192,
+							height: 192,
+							alt: 'Developer Rocha - Creative Websites',
 						},
 						{
-						url: `${BASE_URL}/images/logo_size_invert.jpg`,
-						width: 192,
-						height: 192,
-						alt: 'Developer Rocha - Creative Websites',
+							url: `${BASE_URL}/images/logo_size.jpg`,
+							width: 192,
+							height: 192,
+							alt: 'Developer Rocha - Creative Websites',
 						},
 					],
 				}}
