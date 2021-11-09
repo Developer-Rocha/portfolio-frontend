@@ -17,6 +17,8 @@ API_URL=https://fabricio-rocha.com/graphql
 ```
 and then
 
+Set the variable BASE_URL with the correct Frontend URL on utils/config.js file.
+
 ```bash
 npm install
 #

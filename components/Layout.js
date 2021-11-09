@@ -16,8 +16,7 @@ import Header from "./Header";
 import Footer from './Footer';
 
 export default function Layout({ children, props }) {
-	const router = useRouter();
-	const { asPath } = router;
+	const { asPath } = useRouter();
 
 	useEffect(() => {
 		// here you can add your aos options
@@ -38,16 +37,16 @@ export default function Layout({ children, props }) {
 				additionalLinkTags={[
 					{
 						rel: 'icon',
-						href: '/images/favicon/favicon.ico'
+						href: `${BASE_URL}/images/favicon/favicon.ico`
 					},
 					{
 						rel: 'apple-touch-icon',
-						href: '/images/favicon/touch-icon-ipad.png',
+						href: `${BASE_URL}/images/favicon/touch-icon-ipad.png`,
 						sizes: '76x76'
 					},
 					{
 						rel: 'manifest',
-						href: '/manifest.json'
+						href: `${BASE_URL}/manifest.json`
 					}
 				]}
 				openGraph={{
@@ -56,18 +55,18 @@ export default function Layout({ children, props }) {
 					title: props.title,
 					description: props.description,
 					images: [
-					  {
-						url: '/images/logo_size.jpg',
+						{
+						url: `${BASE_URL}/images/logo_size.jpg`,
 						width: 192,
 						height: 192,
 						alt: 'Developer Rocha - Creative Websites',
-					  },
-					  {
-						url: '/images/logo_size_invert.jpg',
+						},
+						{
+						url: `${BASE_URL}/images/logo_size_invert.jpg`,
 						width: 192,
 						height: 192,
 						alt: 'Developer Rocha - Creative Websites',
-					  },
+						},
 					],
 				}}
 			/>
