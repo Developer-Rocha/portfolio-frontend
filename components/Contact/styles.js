@@ -124,10 +124,11 @@ export const ContactWraper = styled.section`
             padding: 10px 35px;
             color: #fff;
             transition: 0.4s;
-            border-radius: 50px;
+            border-radius: 4px 0 4px;
+            margin-top: 30px;
 
             &:hover {
-                background: #0678e3;
+                background: var(--secondary);
             }
         }
     }

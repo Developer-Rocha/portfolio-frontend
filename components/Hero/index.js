@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import { HeroWraper } from "./styles";
 import Typed from "typed.js";
+import i18next from 'i18next';
 
 function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 	// Create Ref element.
@@ -36,7 +37,7 @@ function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 		<HeroWraper id="hero" style={{backgroundImage: "url(" + backgroundURL +")"}} className="d-flex flex-column justify-content-center">
 			<div className="container" data-aos="zoom-in" data-aos-delay="100">
 				<h1>{title}</h1>
-				<p>
+				<p className="typed-wrapper">
 					{staticText} <span className="typed" ref={el}></span>
 				</p>
 				<div className="social-links">
@@ -52,6 +53,7 @@ function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 						</a>
 					))}
 				</div>
+				<a href="#contact" className="btn btn--default">{i18next.t('ask-for-quote')}</a>
 			</div>
 		</HeroWraper>
 	);

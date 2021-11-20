@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   :root {
     --primary:  #519085;
+    --secondary: #0678e3;
   }
   * {
     font-family: "Open Sans", sans-serif;
@@ -41,6 +42,21 @@ const GlobalStyle = createGlobalStyle`
   }
 
   /*--------------------------------------------------------------
+  # Buttons
+  --------------------------------------------------------------*/
+  .btn--default {
+    border-radius: 4px 0 4px;
+    background-color: var(--primary);
+    color: #FFF;
+    transition: 0.4s;
+
+    &:hover {
+      color: #FFF;
+      background: var(--secondary);
+    }
+  }
+
+  /*--------------------------------------------------------------
   # Back to top button
   --------------------------------------------------------------*/
   .back-to-top {
@@ -61,7 +77,7 @@ const GlobalStyle = createGlobalStyle`
       line-height: 0;
     }
     &:hover {
-      background: #0678e3;
+      background: var(--secondary);;
       color: #fff;
     }
 

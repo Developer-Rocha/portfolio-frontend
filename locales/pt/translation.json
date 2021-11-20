@@ -20,5 +20,6 @@
 	"client": "Cliente",
 	"project-date": "Data do projecto",
 	"project-url": "URL do projecto",
-	"detail": "Detalhe"
+	"detail": "Detalhe",
+	"ask-for-quote": "Pedir orçamento"
 }

@@ -55,8 +55,13 @@ export const HeroWraper = styled.section`
 		}
 	}
 
+	.typed-wrapper {
+		min-height: 50px;
+	}
+
 	.social-links {
 		margin-top: 30px;
+		margin-bottom: 50px;
 
 		a {
 			font-size: 24px;
@@ -71,4 +76,5 @@ export const HeroWraper = styled.section`
 			}
 		}
 	}
+
 `;

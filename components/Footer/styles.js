@@ -41,7 +41,7 @@ export const FooterWraper = styled.footer`
             transition: 0.3s;
 
             &:hover {
-                background: #0678e3;
+                background: var(--secondary);;
                 color: #fff;
                 text-decoration: none;
             }
