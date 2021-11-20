@@ -34,6 +34,7 @@ export const GET_PORTFOLIO = gql`
             ...on NodePortfolio {
                 id: entityId
                 title
+                tech: fieldTechnologies
                 url: entityUrl {
                     path
                 }

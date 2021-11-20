@@ -74,10 +74,13 @@ function ModalContent({data}) {
                     <div className="portfolio-info">
                         <h3>{data.client}</h3>
                         <ul>
+                            <li><strong>{i18next.t('client')}</strong>: {data.client}</li>
                             <li><strong>{i18next.t('category')}</strong>: {data.category.map((item) => (
 											item.entity.name
 										)).join(', ')}</li>
-                            <li><strong>{i18next.t('client')}</strong>: {data.client}</li>
+                            {data.tech ? (
+                                <li><strong>{i18next.t('technologies')}</strong>: {data.tech ? data.tech : ''}</li>
+                            ) : null }
                             {data.date ? (
                                 <li><strong>{i18next.t('project-date')}</strong>: {data.date ? data.date.value : ''}</li>
                             ) : null }
@@ -85,7 +88,6 @@ function ModalContent({data}) {
                             {data.projectUrl.url.path ? (
                                 <li><strong>{i18next.t('project-url')}</strong>: <a target="_blank" href={data.projectUrl.url.path} rel="noreferrer">{data.client}</a></li>
                             ) : null }
-
                         </ul>
                     </div>
                     <div className="portfolio-description">

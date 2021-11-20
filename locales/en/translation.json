@@ -16,6 +16,7 @@
 	"subject": "Subject",
 	"message": "Message",
 	"category": "Category",
+	"technologies": "Technologies",
 	"client": "Client",
 	"project-date": "Project date",
 	"project-url": "Project URL",
