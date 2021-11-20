@@ -33,7 +33,7 @@ function Header(props) {
 
 	return (
 		<>
-			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle d-xl-none" />
+			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle" />
 			<SwitchWrapper>
 				{languages.map((lang, index) => {
 

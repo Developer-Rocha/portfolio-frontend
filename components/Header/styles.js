@@ -8,7 +8,7 @@ export const SwitchWrapper = styled.div`
     border-radius: 50%;
 	z-index: 1050;
 
-	@media (min-width: 1200px) {
+	@media (min-width: 993px) {
 		right: 15px;
 		top: 15px;
 		left: initial;
@@ -152,4 +152,8 @@ export const MobileNavToggle = styled.i`
 	border-radius: 50px;
 	padding: 5px;
 	color: #45505b;
+
+	@media (min-width: 993px) {
+		display: none;
+	}
 `;
