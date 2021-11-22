@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import validator from "validator";
 import { ContactWraper } from "./styles";
 import i18next from 'i18next';
 
@@ -13,6 +14,9 @@ function Contact() {
 	const submitContact = async (e) => {
 		e.preventDefault();
 
+		setError([]);
+		setSuccess(false);
+
 		// set a min-height for the contact wrapper
 		let portfolioHeight = el.current.offsetHeight;
 		setHeight(portfolioHeight);
@@ -24,6 +28,11 @@ function Contact() {
 			return
 		}
 
+		// Phone validator
+		if (!validator.isMobilePhone(e.target.phone.value)){
+			setError([i18next.t('contact-form.invalid-phone')]);
+			return
+		}
 		setLoading(true);
 
 		// Get Form data
@@ -31,13 +40,15 @@ function Contact() {
 			"webform_id":"contact",
 			"name": e.target.name.value,
 			"email": e.target.emailclient.value,
+			"phone": e.target.phone.value,
 			"subject": e.target.subject.value,
 			"message": e.target.message.value,
 		}
 
+		const lang = i18next.language === "en" ? "" : "pt-pt/";
 		// Fetch to API
 		const res = await fetch(
-			'https://fabricio-rocha.com/webform_rest/submit',
+			`https://fabricio-rocha.com/${lang}webform_rest/submit`,
 			{
 				body: JSON.stringify(data),
 				headers: {
@@ -104,26 +115,31 @@ function Contact() {
 						<form onSubmit={e => submitContact(e)} action="" method="post" role="form" className={"email-form " + (loading || success ? "d-none" : "")}>
 							<div className="row">
 								<div className="col-md-6 form-group">
-									<input type="text" name="name" className="form-control" id="name" placeholder={i18next.t('your-name')} required/>
+									<input type="text" name="name" className="form-control" id="name" placeholder={i18next.t('contact-form.your-name')} required/>
 								</div>
 								<div className="col-md-6 form-group mt-3 mt-md-0">
-									<input type="email" className="form-control" name="emailclient" id="emailclient" placeholder={i18next.t('your-email')} required/>
+									<input type="email" className="form-control" name="emailclient" id="emailclient" placeholder={i18next.t('contact-form.your-email')} required/>
+								</div>
+							</div>
+							<div className="row">
+								<div className="col-md-6 form-group">
+									<input type="telephone" name="phone" className="form-control" id="phone" placeholder={i18next.t('contact-form.your-phone')} required/>
+								</div>
+								<div className="col-md-6 form-group mt-3 mt-md-0">
+								<input type="text" className="form-control" name="subject" id="subject" placeholder={i18next.t('contact-form.subject')}/>
 								</div>
 							</div>
 							<div className="form-group mt-3">
-								<input type="text" className="form-control" name="subject" id="subject" placeholder={i18next.t('subject')} required/>
-							</div>
-							<div className="form-group mt-3">
-								<textarea className="form-control" name="message" rows="5" placeholder={i18next.t('message')} required></textarea>
+								<textarea className="form-control" name="message" rows="5" placeholder={i18next.t('contact-form.message')} required></textarea>
 							</div>
 
-							<div className={"text-center " + (loading ? "d-none" : "")}><button type="submit">{i18next.t('send')}</button></div>
+							<div className={"text-center " + (loading ? "d-none" : "")}><button type="submit">{i18next.t('contact-form.send')}</button></div>
 							<input type="email" className="d-none" name="email" id="email" placeholder="Your Email"/>
 						</form>
 
 						<div className="my-3">
 							<div className={"error-message " + (error.length > 0 ? "d-block" : "")}>{ error.length > 0 ? error.map(item => <span key={item}>{item}</span>) : null }</div>
-							<div className={"sent-message " + (success ? "d-block" : "")}>{i18next.t('message-success')}</div>
+							<div className={"sent-message " + (success ? "d-block" : "")}>{i18next.t('contact-form.message-success')}</div>
 						</div>
 					</div>
 				</div>

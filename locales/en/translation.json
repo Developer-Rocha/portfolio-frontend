@@ -6,20 +6,24 @@
 	"contact": "Contact",
 	"query_error_message": "Error with request content!",
 	"all": "All",
-	"message-success": "Your message has been sent. Thank you!",
 	"loading": "Loading",
-	"send": "Send Message",
 	"location": "Location",
-	"phone": "Phone",
-	"your-name": "Your Name",
-	"your-email": "Your Email",
-	"subject": "Subject",
-	"message": "Message",
 	"category": "Category",
 	"technologies": "Technologies",
 	"client": "Client",
 	"project-date": "Project date",
 	"project-url": "Project URL",
 	"detail": "Detail",
-	"ask-for-quote": "Ask for quote"
+	"ask-for-quote": "Ask for quote",
+	"contact-form": {
+		"phone": "Phone",
+		"your-name": "Your Name",
+		"your-email": "Your Email",
+		"your-phone": "Your Phone",
+		"subject": "Subject",
+		"message": "Message",
+		"send": "Send Message",
+		"message-success": "Your message has been sent. Thank you!",
+		"invalid-phone": "Invalid phone number. Please enter a valid phone number."
+	}
 }

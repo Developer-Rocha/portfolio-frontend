@@ -25,7 +25,8 @@
 		"react-modal": "^3.14.3",
 		"styled-components": "^5.2.3",
 		"swiper": "^7.0.8",
-		"typed.js": "^2.0.12"
+		"typed.js": "^2.0.12",
+		"validator": "^13.7.0"
 	},
 	"devDependencies": {
 		"babel-plugin-styled-components": "^1.12.0",

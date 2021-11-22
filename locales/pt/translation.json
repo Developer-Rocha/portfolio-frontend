@@ -6,20 +6,24 @@
 	"contact": "Contacto",
 	"query_error_message": "Erro ao carregar os conteúdos.",
 	"all": "Todos",
-	"message-success": "Sua mensagem foi enviada. Obrigado!",
 	"loading": "Carregando",
-	"send": "Enviar Mensagem",
 	"location": "Morada",
-	"phone": "Telemóvel",
-	"your-name": "Nome",
-	"your-email": "Email",
-	"subject": "Assunto",
-	"message": "Mensagem",
 	"category": "Categoria",
 	"technologies": "Tecnologias",
 	"client": "Cliente",
 	"project-date": "Data do projecto",
 	"project-url": "URL do projecto",
 	"detail": "Detalhe",
-	"ask-for-quote": "Pedir orçamento"
+	"ask-for-quote": "Pedir orçamento",
+	"contact-form": {
+		"phone": "Telemóvel",
+		"your-name": "Nome",
+		"your-email": "Email",
+		"your-phone": "Telemóvel",
+		"subject": "Assunto",
+		"message": "Mensagem",
+		"send": "Enviar Mensagem",
+		"message-success": "Sua mensagem foi enviada. Obrigado!",
+		"invalid-phone": "Telefone inválido. Por favor insira um número de telefone válido."
+	}
 }
