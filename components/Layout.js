@@ -45,10 +45,10 @@ export default function Layout({ children, props }) {
 						href: `${BASE_URL}/images/favicon/touch-icon-ipad.png`,
 						sizes: '76x76'
 					},
-					{
-						rel: 'manifest',
-						href: `${BASE_URL}/manifest.json`
-					}
+					// {
+					// 	rel: 'manifest',
+					// 	href: `${BASE_URL}/manifest.json`
+					// }
 				]}
 				openGraph={{
 					type: 'website',
