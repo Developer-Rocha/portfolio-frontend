@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Head from "next/head";
 import Router from "next/router";
 import { ThemeProvider } from "styled-components";
+import TagManager from 'react-gtm-module';
 
 // Components
 import Loading from "../components/Loading";
@@ -37,6 +38,7 @@ const App = ({ Component, pageProps }) => {
 		let unmounted   = false;
 
 		if(!unmounted ) {
+			TagManager.initialize({ gtmId: 'G-GT45PWLGN1' });
 			window.addEventListener('scroll', scrollHandler);
 		}
 
