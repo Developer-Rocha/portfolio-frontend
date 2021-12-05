@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from "next/head";
 import Router from "next/router";
 import { ThemeProvider } from "styled-components";
 
@@ -68,6 +69,11 @@ const App = ({ Component, pageProps }) => {
 
 	return (
 		<>
+			<Head>
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="google-site-verification" content="3jx2ja3mYtKHkZnrRR2D2etu6UEulqHYs0ctTlk_oeU" />
+				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
+			</Head>
 			<GlobalStyle />
 			<ApolloProvider client={apolloClient}>
 				<ThemeProvider theme={theme}>

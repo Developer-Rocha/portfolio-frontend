@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import { useEffect } from "react";
 import { useRouter } from 'next/router'
 import { BASE_URL } from "../utils/config";
@@ -71,12 +70,6 @@ export default function Layout({ children, props }) {
 					],
 				}}
 			/>
-			<Head>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<meta name="google-site-verification" content="3jx2ja3mYtKHkZnrRR2D2etu6UEulqHYs0ctTlk_oeU" />
-				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
-			</Head>
-
 			<div>
 				<Header />
 
