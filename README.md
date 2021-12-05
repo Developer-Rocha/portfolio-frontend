@@ -4,7 +4,7 @@ This is a simple landing page website.
 
 ## Preview
 
-Preview the example live on [DevRocha](https://devrocha.space/):
+Preview the example live on [DevRocha](https://devrocha.pt/):
 
 ## How to init
 

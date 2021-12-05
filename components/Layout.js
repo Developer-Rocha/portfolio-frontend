@@ -32,6 +32,7 @@ export default function Layout({ children, props }) {
 		<>
 			<NextSeo
 				title={props.title}
+				defaultTitle= "DevRocha"
 				description={props.description}
 				canonical={BASE_URL + asPath}
 				additionalLinkTags={[
