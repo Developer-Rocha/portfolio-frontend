@@ -38,7 +38,7 @@ const App = ({ Component, pageProps }) => {
 		let unmounted   = false;
 
 		if(!unmounted ) {
-			TagManager.initialize({ gtmId: 'G-GT45PWLGN1' });
+			TagManager.initialize({ gtmId: 'GTM-MHM2DGR' });
 			window.addEventListener('scroll', scrollHandler);
 		}
 
