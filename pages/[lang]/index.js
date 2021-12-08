@@ -7,6 +7,7 @@ import { getAllLanguageSlugs, getLanguage } from "../../lib/lang";
 import Loading from "../../components/Loading";
 import Layout from "../../components/Layout";
 import Hero from "../../components/Hero";
+import About from "../../components/About";
 import Services from "../../components/Services";
 import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
@@ -38,6 +39,11 @@ export default function LangIndex( props ) {
 					backgroundImage={state.fieldHeroImage}
 					typedAnimation={state.fieldTypedAnimation}
 					socialLinks={props.socialLinks.social}
+				/>
+
+				<About
+					title={state.aboutTitle}
+					description={state.aboutDescription}
 				/>
 
 				<Services

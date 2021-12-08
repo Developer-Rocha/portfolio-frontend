@@ -8,6 +8,10 @@ export const GET_NODE = gql`
 			... on NodePage {
 				fieldServiceDescription
 				fieldSeoDescription
+				aboutTitle: fieldAboutTitle
+				aboutDescription: fieldAboutDescription {
+					value
+				}
 				fieldHeroImage {
 					entity{
                         ...on MediaImage {

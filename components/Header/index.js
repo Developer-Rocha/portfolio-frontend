@@ -60,11 +60,11 @@ function Header(props) {
 								<i className="bx bx-home"></i> <span>Home</span>
 							</a>
 						</li>
-						{/* <li>
-							<a href="#about" className="nav-link scrollto">
-								<i className="bx bx-user"></i> <span>{t("about")}</span>
+						<li>
+							<a onClick={(e) => handleCloseMenu(e)} href="#about" className="nav-link scrollto">
+								<i className="bx bx-user"></i> <span>{i18next.t('about')}</span>
 							</a>
-						</li> */}
+						</li>
 						<li>
 							<a onClick={(e) => handleCloseMenu(e)} href="#services" className="nav-link scrollto">
 								<i className="bx bx-server"></i> <span>{i18next.t('services')}</span>
