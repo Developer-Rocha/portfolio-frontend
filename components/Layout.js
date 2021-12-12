@@ -31,6 +31,7 @@ export default function Layout({ children, props }) {
 		<>
 			<NextSeo
 				title={props.nodeInfo.page.seoTitle ? "DevRocha | " + props.nodeInfo.page.seoTitle : "DevRocha"}
+				description={props.description}
 				canonical={BASE_URL + asPath}
 				additionalLinkTags={[
 					{
