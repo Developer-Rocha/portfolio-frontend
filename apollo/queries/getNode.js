@@ -7,6 +7,7 @@ export const GET_NODE = gql`
 			title
 			... on NodePage {
 				fieldServiceDescription
+				seoTitle: fieldSeoTitle
 				fieldSeoDescription
 				aboutTitle: fieldAboutTitle
 				aboutDescription: fieldAboutDescription {

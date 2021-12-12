@@ -38,6 +38,9 @@ const App = ({ Component, pageProps }) => {
 		let unmounted   = false;
 
 		if(!unmounted ) {
+			//set lang tag
+			i18next.on('languageChanged', (lng) => {document.documentElement.setAttribute('lang', lng);})
+
 			TagManager.initialize({ gtmId: 'GTM-5CWJD4N' });
 			window.addEventListener('scroll', scrollHandler);
 		}

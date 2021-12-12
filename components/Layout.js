@@ -30,7 +30,7 @@ export default function Layout({ children, props }) {
 	return (
 		<>
 			<NextSeo
-				title={props.title}
+				title={props.nodeInfo.page.seoTitle ? "DevRocha | " + props.nodeInfo.page.seoTitle : "DevRocha"}
 				defaultTitle= "DevRocha"
 				description={props.description}
 				canonical={BASE_URL + asPath}
