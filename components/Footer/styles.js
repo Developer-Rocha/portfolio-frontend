@@ -23,6 +23,11 @@ export const FooterWraper = styled.footer`
         margin: 0 0 40px 0;
     }
 
+    .zaask-certificate {
+        display: block;
+        margin-bottom: 20px;
+    }
+
     .social-links {
         margin: 0 0 40px 0;
 

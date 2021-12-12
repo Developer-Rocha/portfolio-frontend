@@ -7,7 +7,10 @@ function Footer({socialLinks}) {
 	return (
         <FooterWraper id="footer">
             <div className="container">
-                <div className="social-links">
+				<a className="zaask-certificate" target="_blank" href="https://www.zaask.pt/user/fabrc7" rel="noreferrer">
+					<img src="https://www.zaask.pt/widget?user=253946&widget=pro-findme" alt="" />
+				</a>
+				<div className="social-links">
 					{socialLinks.links.map((item, index) => (
 						<a
 							href={item.url.path}
