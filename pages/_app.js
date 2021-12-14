@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Head from "next/head";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 import TagManager from 'react-gtm-module';
 
@@ -30,6 +30,8 @@ const theme = {
 };
 
 const App = ({ Component, pageProps }) => {
+	const router = useRouter();
+
 	i18next.changeLanguage(pageProps.language);
 	const [loading, setLoading] = useState(false);
 	const apolloClient = useApollo(pageProps)
@@ -45,9 +47,22 @@ const App = ({ Component, pageProps }) => {
 			window.addEventListener('scroll', scrollHandler);
 		}
 
+		// Loading
+		const handleStart = () => {
+			setLoading(true);
+		};
+
+		const handleComplete = () => {
+			setLoading(false);
+		};
+
+		router.events.on("routeChangeStart", handleStart);
+		router.events.on("routeChangeComplete", handleComplete);
+		router.events.on("routeChangeError", handleComplete);
+
 		return () => unmounted = true;
 
-	}, []);
+	}, [router]);
 
 	const scrollHandler = () => {
 		const navbarLinks = document.getElementsByClassName('scrollto');
@@ -64,13 +79,6 @@ const App = ({ Component, pageProps }) => {
 			}
 		})
 	}
-
-	Router.events.on("routeChangeStart", (url) => {
-		setLoading(true);
-	});
-	Router.events.on("routeChangeComplete", (url) => {
-		setLoading(false);
-	});
 
 	return (
 		<>
