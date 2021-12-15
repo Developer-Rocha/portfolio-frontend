@@ -66,7 +66,7 @@ export default function Layout({ children, props }) {
 				]}
 				openGraph={{
 					type: 'website',
-					url: BASE_URL,
+					url: BASE_URL + asPath,
 					title: props.title,
 					description: props.description,
 					images: [
