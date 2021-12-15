@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import { BASE_URL } from "../utils/config";
 
@@ -11,11 +11,14 @@ import AOS from "aos";
 import { NextSeo } from 'next-seo';
 
 // Components
+import Loading from "../components/Loading";
 import Header from "./Header";
 import Footer from './Footer';
 
 export default function Layout({ children, props }) {
 	const { asPath } = useRouter();
+	const router = useRouter();
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		// here you can add your aos options
@@ -25,7 +28,20 @@ export default function Layout({ children, props }) {
 			once: true,
 			mirror: false,
 		});
-	}, []);
+
+		// Loading
+		const handleStart = () => {
+			setLoading(true);
+		};
+
+		const handleComplete = () => {
+			setLoading(false);
+		};
+
+		router.events.on("routeChangeStart", handleStart);
+		router.events.on("routeChangeComplete", handleComplete);
+		router.events.on("routeChangeError", handleComplete);
+	}, [router]);
 
 	return (
 		<>
@@ -69,13 +85,18 @@ export default function Layout({ children, props }) {
 					],
 				}}
 			/>
-			<div>
-				<Header />
+			{loading ?
+			(
+				<Loading loading={loading} />
+			) : (
+				<div>
+					<Header />
 
-				<main>{children}</main>
+					<main>{children}</main>
 
-				<Footer socialLinks={props.socialLinks.social} />
-			</div>
+					<Footer socialLinks={props.socialLinks.social} />
+				</div>
+			)}
 		</>
 	);
 }
