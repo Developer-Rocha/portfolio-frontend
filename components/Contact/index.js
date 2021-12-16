@@ -48,7 +48,7 @@ function Contact() {
 		const lang = i18next.language === "en" ? "" : "pt-pt/";
 		// Fetch to API
 		const res = await fetch(
-			`http://api-devrocha.pt/${lang}webform_rest/submit`,
+			`https://api-devrocha.pt/${lang}webform_rest/submit`,
 			{
 				body: JSON.stringify(data),
 				headers: {
@@ -110,7 +110,7 @@ function Contact() {
 					</div>
 
 					<div className="col-lg-8 mt-5 mt-lg-0" ref={el} style={{ minHeight: height }}>
-						<div className={"loading " + (loading ? "d-flex" : "")}>{i18next.t('loading')}</div>
+						<div className={"loading " + (loading ? "d-flex" : "")}>{i18next.t('contact-form.sending')}</div>
 
 						<form onSubmit={e => submitContact(e)} action="" method="post" role="form" className={"email-form " + (loading || success ? "d-none" : "")}>
 							<div className="row">

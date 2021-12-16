@@ -24,6 +24,7 @@
 		"message": "Mensagem",
 		"send": "Enviar Mensagem",
 		"message-success": "Sua mensagem foi enviada. Obrigado!",
-		"invalid-phone": "Telefone inválido. Por favor insira um número de telefone válido."
+		"invalid-phone": "Telefone inválido. Por favor insira um número de telefone válido.",
+		"sending": "Enviando"
 	}
 }

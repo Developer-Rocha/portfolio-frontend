@@ -24,6 +24,7 @@
 		"message": "Message",
 		"send": "Send Message",
 		"message-success": "Your message has been sent. Thank you!",
-		"invalid-phone": "Invalid phone number. Please enter a valid phone number."
+		"invalid-phone": "Invalid phone number. Please enter a valid phone number.",
+		"sending": "Sending"
 	}
 }
