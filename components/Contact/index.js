@@ -48,7 +48,7 @@ function Contact() {
 		const lang = i18next.language === "en" ? "" : "pt-pt/";
 		// Fetch to API
 		const res = await fetch(
-			`https://fabricio-rocha.com/${lang}webform_rest/submit`,
+			`http://api-devrocha.pt/${lang}webform_rest/submit`,
 			{
 				body: JSON.stringify(data),
 				headers: {

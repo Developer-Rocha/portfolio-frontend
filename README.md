@@ -13,7 +13,7 @@ Execute the following steps:
 Create the .env file in the project root with the following variable.
 
 ```bash
-API_URL=https://fabricio-rocha.com/graphql
+API_URL=https://api-devrocha/graphql
 ```
 and then
 
