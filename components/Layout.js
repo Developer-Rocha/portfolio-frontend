@@ -72,14 +72,14 @@ export default function Layout({ children, props }) {
 					images: [
 						{
 							url: `${BASE_URL}/images/logo_size_invert.jpg`,
-							width: 192,
-							height: 192,
+							width: 200,
+							height: 200,
 							alt: 'Developer Rocha - Creative Websites',
 						},
 						{
 							url: `${BASE_URL}/images/logo_size.jpg`,
-							width: 192,
-							height: 192,
+							width: 200,
+							height: 200,
 							alt: 'Developer Rocha - Creative Websites',
 						},
 					],
