@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import validator from "validator";
 import { ContactWraper } from "./styles";
 import i18next from 'i18next';
+import { API_URL } from '../../utils/config';
 
 function Contact() {
 	const el = useRef(null);
@@ -48,7 +49,7 @@ function Contact() {
 		const lang = i18next.language === "en" ? "" : "pt-pt/";
 		// Fetch to API
 		const res = await fetch(
-			`https://api-devrocha.pt/${lang}webform_rest/submit`,
+			`${API_URL}${lang}webform_rest/submit`,
 			{
 				body: JSON.stringify(data),
 				headers: {
