@@ -11,6 +11,7 @@ import About from "../../components/About";
 import Services from "../../components/Services";
 import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
+import TeaserPricing from "../../components/TeaserPricing";
 
 //API
 import { initializeApollo } from "../../apollo/apolloClient";
@@ -40,6 +41,17 @@ export default function LangIndex( props ) {
 					typedAnimation={state.fieldTypedAnimation}
 					socialLinks={props.socialLinks.social}
 				/>
+
+				{
+					state.fieldModules.map((item, index) => {
+						if(item.entity.__typename == 'ParagraphPricingTable') {
+							return <TeaserPricing key={index} data={item.entity} />
+						}
+						else {
+							return null;
+						}
+					})
+				}
 
 				<About
 					title={state.aboutTitle}
