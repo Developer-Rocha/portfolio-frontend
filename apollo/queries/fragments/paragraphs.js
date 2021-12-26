@@ -1,14 +1,14 @@
 // This paragraphs file doesn't works...
 
 import { gql } from '@apollo/client';
-import { PARAGRAPHS_PRICING_TABLE_FRAGMENTS } from './paragraphPricingTable';
-import { PARAGRAPHS_PRICE_CARD_FRAGMENTS } from './paragraphPriceCardFragment';
-import { PARAGRAPHS_PLAIN_TEXT_FRAGMENTS } from './paragraphPlainTextFragment';
+import { PARAGRAPH_PRICING_TABLE_FRAGMENTS } from './paragraphPricingTable';
+import { PARAGRAPH_PRICE_CARD_FRAGMENTS } from './paragraphPriceCardFragment';
+import { PARAGRAPH_PLAIN_TEXT_FRAGMENTS } from './paragraphPlainTextFragment';
 
 export const PARAGRAPHS_FRAGMENTS = gql`
-  ${PARAGRAPHS_PRICING_TABLE_FRAGMENTS}
-  ${PARAGRAPHS_PRICE_CARD_FRAGMENTS}
-  ${PARAGRAPHS_PLAIN_TEXT_FRAGMENTS}
+  ${PARAGRAPH_PRICING_TABLE_FRAGMENTS}
+  ${PARAGRAPH_PRICE_CARD_FRAGMENTS}
+  ${PARAGRAPH_PLAIN_TEXT_FRAGMENTS}
 
   fragment blockEntitiesFragment on Entity {
     __typename

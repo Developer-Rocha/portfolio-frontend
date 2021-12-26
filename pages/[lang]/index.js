@@ -47,6 +47,9 @@ export default function LangIndex( props ) {
 						if(item.entity.__typename == 'ParagraphPricingTable') {
 							return <TeaserPricing key={index} data={item.entity} />
 						}
+						if(item.entity.__typename == 'ParagraphServices') {
+							return <Services key={index} data={item.entity.services} description={item.entity.description}/>
+						}
 						else {
 							return null;
 						}
@@ -58,10 +61,10 @@ export default function LangIndex( props ) {
 					description={state.aboutDescription}
 				/>
 
-				<Services
+				{/* <Services
 					data={state.fieldServices}
 					description={state.fieldServiceDescription}
-				/>
+				/> */}
 
 				<Portfolio portfolio={props.portfolio.portfolio} />
 

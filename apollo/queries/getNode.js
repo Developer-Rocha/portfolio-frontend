@@ -1,13 +1,15 @@
 import { gql } from "@apollo/client";
 // import { PARAGRAPHS_FRAGMENTS } from "./fragments/paragraphs";
-import { PARAGRAPHS_PRICING_TABLE_FRAGMENTS } from './fragments/paragraphPricingTable';
-import { PARAGRAPHS_PRICE_CARD_FRAGMENTS } from './fragments/paragraphPriceCardFragment';
-import { PARAGRAPHS_PLAIN_TEXT_FRAGMENTS } from './fragments/paragraphPlainTextFragment';
+import { PARAGRAPH_PRICING_TABLE_FRAGMENTS } from './fragments/paragraphPricingTable';
+import { PARAGRAPH_PRICE_CARD_FRAGMENTS } from './fragments/paragraphPriceCardFragment';
+import { PARAGRAPH_PLAIN_TEXT_FRAGMENTS } from './fragments/paragraphPlainTextFragment';
+import { PARAGRAPH_SERVICES_FRAGMENTS } from "./fragments/paragraphServicesFragment";
 
 export const GET_NODE = gql`
-	${PARAGRAPHS_PRICING_TABLE_FRAGMENTS}
-	${PARAGRAPHS_PRICE_CARD_FRAGMENTS}
-	${PARAGRAPHS_PLAIN_TEXT_FRAGMENTS}
+	${PARAGRAPH_PRICING_TABLE_FRAGMENTS}
+	${PARAGRAPH_PRICE_CARD_FRAGMENTS}
+	${PARAGRAPH_PLAIN_TEXT_FRAGMENTS}
+	${PARAGRAPH_SERVICES_FRAGMENTS}
 
 	query page($language: LanguageId!, $id: String!) {
 		page: nodeById(language: $language, id: $id) {
@@ -63,6 +65,7 @@ export const GET_NODE = gql`
 						... paragraphPricingTableFragment
 						... paragraphPriceCardFragment
 						... paragraphPlainTextFragment
+						... paragraphServicesFragment
 					}
 				}
 			}

@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
-import { PARAGRAPHS_PLAIN_TEXT_FRAGMENTS } from './paragraphPlainTextFragment';
+import { PARAGRAPH_PLAIN_TEXT_FRAGMENTS } from './paragraphPlainTextFragment';
 
-export const PARAGRAPHS_PRICE_CARD_FRAGMENTS = gql`
-    ${PARAGRAPHS_PLAIN_TEXT_FRAGMENTS}
+export const PARAGRAPH_PRICE_CARD_FRAGMENTS = gql`
+    ${PARAGRAPH_PLAIN_TEXT_FRAGMENTS}
 
     fragment paragraphPriceCardFragment on ParagraphPriceCard {
         id
