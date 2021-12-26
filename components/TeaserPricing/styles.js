@@ -4,6 +4,13 @@ export const TeaserPricingWraper = styled.section`
     .card {
         width: 100%;
         text-align: center;
+        border: none;
+        transition: all ease-in-out 0.3s;
+        box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+
+        &:hover {
+            box-shadow: 0px 0 35px 0 rgba(0, 0, 0, 0.08);
+        }
 
         &__header {
             padding: 15px;
@@ -50,6 +57,7 @@ export const TeaserPricingWraper = styled.section`
 
         li {
             text-align: left;
+            margin-bottom: 30px;
 
             &::marker {
                 color: var(--primary);
