@@ -50,21 +50,14 @@ export default function LangIndex( props ) {
 						if(item.entity.__typename == 'ParagraphServices') {
 							return <Services key={index} data={item.entity.services} description={item.entity.description}/>
 						}
+						if(item.entity.__typename == 'ParagraphAbout') {
+							return <About key={index} title={item.entity.title} description={item.entity.description}/>
+						}
 						else {
 							return null;
 						}
 					})
 				}
-
-				<About
-					title={state.aboutTitle}
-					description={state.aboutDescription}
-				/>
-
-				{/* <Services
-					data={state.fieldServices}
-					description={state.fieldServiceDescription}
-				/> */}
 
 				<Portfolio portfolio={props.portfolio.portfolio} />
 
