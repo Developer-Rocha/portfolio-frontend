@@ -5,6 +5,7 @@ import { PARAGRAPH_PRICE_CARD_FRAGMENTS } from './fragments/paragraphPriceCardFr
 import { PARAGRAPH_PLAIN_TEXT_FRAGMENTS } from './fragments/paragraphPlainTextFragment';
 import { PARAGRAPH_SERVICES_FRAGMENTS } from "./fragments/paragraphServicesFragment";
 import { PARAGRAPH_ABOUT_FRAGMENTS } from "./fragments/paragraphAboutFragment";
+import { PARAGRAPH_PORTFOLIO_FRAGMENTS } from "./fragments/paragraphPortfolioFragment";
 
 export const GET_NODE = gql`
 	${PARAGRAPH_PRICING_TABLE_FRAGMENTS}
@@ -12,19 +13,15 @@ export const GET_NODE = gql`
 	${PARAGRAPH_PLAIN_TEXT_FRAGMENTS}
 	${PARAGRAPH_SERVICES_FRAGMENTS}
 	${PARAGRAPH_ABOUT_FRAGMENTS}
+	${PARAGRAPH_PORTFOLIO_FRAGMENTS}
 
 	query page($language: LanguageId!, $id: String!) {
 		page: nodeById(language: $language, id: $id) {
 			id: nid
 			title
 			... on NodePage {
-				fieldServiceDescription
 				seoTitle: fieldSeoTitle
 				fieldSeoDescription
-				aboutTitle: fieldAboutTitle
-				aboutDescription: fieldAboutDescription {
-					value
-				}
 				fieldHeroImage {
 					entity{
                         ...on MediaImage {
@@ -51,16 +48,6 @@ export const GET_NODE = gql`
 						}
 					}
 				}
-				fieldServices {
-					entity {
-						... on ParagraphServiceItem {
-							fieldIcon
-							fieldColor
-							fieldTitle
-							fieldDescription
-						}
-					}
-				}
 				fieldModules{
 					entity{
 						# Insert here all paragraphs that we have enable on field Modules
@@ -69,6 +56,7 @@ export const GET_NODE = gql`
 						... paragraphPlainTextFragment
 						... paragraphServicesFragment
 						... paragraphAboutFragment
+						... paragraphPortfolioFragment
 					}
 				}
 			}

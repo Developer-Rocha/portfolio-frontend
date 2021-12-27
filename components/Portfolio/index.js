@@ -9,7 +9,7 @@ Modal.setAppElement('#__next');
 function Portfolio({portfolio}) {
 	const [filters, setFilters] = useState([]);
 	const [currentFilter, setCurrentFilter] = useState('*');
-	const [portfolios, setPortfolios ] = useState(portfolio.entities);
+	const [portfolios, setPortfolios ] = useState(portfolio);
 	const [height, setHeight] = useState();
 	const el = useRef(null);
 
@@ -25,8 +25,8 @@ function Portfolio({portfolio}) {
 		setHeight(portfolioHeight);
 
 		function getCategory() {
-			const response = portfolio.entities.map(function(item) {
-				item.category.map(function(el){
+			const response = portfolio.map(function(item) {
+				item.entity.category.map(function(el){
 					if(!arr.includes(el.entity.name)){
 						arr.push(el.entity.name);
 					}
@@ -59,8 +59,8 @@ function Portfolio({portfolio}) {
 			let portfolioFiltered = [];
 
 			if(filterSelected !== "*") {
-				portfolio.entities.map((item) => {
-					item.category.filter(row => {
+				portfolio.map((item) => {
+					item.entity.category.filter(row => {
 						if(row.entity.name === filterSelected) {
 							portfolioFiltered.push(item);
 						}
@@ -69,7 +69,7 @@ function Portfolio({portfolio}) {
 				setPortfolios(portfolioFiltered);
 			}
 			else {
-				setPortfolios(portfolio.entities);
+				setPortfolios(portfolio);
 			}
 			setCurrentFilter(filterSelected);
 		}
@@ -104,26 +104,32 @@ function Portfolio({portfolio}) {
 					className="row portfolio-container"
 					ref={el}
 				>
-					{portfolios.map((item, index) => (
+					{portfolios ?
+					portfolios.map((item, index) => (
 						<div
 						key={index}
 						data-aos="zoom-in"
 						data-aos-delay="100"
 						className="col-lg-4 col-md-6 portfolio-item">
 							<div className="portfolio-wrap">
-								<img
-									src={item.fieldThumbnail.entity.fieldMediaImage.sm.url}
-									className="img-fluid"
-									alt=""
-								/>
+								{
+									item.entity.fieldThumbnail ?
+									<img
+										src={item.entity.fieldThumbnail.entity.fieldMediaImage.sm.url}
+										className="img-fluid"
+										alt=""
+									/>
+									: null
+								}
+
 								<div className="portfolio-info">
-									<h4>{item.client}</h4>
-									<p>{item.category.map((item, key) => (
+									<h4>{item.entity.client}</h4>
+									<p>{item.entity.category.map((item, key) => (
 											item.entity.name
 										)).join(' + ')}</p>
 									<div className="portfolio-links">
 										<a
-											onClick={() => openModal(item)}
+											onClick={() => openModal(item.entity)}
 											title="Portfolio Details"
 										>
 											<i className="bx bx-plus"></i>
@@ -132,7 +138,7 @@ function Portfolio({portfolio}) {
 								</div>
 							</div>
 						</div>
-					))}
+					)) : null}
 				</div>
 			</div>
 

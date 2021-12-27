@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/router'
 
 import { getAllLanguageSlugs, getLanguage } from "../../lib/lang";
@@ -23,6 +23,10 @@ export default function LangIndex( props ) {
 	const { isFallback } = useRouter();
 
 	const [state, setState] = useState(props.nodeInfo.page);
+
+	useEffect(() => {
+		setState(props.nodeInfo.page);
+	}, [props]);
 
 	if (!state) {
 		return <h1>Erro ao carregar os conteúdos.</h1>;
@@ -53,13 +57,16 @@ export default function LangIndex( props ) {
 						if(item.entity.__typename == 'ParagraphAbout') {
 							return <About key={index} title={item.entity.title} description={item.entity.description}/>
 						}
+						if(item.entity.__typename == 'ParagraphPortfolio') {
+							return <Portfolio key={index} portfolio={item.entity.fieldPortfolio} />
+						}
 						else {
 							return null;
 						}
 					})
 				}
 
-				<Portfolio portfolio={props.portfolio.portfolio} />
+				{/* <Portfolio portfolio={props.portfolio.portfolio} /> */}
 
 				<Contact />
 			</Layout>
