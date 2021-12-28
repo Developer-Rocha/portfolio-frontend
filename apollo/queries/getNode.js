@@ -6,6 +6,7 @@ import { PARAGRAPH_PLAIN_TEXT_FRAGMENTS } from './fragments/paragraphPlainTextFr
 import { PARAGRAPH_SERVICES_FRAGMENTS } from "./fragments/paragraphServicesFragment";
 import { PARAGRAPH_ABOUT_FRAGMENTS } from "./fragments/paragraphAboutFragment";
 import { PARAGRAPH_PORTFOLIO_FRAGMENTS } from "./fragments/paragraphPortfolioFragment";
+import { PARAGRAPH_WEBFORM_CONTACT_FRAGMENTS } from "./fragments/paragraphWebFormContactFragment";
 
 export const GET_NODE = gql`
 	${PARAGRAPH_PRICING_TABLE_FRAGMENTS}
@@ -14,6 +15,7 @@ export const GET_NODE = gql`
 	${PARAGRAPH_SERVICES_FRAGMENTS}
 	${PARAGRAPH_ABOUT_FRAGMENTS}
 	${PARAGRAPH_PORTFOLIO_FRAGMENTS}
+	${PARAGRAPH_WEBFORM_CONTACT_FRAGMENTS}
 
 	query page($language: LanguageId!, $id: String!) {
 		page: nodeById(language: $language, id: $id) {
@@ -57,6 +59,7 @@ export const GET_NODE = gql`
 						... paragraphServicesFragment
 						... paragraphAboutFragment
 						... paragraphPortfolioFragment
+						... paragraphWebformContactFragment
 					}
 				}
 			}

@@ -60,15 +60,14 @@ export default function LangIndex( props ) {
 						if(item.entity.__typename == 'ParagraphPortfolio') {
 							return <Portfolio key={index} portfolio={item.entity.fieldPortfolio} />
 						}
+						if(item.entity.__typename == 'ParagraphWebformContact') {
+							return <Contact key={index} data={item.entity} />
+						}
 						else {
 							return null;
 						}
 					})
 				}
-
-				{/* <Portfolio portfolio={props.portfolio.portfolio} /> */}
-
-				<Contact />
 			</Layout>
 		</>
 	);
@@ -86,7 +85,6 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
     const language = getLanguage(params.lang);
 	const lang = language === "en" ? "EN" : "PT_PT";
-	const langcode = language === "en" ? "EN" : "pt-pt";
 	const apolloClient = initializeApollo();
 
 	const getNode = apolloClient.query({
@@ -104,22 +102,13 @@ export const getStaticProps = async ({ params }) => {
 		},
 	});
 
-	const portfolio = apolloClient.query({
-		query: GET_PORTFOLIO,
-		variables: {
-			language: lang,
-			langcode: langcode
-		}
-	})
-
-	const response = await Promise.all([getNode, socialLink, portfolio]);
+	const response = await Promise.all([getNode, socialLink]);
 
 	return {
 		props: {
             language,
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
-			portfolio: response[2].data,
 			title: response[0].data ? response[0].data.page.title : 'Developer Rocha',
 			description: response[0].data ? response[0].data.page.fieldSeoDescription : null
 		},
