@@ -11,7 +11,10 @@ function Services({ data, description }) {
 			<div className="container" data-aos="fade-up">
 				<div className="section-title">
 					<h2>{i18next.t('services')}</h2>
+					{ description ?
 					<div dangerouslySetInnerHTML={{__html: description.value }}></div>
+					: null}
+
 				</div>
 
 				<div className="row">
