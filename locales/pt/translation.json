@@ -5,6 +5,8 @@
 	"portfolio": "Portfólio",
 	"contact": "Contacto",
 	"prices": "Preços",
+	"from": "a partir",
+	"no-iva": "O preço não inclui o IVA.",
 	"query_error_message": "Erro ao carregar os conteúdos.",
 	"all": "Todos",
 	"loading": "Carregando",

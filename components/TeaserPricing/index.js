@@ -25,9 +25,14 @@ function TeaserPricing({ data }) {
                                 </div>
                                 <div className="card__body">
                                     {item.entity.price ?
-                                        <div className="price">
-                                            <span>€ </span><p>{item.entity.price}</p><span>+ IVA</span>
-                                        </div> : <p className="lead">{i18next.t('on-request')}</p>}
+                                        <div>
+                                            <div className="price">
+                                                <span>€ </span><p>{item.entity.price}</p><span>/ {i18next.t('from')}</span>
+                                            </div>
+                                            <span className="no-iva">{i18next.t('no-iva')}</span>
+                                        </div>
+
+                                         : <p className="lead">{i18next.t('on-request')}</p>}
                                 </div>
                                 <div className="card__footer">
                                     <ul>

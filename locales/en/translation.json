@@ -5,6 +5,8 @@
 	"portfolio": "Portfolio",
 	"contact": "Contact",
 	"prices": "Prices",
+	"from": "from",
+	"no-iva": "The price does not include IVA.",
 	"query_error_message": "Error with request content!",
 	"all": "All",
 	"loading": "Loading",

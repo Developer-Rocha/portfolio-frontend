@@ -12,6 +12,7 @@ import Services from "../../components/Services";
 import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
 import TeaserPricing from "../../components/TeaserPricing";
+import Text from "../../components/Text";
 
 //API
 import { initializeApollo } from "../../apollo/apolloClient";
@@ -62,6 +63,9 @@ export default function LangIndex( props ) {
 						}
 						if(item.entity.__typename == 'ParagraphWebformContact') {
 							return <Contact key={index} data={item.entity} />
+						}
+						if(item.entity.__typename == 'ParagraphText') {
+							return <Text key={index} data={item.entity} />
 						}
 						else {
 							return null;

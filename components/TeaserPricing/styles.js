@@ -43,6 +43,10 @@ export const TeaserPricingWraper = styled.section`
                 }
             }
 
+            .no-iva {
+                font-size: 0.8rem;
+            }
+
             .lead {
                 font-size: 2.5rem;
                 font-weight: bold;
