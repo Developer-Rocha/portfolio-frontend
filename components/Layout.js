@@ -90,7 +90,7 @@ export default function Layout({ children, props }) {
 				<Loading loading={loading} />
 			) : (
 				<div>
-					<Header />
+					<Header data={props.nodeInfo.page.fieldModules} />
 
 					<main>{children}</main>
 

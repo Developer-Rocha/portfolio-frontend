@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import i18next from 'i18next';
 import { languages } from '../../i18n/config';
 
-function Header(props) {
+function Header({ data }) {
 	const router = useRouter();
 	const { pathname } = router;
 
@@ -29,6 +29,16 @@ function Header(props) {
 			body.classList.remove('mobile-nav-active');
 
 		}
+	}
+
+	const renderList = (id, icon, index) => {
+		return(
+			<li key={index}>
+				<a onClick={(e) => handleCloseMenu(e)} href={"#" + id} className="nav-link scrollto">
+					<i className={"bx " + icon}></i> <span>{i18next.t(id)}</span>
+				</a>
+			</li>
+		);
 	}
 
 	return (
@@ -60,27 +70,27 @@ function Header(props) {
 								<i className="bx bx-home"></i> <span>Home</span>
 							</a>
 						</li>
-						<li>
-							<a onClick={(e) => handleCloseMenu(e)} href="#about" className="nav-link scrollto">
-								<i className="bx bx-user"></i> <span>{i18next.t('about')}</span>
-							</a>
-						</li>
-						<li>
-							<a onClick={(e) => handleCloseMenu(e)} href="#services" className="nav-link scrollto">
-								<i className="bx bx-server"></i> <span>{i18next.t('services')}</span>
-							</a>
-						</li>
-						<li>
-							<a onClick={(e) => handleCloseMenu(e)} href="#portfolio" className="nav-link scrollto">
-								<i className="bx bx-book-content"></i>
-								<span>{i18next.t('portfolio')}</span>
-							</a>
-						</li>
-						<li>
-							<a onClick={(e) => handleCloseMenu(e)} href="#contact" className="nav-link scrollto">
-								<i className="bx bx-envelope"></i> <span>{i18next.t('contact')}</span>
-							</a>
-						</li>
+
+						{ data.map((item, index) => {
+							if(item.entity.__typename == 'ParagraphPricingTable') {
+								return renderList("prices", "bx-euro", index)
+							}
+							if(item.entity.__typename == 'ParagraphServices') {
+								return renderList("services", "bx-server", index)
+							}
+							if(item.entity.__typename == 'ParagraphAbout') {
+								return renderList("about", "bx-user", index)
+							}
+							if(item.entity.__typename == 'ParagraphPortfolio') {
+								return renderList("portfolio", "bx-book-content", index)
+							}
+							if(item.entity.__typename == 'ParagraphWebformContact') {
+								return renderList("contact", "bx-envelope", index)
+							}
+							else {
+								return null;
+							}
+						})}
 					</ul>
 				</nav>
 			</HeaderWraper>

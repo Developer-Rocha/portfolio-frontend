@@ -7,7 +7,7 @@ import { TeaserPricingWraper } from "./styles";
 function TeaserPricing({ data }) {
 
 	return (
-		<TeaserPricingWraper id="teaser-pricing">
+		<TeaserPricingWraper id="prices">
             <div className="container" data-aos="fade-up">
 				<div className="row">
 					{data.pricingCards.map((item, index) => (
