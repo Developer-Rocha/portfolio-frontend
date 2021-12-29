@@ -4,6 +4,9 @@
 	"about": "Sobre",
 	"portfolio": "Portfólio",
 	"contact": "Contacto",
+	"prices": "Preços",
+	"from": "a partir",
+	"no-iva": "O preço não inclui o IVA.",
 	"query_error_message": "Erro ao carregar os conteúdos.",
 	"all": "Todos",
 	"loading": "Carregando",
@@ -15,6 +18,7 @@
 	"project-url": "URL do projecto",
 	"detail": "Detalhe",
 	"ask-for-quote": "Pedir orçamento",
+	"on-request": "Consulta",
 	"contact-form": {
 		"phone": "Telemóvel",
 		"your-name": "Nome",

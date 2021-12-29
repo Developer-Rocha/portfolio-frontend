@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/router'
 
 import { getAllLanguageSlugs, getLanguage } from "../../lib/lang";
@@ -11,6 +11,8 @@ import About from "../../components/About";
 import Services from "../../components/Services";
 import Portfolio from "../../components/Portfolio";
 import Contact from "../../components/Contact";
+import TeaserPricing from "../../components/TeaserPricing";
+import Text from "../../components/Text";
 
 //API
 import { initializeApollo } from "../../apollo/apolloClient";
@@ -22,6 +24,10 @@ export default function LangIndex( props ) {
 	const { isFallback } = useRouter();
 
 	const [state, setState] = useState(props.nodeInfo.page);
+
+	useEffect(() => {
+		setState(props.nodeInfo.page);
+	}, [props]);
 
 	if (!state) {
 		return <h1>Erro ao carregar os conteúdos.</h1>;
@@ -41,19 +47,31 @@ export default function LangIndex( props ) {
 					socialLinks={props.socialLinks.social}
 				/>
 
-				<About
-					title={state.aboutTitle}
-					description={state.aboutDescription}
-				/>
-
-				<Services
-					data={state.fieldServices}
-					description={state.fieldServiceDescription}
-				/>
-
-				<Portfolio portfolio={props.portfolio.portfolio} />
-
-				<Contact />
+				{
+					state.fieldModules.map((item, index) => {
+						if(item.entity.__typename == 'ParagraphPricingTable') {
+							return <TeaserPricing key={index} data={item.entity} />
+						}
+						if(item.entity.__typename == 'ParagraphServices') {
+							return <Services key={index} data={item.entity.services} description={item.entity.description}/>
+						}
+						if(item.entity.__typename == 'ParagraphAbout') {
+							return <About key={index} title={item.entity.title} description={item.entity.description}/>
+						}
+						if(item.entity.__typename == 'ParagraphPortfolio') {
+							return <Portfolio key={index} portfolio={item.entity.fieldPortfolio} />
+						}
+						if(item.entity.__typename == 'ParagraphWebformContact') {
+							return <Contact key={index} data={item.entity} />
+						}
+						if(item.entity.__typename == 'ParagraphText') {
+							return <Text key={index} data={item.entity} />
+						}
+						else {
+							return null;
+						}
+					})
+				}
 			</Layout>
 		</>
 	);
@@ -71,7 +89,6 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
     const language = getLanguage(params.lang);
 	const lang = language === "en" ? "EN" : "PT_PT";
-	const langcode = language === "en" ? "EN" : "pt-pt";
 	const apolloClient = initializeApollo();
 
 	const getNode = apolloClient.query({
@@ -89,22 +106,13 @@ export const getStaticProps = async ({ params }) => {
 		},
 	});
 
-	const portfolio = apolloClient.query({
-		query: GET_PORTFOLIO,
-		variables: {
-			language: lang,
-			langcode: langcode
-		}
-	})
-
-	const response = await Promise.all([getNode, socialLink, portfolio]);
+	const response = await Promise.all([getNode, socialLink]);
 
 	return {
 		props: {
             language,
 			nodeInfo: response[0].data,
 			socialLinks: response[1].data,
-			portfolio: response[2].data,
 			title: response[0].data ? response[0].data.page.title : 'Developer Rocha',
 			description: response[0].data ? response[0].data.page.fieldSeoDescription : null
 		},

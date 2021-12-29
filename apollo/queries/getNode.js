@@ -1,18 +1,31 @@
 import { gql } from "@apollo/client";
+// import { PARAGRAPHS_FRAGMENTS } from "./fragments/paragraphs";
+import { PARAGRAPH_PRICING_TABLE_FRAGMENTS } from './fragments/paragraphPricingTable';
+import { PARAGRAPH_PRICE_CARD_FRAGMENTS } from './fragments/paragraphPriceCardFragment';
+import { PARAGRAPH_PLAIN_TEXT_FRAGMENTS } from './fragments/paragraphPlainTextFragment';
+import { PARAGRAPH_SERVICES_FRAGMENTS } from "./fragments/paragraphServicesFragment";
+import { PARAGRAPH_ABOUT_FRAGMENTS } from "./fragments/paragraphAboutFragment";
+import { PARAGRAPH_PORTFOLIO_FRAGMENTS } from "./fragments/paragraphPortfolioFragment";
+import { PARAGRAPH_WEBFORM_CONTACT_FRAGMENTS } from "./fragments/paragraphWebFormContactFragment";
+import { PARAGRAPH_TEXT_FRAGMENTS } from "./fragments/paragraphTextFragment";
 
 export const GET_NODE = gql`
+	${PARAGRAPH_PRICING_TABLE_FRAGMENTS}
+	${PARAGRAPH_PRICE_CARD_FRAGMENTS}
+	${PARAGRAPH_PLAIN_TEXT_FRAGMENTS}
+	${PARAGRAPH_SERVICES_FRAGMENTS}
+	${PARAGRAPH_ABOUT_FRAGMENTS}
+	${PARAGRAPH_PORTFOLIO_FRAGMENTS}
+	${PARAGRAPH_WEBFORM_CONTACT_FRAGMENTS}
+	${PARAGRAPH_TEXT_FRAGMENTS}
+
 	query page($language: LanguageId!, $id: String!) {
 		page: nodeById(language: $language, id: $id) {
 			id: nid
 			title
 			... on NodePage {
-				fieldServiceDescription
 				seoTitle: fieldSeoTitle
 				fieldSeoDescription
-				aboutTitle: fieldAboutTitle
-				aboutDescription: fieldAboutDescription {
-					value
-				}
 				fieldHeroImage {
 					entity{
                         ...on MediaImage {
@@ -39,14 +52,17 @@ export const GET_NODE = gql`
 						}
 					}
 				}
-				fieldServices {
-					entity {
-						... on ParagraphServiceItem {
-							fieldIcon
-							fieldColor
-							fieldTitle
-							fieldDescription
-						}
+				fieldModules{
+					entity{
+						# Insert here all paragraphs that we have enable on field Modules
+						... paragraphPricingTableFragment
+						... paragraphPriceCardFragment
+						... paragraphPlainTextFragment
+						... paragraphServicesFragment
+						... paragraphAboutFragment
+						... paragraphPortfolioFragment
+						... paragraphWebformContactFragment
+						... paragraphTextFragment
 					}
 				}
 			}

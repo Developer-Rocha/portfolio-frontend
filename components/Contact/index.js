@@ -2,8 +2,9 @@ import React, { useState, useRef } from "react";
 import validator from "validator";
 import { ContactWraper } from "./styles";
 import i18next from 'i18next';
+import { API_URL } from '../../utils/config';
 
-function Contact() {
+function Contact({ data }) {
 	const el = useRef(null);
 	const [height, setHeight] = useState();
 	const [loading, setLoading ] = useState(false);
@@ -48,7 +49,7 @@ function Contact() {
 		const lang = i18next.language === "en" ? "" : "pt-pt/";
 		// Fetch to API
 		const res = await fetch(
-			`https://api-devrocha.pt/${lang}webform_rest/submit`,
+			`${API_URL}${lang}webform_rest/submit`,
 			{
 				body: JSON.stringify(data),
 				headers: {
@@ -92,17 +93,17 @@ function Contact() {
 							<div className="email">
 								<i className="bi bi-envelope"></i>
 								<h4>Email:</h4>
-								<a href="mailto:fabricio.lopesx@gmail.com">
-									<p>fabricio.lopesx@gmail.com</p>
+								<a href={"mailto:" + data.email }>
+									<p>{data.email}</p>
 								</a>
 
 							</div>
 
 							<div className="phone">
 								<i className="bi bi-phone"></i>
-								<h4>{i18next.t('phone')}:</h4>
-								<a href="tel:+351 939 678 026">
-									<p>+351 939 678 026</p>
+								<h4>{i18next.t('contact-form.phone')}:</h4>
+								<a href={"tel:" + data.phone}>
+									<p>{ data.phone }</p>
 								</a>
 
 							</div>

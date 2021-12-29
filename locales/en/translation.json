@@ -4,6 +4,9 @@
 	"about": "About",
 	"portfolio": "Portfolio",
 	"contact": "Contact",
+	"prices": "Prices",
+	"from": "from",
+	"no-iva": "The price does not include IVA.",
 	"query_error_message": "Error with request content!",
 	"all": "All",
 	"loading": "Loading",
@@ -15,6 +18,7 @@
 	"project-url": "Project URL",
 	"detail": "Detail",
 	"ask-for-quote": "Ask for quote",
+	"on-request": "On request",
 	"contact-form": {
 		"phone": "Phone",
 		"your-name": "Your Name",
