@@ -217,6 +217,34 @@ section {
 	}
 }
 
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.ch2 {
+  .ch2-theme-bar {
+    .ch2-dialog-actions {
+      .ch2-btn-primary {
+        background: var(--primary);
+      }
+    }
+  }
+
+  .ch2-style-light {
+    .ch2-switch {
+      input {
+        &:checked {
+          & + label {
+            background: var(--primary);
+          }
+        }
+      }
+    }
+
+    .ch2-btn-primary {
+      background: var(--primary);
+    }
+  }
+}
 
 
 /*--------------------------------------------------------------
