@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { MobileNavToggle, HeaderWraper, SwitchWrapper } from "./styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { handleScrollTo } from "../../utils/helpers";
 
 import i18next from 'i18next';
 import { languages } from '../../i18n/config';
@@ -18,32 +19,9 @@ function Header({ data }) {
 		e.currentTarget.classList.toggle('bi-x');
 	}
 
-	const handleCloseMenu = (e) => {
-		e.preventDefault();
-
-		// ScrollTo event
-		let hash = e.currentTarget.children[0].hash;
-		let elementPos = document.querySelector(hash).offsetTop
-		window.scrollTo({
-		  top: elementPos,
-		  behavior: 'smooth'
-		})
-
-
-		// Toggle Menu on mobile event
-		let body = document.getElementsByTagName('body')[0];
-
-		if(body.classList.contains('mobile-nav-active')) {
-			let navbarToggle = document.getElementsByClassName('mobile-nav-toggle');
-			navbarToggle[0].classList.toggle('bi-list');
-			navbarToggle[0].classList.toggle('bi-x');
-			body.classList.remove('mobile-nav-active');
-		}
-	}
-
 	const renderList = (id, icon, index) => {
 		return(
-			<li key={index} onClick={(e) => handleCloseMenu(e)}>
+			<li key={index} onClick={(e) => handleScrollTo(e)}>
 				<a href={"#" + id} className="nav-link scrollto">
 					<i className={"bx " + icon}></i> <span>{i18next.t(id)}</span>
 				</a>
@@ -75,7 +53,7 @@ function Header({ data }) {
 			<HeaderWraper id="header">
 				<nav id="navbar" className="navbar nav-menu">
 					<ul>
-						<li onClick={(e) => handleCloseMenu(e)}>
+						<li onClick={(e) => handleScrollTo(e)}>
 							<a href="#hero" className="nav-link scrollto active">
 								<i className="bx bx-home"></i> <span>Home</span>
 							</a>

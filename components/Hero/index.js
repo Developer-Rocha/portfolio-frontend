@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { HeroWraper } from "./styles";
 import Typed from "typed.js";
 import i18next from 'i18next';
+import { handleScrollTo } from "../../utils/helpers";
 
 function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 	// Create Ref element.
@@ -53,7 +54,7 @@ function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 						</a>
 					))}
 				</div>
-				<a href="#contact" className="btn btn--default">{i18next.t('ask-for-quote')}</a>
+				<a href="#contact" onClick={(e) => handleScrollTo(e, "#contact")} className="btn btn--default">{i18next.t('ask-for-quote')}</a>
 			</div>
 		</HeroWraper>
 	);
