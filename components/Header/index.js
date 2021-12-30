@@ -19,7 +19,18 @@ function Header({ data }) {
 	}
 
 	const handleCloseMenu = (e) => {
+		e.preventDefault();
 
+		// ScrollTo event
+		let hash = e.currentTarget.children[0].hash;
+		let elementPos = document.querySelector(hash).offsetTop
+		window.scrollTo({
+		  top: elementPos,
+		  behavior: 'smooth'
+		})
+
+
+		// Toggle Menu on mobile event
 		let body = document.getElementsByTagName('body')[0];
 
 		if(body.classList.contains('mobile-nav-active')) {
@@ -27,14 +38,13 @@ function Header({ data }) {
 			navbarToggle[0].classList.toggle('bi-list');
 			navbarToggle[0].classList.toggle('bi-x');
 			body.classList.remove('mobile-nav-active');
-
 		}
 	}
 
 	const renderList = (id, icon, index) => {
 		return(
-			<li key={index}>
-				<a onClick={(e) => handleCloseMenu(e)} href={"#" + id} className="nav-link scrollto">
+			<li key={index} onClick={(e) => handleCloseMenu(e)}>
+				<a href={"#" + id} className="nav-link scrollto">
 					<i className={"bx " + icon}></i> <span>{i18next.t(id)}</span>
 				</a>
 			</li>
@@ -65,8 +75,8 @@ function Header({ data }) {
 			<HeaderWraper id="header">
 				<nav id="navbar" className="navbar nav-menu">
 					<ul>
-						<li>
-							<a onClick={(e) => handleCloseMenu(e)} href="#hero" className="nav-link scrollto active">
+						<li onClick={(e) => handleCloseMenu(e)}>
+							<a href="#hero" className="nav-link scrollto active">
 								<i className="bx bx-home"></i> <span>Home</span>
 							</a>
 						</li>
