@@ -1,5 +1,5 @@
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import Image from 'next/image'
 import { HeroWraper } from "./styles";
 import Typed from "typed.js";
 import i18next from 'i18next';
@@ -35,7 +35,15 @@ function Hero({ title, typedAnimation, socialLinks, backgroundImage }) {
 	}, []);
 
 	return (
-		<HeroWraper id="hero" style={{backgroundImage: "url(" + backgroundURL +")"}} className="d-flex flex-column justify-content-center">
+		<HeroWraper id="hero" className="d-flex flex-column justify-content-center">
+			<Image
+			alt="Developer Rocha Background"
+			src={backgroundURL}
+			layout="fill"
+			objectFit="cover"
+			quality={90}
+			/>
+			<div className="background-mask"></div>
 			<div className="container" data-aos="zoom-in" data-aos-delay="100">
 				<h1>{title}</h1>
 				<p className="typed-wrapper">

@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const HeroWraper = styled.section`
 	width: 100%;
 	height: 100vh;
-	/* background: url("../img/hero-bg.jpg") top right no-repeat; */
-	background-size: cover;
 	position: relative;
 
 	@media (min-width: 992px) {
@@ -14,7 +12,7 @@ export const HeroWraper = styled.section`
 		text-align: center;
 	}
 
-	&:before {
+	.background-mask {
 		content: "";
 		background: rgba(255, 255, 255, 0.8);
 		position: absolute;
