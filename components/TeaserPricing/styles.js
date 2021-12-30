@@ -7,6 +7,7 @@ export const TeaserPricingWraper = styled.section`
         border: none;
         transition: all ease-in-out 0.3s;
         box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+        margin-bottom: 30px;
 
         &:hover {
             box-shadow: 0px 0 35px 0 rgba(0, 0, 0, 0.08);
@@ -16,6 +17,10 @@ export const TeaserPricingWraper = styled.section`
             padding: 15px;
             background-color: var(--primary);
             color: #FFF;
+
+            @media screen and (min-width: 769px) {
+                min-height: 20%;
+            }
 
             .title {
                 font-weight: bold;
@@ -55,7 +60,7 @@ export const TeaserPricingWraper = styled.section`
     }
 
     ul {
-        padding: 30px 0;
+        padding: 30px 60px;
         margin: 0;
         display: inline-block;
 
