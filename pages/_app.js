@@ -3,12 +3,14 @@ import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import TagManager from 'react-gtm-module';
 
+//Components
+import CookieNotice from '../components/CookieNotice';
+
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "boxicons/css/boxicons.min.css";
 import GlobalStyle from "../components/GlobalStyle";
-
 import "aos/dist/aos.css";
 
 // API
@@ -26,7 +28,6 @@ const theme = {
 };
 
 const App = ({ Component, pageProps }) => {
-
 	i18next.changeLanguage(pageProps.language);
 	const apolloClient = useApollo(pageProps)
 
@@ -68,6 +69,7 @@ const App = ({ Component, pageProps }) => {
 				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
 			</Head>
 			<GlobalStyle />
+			<CookieNotice />
 			<ApolloProvider client={apolloClient}>
 				<ThemeProvider theme={theme}>
 					<Component {...pageProps} />

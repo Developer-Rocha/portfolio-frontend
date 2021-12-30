@@ -20,7 +20,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a:hover {
-    color: #067ded;
+    color: var(--primary);
+    opacity: 0.5;
     text-decoration: none;
   }
 
@@ -61,7 +62,8 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover {
       color: #FFF;
-      background: var(--secondary);
+      /* background: var(--secondary); */
+      opacity: 0.5;
     }
   }
 
@@ -217,7 +219,12 @@ section {
 	}
 }
 
-
+.section-text,
+.section-title {
+  a {
+    text-decoration: underline;
+  }
+}
 
 /*--------------------------------------------------------------
 # Modal

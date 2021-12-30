@@ -128,7 +128,7 @@ export const ContactWraper = styled.section`
             margin-top: 30px;
 
             &:hover {
-                background: var(--secondary);
+                opacity: 0.5;
             }
         }
     }
