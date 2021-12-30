@@ -3,12 +3,14 @@ import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import TagManager from 'react-gtm-module';
 
+//Components
+import CookieNotice from '../components/CookieNotice';
+
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "boxicons/css/boxicons.min.css";
 import GlobalStyle from "../components/GlobalStyle";
-
 import "aos/dist/aos.css";
 
 // API
@@ -26,7 +28,6 @@ const theme = {
 };
 
 const App = ({ Component, pageProps }) => {
-
 	i18next.changeLanguage(pageProps.language);
 	const apolloClient = useApollo(pageProps)
 
@@ -66,22 +67,9 @@ const App = ({ Component, pageProps }) => {
 			<Head>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
-
-				{/* CookieHub integration */}
-				<script dangerouslySetInnerHTML={{__html: `var cpm = {
-					cookie: {
-						sameSite: 'Strict',
-						secure: true
-					}
-					};
-					(function(h,u,b){
-					var d=h.getElementsByTagName("script")[0],e=h.createElement("script");
-					e.async=true;e.src='https://cookiehub.net/c2/1148bf9c.js';
-					e.onload=function(){u.cookiehub.load(b);}
-					d.parentNode.insertBefore(e,d);
-					})(document,window,cpm);`}} />
 			</Head>
 			<GlobalStyle />
+			<CookieNotice />
 			<ApolloProvider client={apolloClient}>
 				<ThemeProvider theme={theme}>
 					<Component {...pageProps} />
