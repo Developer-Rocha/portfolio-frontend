@@ -38,7 +38,10 @@ const App = ({ Component, pageProps }) => {
 			//set lang tag
 			i18next.on('languageChanged', (lng) => {document.documentElement.setAttribute('lang', lng);})
 
+			//Tag Manager
 			TagManager.initialize({ gtmId: 'GTM-5CWJD4N' });
+
+			// Set Scroll event
 			window.addEventListener('scroll', scrollHandler);
 		}
 
