@@ -66,7 +66,7 @@ export const TeaserPricingWraper = styled.section`
 
         li {
             text-align: left;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
 
             &::marker {
                 color: var(--primary);
