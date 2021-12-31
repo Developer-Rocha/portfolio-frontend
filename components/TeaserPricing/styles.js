@@ -17,9 +17,13 @@ export const TeaserPricingWraper = styled.section`
             padding: 15px;
             background-color: var(--primary);
             color: #FFF;
+            border-radius: 5px 5px 0 0;
 
             @media screen and (min-width: 769px) {
-                min-height: 20%;
+                min-height: 25%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .title {
