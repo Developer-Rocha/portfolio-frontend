@@ -46,8 +46,7 @@ export const FooterWraper = styled.footer`
             transition: 0.3s;
 
             &:hover {
-                background: var(--secondary);;
-                color: #fff;
+                opacity: 0.5;
                 text-decoration: none;
             }
         }
