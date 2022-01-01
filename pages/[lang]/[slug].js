@@ -8,7 +8,7 @@ import { normalizeUrlAliases } from "../../utils/helpers";
 // Components
 import Loading from "../../components/Loading";
 import Layout from "../../components/Layout";
-import Hero from "../../components/Hero";
+import GenericHero from "../../components/GenericHero";
 import About from "../../components/About";
 import Services from "../../components/Services";
 import Portfolio from "../../components/Portfolio";
@@ -45,10 +45,9 @@ export default function Pages( props ) {
 			<Layout props={props}>
 				{
                     state.fieldHeroImage ?
-                    <Hero
+                    <GenericHero
 					title={state.title}
 					backgroundImage={state.fieldHeroImage}
-					typedAnimation={state.fieldTypedAnimation}
 					socialLinks={props.socialLinks.social}
 				    />
                     : null
