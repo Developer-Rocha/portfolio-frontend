@@ -18,6 +18,7 @@ import Footer from './Footer';
 export default function Layout({ children, props }) {
 	const { asPath } = useRouter();
 	const router = useRouter();
+	const [data, setData] = useState(props.nodeInfo.page ? props.nodeInfo.page : props.nodeInfo.node.entity);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
@@ -46,7 +47,7 @@ export default function Layout({ children, props }) {
 	return (
 		<>
 			<NextSeo
-				title={props.nodeInfo.page.seoTitle ? "DevRocha | " + props.nodeInfo.page.seoTitle : "DevRocha"}
+				title={data.seoTitle ? "DevRocha | " + data.seoTitle : "DevRocha"}
 				description={props.description}
 				canonical={BASE_URL + asPath}
 				additionalLinkTags={[
@@ -90,7 +91,7 @@ export default function Layout({ children, props }) {
 				<Loading loading={loading} />
 			) : (
 				<div>
-					<Header data={props.nodeInfo.page.fieldModules} />
+					<Header data={data.fieldModules} />
 
 					<main>{children}</main>
 
