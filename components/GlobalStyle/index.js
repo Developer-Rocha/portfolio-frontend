@@ -221,6 +221,13 @@ section {
 
 .section-text,
 .section-title {
+
+  @media screen and (min-width: 768px) {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   a {
     text-decoration: underline;
   }
