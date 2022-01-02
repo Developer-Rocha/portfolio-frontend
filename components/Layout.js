@@ -91,7 +91,11 @@ export default function Layout({ children, props }) {
 				<Loading loading={loading} />
 			) : (
 				<div>
-					<Header data={data.fieldModules} />
+					<Header
+						data={data.fieldModules}
+						urlEN={data.urlEN ? data.urlEN.url.path : false}
+						urlPT={data.urlPT ? data.urlPT.url.path : false}
+					/>
 
 					<main>{children}</main>
 

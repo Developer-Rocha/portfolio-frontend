@@ -3,10 +3,13 @@ import { MobileNavToggle, HeaderWraper, SwitchWrapper } from "./styles";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { handleScrollTo } from "../../utils/helpers";
+import { normalizeUrlAliases } from "../../utils/helpers";
 import i18next from 'i18next';
+import { languages } from '../../i18n/config';
 
-function Header({ data }) {
+function Header({ data, urlEN, urlPT }) {
 	const router = useRouter();
+	const { pathname } = router;
 
 	const handleMenu = (e) => {
 		e.preventDefault();
@@ -30,12 +33,33 @@ function Header({ data }) {
 		<>
 			<MobileNavToggle onClick={(e) => handleMenu(e)} className="bi bi-list mobile-nav-toggle" />
 			<SwitchWrapper>
-				<Link prefetch={false} href={router.query.lang == "pt" ? "/en" : "/pt"}>
-					<a className="lang_switch">
-						<i className="bx bx-world"></i>
-						<span>{router.query.lang === "en" ? "PT" : "EN"}</span>
-					</a>
-				</Link>
+				{
+					router.query.slug ?
+						languages.map((lang, index) => {
+
+							if(lang !== router.query.lang) {
+								const url = router.query.lang === "en" ? normalizeUrlAliases(urlPT) : urlEN
+								const path = pathname.replace(/\[lang\]/i, lang).replace(/\[slug]/i, url);
+
+								return (
+									<Link key={index} prefetch={false} href={pathname} as={path}>
+										<a className="lang_switch">
+											<i className="bx bx-world"></i>
+											<span>{router.query.lang === "en" ? "PT" : "EN"}</span>
+										</a>
+									</Link>
+								);
+							}
+
+						})
+					:
+					<Link prefetch={false} href={router.query.lang == "pt" ? "/en" : "/pt"}>
+						<a className="lang_switch">
+							<i className="bx bx-world"></i>
+							<span>{router.query.lang === "en" ? "PT" : "EN"}</span>
+						</a>
+					</Link>
+				}
 			</SwitchWrapper>
 			<HeaderWraper id="header">
 				<nav id="navbar" className="navbar nav-menu">

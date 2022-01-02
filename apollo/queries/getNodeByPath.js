@@ -26,6 +26,16 @@ export const GET_NODE = gql`
                     ... on NodePage {
                         id: nid
                         title
+                        urlPT: entityTranslation(language: PT_PT){
+                            url: entityUrl{
+                            path
+                            }
+                        }
+                        urlEN: entityTranslation(language: EN){
+                            url: entityUrl {
+                            path
+                            }
+                        }
                         seoTitle: fieldSeoTitle
                         fieldSeoDescription
                         fieldHeroImage {
