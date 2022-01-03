@@ -2,12 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://devrocha.pt/en</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
     </url>
     <url>
         <loc>https://devrocha.pt/pt</loc>
-        <changefreq>daily</changefreq>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://devrocha.pt/en/politica-de-privacidade</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://devrocha.pt/en/privacy-policy</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
     </url>
 </urlset>
