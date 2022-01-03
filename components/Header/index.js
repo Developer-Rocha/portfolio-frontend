@@ -38,7 +38,7 @@ function Header({ data, urlEN, urlPT }) {
 						languages.map((lang, index) => {
 
 							if(lang !== router.query.lang) {
-								const url = router.query.lang === "en" ? normalizeUrlAliases(urlPT) : urlEN
+								const url = router.query.lang === "en" ? normalizeUrlAliases(urlPT) : normalizeUrlAliases(urlEN)
 								const path = pathname.replace(/\[lang\]/i, lang).replace(/\[slug]/i, url);
 
 								return (
@@ -50,7 +50,6 @@ function Header({ data, urlEN, urlPT }) {
 									</Link>
 								);
 							}
-
 						})
 					:
 					<Link prefetch={false} href={router.query.lang == "pt" ? "/en" : "/pt"}>
@@ -66,7 +65,7 @@ function Header({ data, urlEN, urlPT }) {
 					<ul>
 						{
 							router.query.slug ?
-							<li>
+							<li onClick={(e) => handleMenu(e)}>
 								<Link prefetch={false} href={"/" + router.query.lang}>
 									<a className="nav-link scrollto active">
 										<i className="bx bx-home"></i> <span>Home</span>

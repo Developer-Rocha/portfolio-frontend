@@ -124,6 +124,7 @@ export const getStaticProps = async (context) => {
 
     const node = apolloClient.query({
 		query: GET_NODE,
+		fetchPolicy: "no-cache",
 		variables: {
             path: nodePath
 		}
