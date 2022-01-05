@@ -31,6 +31,8 @@ const App = ({ Component, pageProps }) => {
 	i18next.changeLanguage(pageProps.language);
 	const apolloClient = useApollo(pageProps);
 	const { asPath } = useRouter();
+	const [ seoTitle, setSeoTitle ] = useState("DevRocha");
+	const [ seoDescription, setSeoDescription ] = useState();
 
 	useEffect(() => {
 		let unmounted   = false;
@@ -44,11 +46,31 @@ const App = ({ Component, pageProps }) => {
 
 			// Set Scroll event
 			window.addEventListener('scroll', scrollHandler);
+
+			//Set SEO fields
+			if(pageProps.nodeInfo){
+				if(pageProps.nodeInfo.page){
+					setSeoTitle(pageProps.nodeInfo.page.SeoTitle);
+					setSeoDescription(pageProps.description);
+				}
+				else if(pageProps.nodeInfo.node){
+					setSeoTitle(pageProps.nodeInfo.node.entity.SeoTitle);
+					setSeoDescription(pageProps.description);
+				}
+				else {
+					return;
+				}
+			}
+			else if(pageProps.portfolio) {
+				setSeoTitle(pageProps.portfolio.portfolio.entity.title);
+				// Missing a field on backoffice to SEO Description in Portfolio node type.
+				setSeoDescription("");
+			}
 		}
 
 		return () => unmounted = true;
 
-	}, []);
+	}, [pageProps]);
 
 	const scrollHandler = () => {
 		const navbarLinks = document.getElementsByClassName('scrollto');
@@ -72,46 +94,51 @@ const App = ({ Component, pageProps }) => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
 			</Head>
-			<NextSeo
-				title={pageProps.nodeInfo.page.seoTitle ? "DevRocha | " + pageProps.nodeInfo.page.seoTitle : "DevRocha"}
-				description={pageProps.description}
-				canonical={BASE_URL + asPath}
-				additionalLinkTags={[
-					{
-						rel: 'icon',
-						href: `${BASE_URL}/images/favicon/favicon.ico`
-					},
-					{
-						rel: 'apple-touch-icon',
-						href: `${BASE_URL}/images/favicon/touch-icon-ipad.png`,
-						sizes: '76x76'
-					},
-					// {
-					// 	rel: 'manifest',
-					// 	href: `${BASE_URL}/manifest.json`
-					// }
-				]}
-				openGraph={{
-					type: 'website',
-					url: BASE_URL + asPath,
-					title: pageProps.title,
-					description: pageProps.description,
-					images: [
+			{
+				pageProps ?
+
+				<NextSeo
+					title={ seoTitle }
+					description={ seoDescription }
+					canonical={BASE_URL + asPath}
+					additionalLinkTags={[
 						{
-							url: `${BASE_URL}/images/logo_size_invert.jpg`,
-							width: 200,
-							height: 200,
-							alt: 'Developer Rocha - Creative Websites',
+							rel: 'icon',
+							href: `${BASE_URL}/images/favicon/favicon.ico`
 						},
 						{
-							url: `${BASE_URL}/images/logo_size.jpg`,
-							width: 200,
-							height: 200,
-							alt: 'Developer Rocha - Creative Websites',
+							rel: 'apple-touch-icon',
+							href: `${BASE_URL}/images/favicon/touch-icon-ipad.png`,
+							sizes: '76x76'
 						},
-					],
-				}}
-			/>
+						// {
+						// 	rel: 'manifest',
+						// 	href: `${BASE_URL}/manifest.json`
+						// }
+					]}
+					openGraph={{
+						type: 'website',
+						url: BASE_URL + asPath,
+						title: seoTitle,
+						description: seoDescription,
+						images: [
+							{
+								url: `${BASE_URL}/images/logo_size_invert.jpg`,
+								width: 200,
+								height: 200,
+								alt: 'Developer Rocha - Creative Websites',
+							},
+							{
+								url: `${BASE_URL}/images/logo_size.jpg`,
+								width: 200,
+								height: 200,
+								alt: 'Developer Rocha - Creative Websites',
+							},
+						],
+					}}
+				/>
+			: null
+			}
 			<GlobalStyle />
 
 			<ApolloProvider client={apolloClient}>
