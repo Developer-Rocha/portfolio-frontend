@@ -39,6 +39,14 @@ export const PortfolioWraper = styled.section`
 		position: relative;
 		overflow: hidden;
 		z-index: 1;
+		text-align: center;
+		height: 100%;
+		padding: 30px;
+		box-shadow: 0px 0 35px 0 rgb(0 0 0 / 8%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
 		&::before {
 			content: "";
 			background: rgba(255, 255, 255, 0.7);
@@ -51,6 +59,12 @@ export const PortfolioWraper = styled.section`
 			z-index: 2;
 			opacity: 0;
 		}
+
+		img {
+			max-height: 300px;
+			object-fit: contain;
+		}
+
 		.portfolio-info {
 			opacity: 0;
 			position: absolute;

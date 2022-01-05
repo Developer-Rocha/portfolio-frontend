@@ -23,7 +23,13 @@ export default function Portfolio({ portfolio }) {
     return (
         <div>
             <h1> { portfolio.portfolio.entity.title }</h1>
-            <div dangerouslySetInnerHTML={{__html: portfolio.portfolio.entity.description.value }}></div>
+            {
+                portfolio.portfolio.entity.description ?
+                <div className="portfolio-description">
+                    <div dangerouslySetInnerHTML={{__html: portfolio.portfolio.entity.description.value }}></div>
+                </div>
+            : null
+            }
         </div>
     );
 }
