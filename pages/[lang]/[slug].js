@@ -26,10 +26,21 @@ const apolloClient = initializeApollo();
 
 export default function Pages( props ) {
     const { isFallback } = useRouter();
-    const [state, setState] = useState(props.nodeInfo.node);
+    const [state, setState] = useState();
 
     useEffect(() => {
-		setState(props.nodeInfo.node.entity);
+		let isMounted = true;
+		let abortController = new AbortController(); 
+
+		if(isMounted) {
+			setState(props.nodeInfo.node.entity);
+		}
+
+		return () => {
+			abortController.abort();
+			setState({});
+			isMounted = false;
+		}
 	}, [props]);
 
 	if (!state) {
@@ -113,7 +124,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
-    const language = getLanguage(context.lang);
+    const language = getLanguage(context.params.lang);
     const langcode = language === "en" ? "EN" : "PT_PT";
     const { lang, slug  } = context.params;
     let nodePath = slug;

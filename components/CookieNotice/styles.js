@@ -35,5 +35,9 @@ export const CookieWrapper = styled.div`
             margin-top: 20px;
         }
     }
+
+    p {
+        margin-bottom: 0;
+    }
 `;
 

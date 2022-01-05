@@ -18,7 +18,6 @@ import Text from "../../components/Text";
 import { initializeApollo } from "../../apollo/apolloClient";
 import { GET_NODE } from "../../apollo/queries/getNode";
 import { GET_SOCIAL } from "../../apollo/queries/getSocial";
-import { GET_PORTFOLIO } from "../../apollo/queries/getPortfolio";
 
 export default function LangIndex( props ) {
 	const { isFallback } = useRouter();
@@ -26,7 +25,17 @@ export default function LangIndex( props ) {
 	const [state, setState] = useState(props.nodeInfo.page);
 
 	useEffect(() => {
-		setState(props.nodeInfo.page);
+		let isMounted = true;
+		
+		if(isMounted) {
+			setState(props.nodeInfo.page);
+		}
+
+		return () => {
+			setState({});
+			isMounted = false;
+		}
+		
 	}, [props]);
 
 	if (!state) {

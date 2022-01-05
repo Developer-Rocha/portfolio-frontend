@@ -18,31 +18,48 @@ import Footer from './Footer';
 export default function Layout({ children, props }) {
 	const { asPath } = useRouter();
 	const router = useRouter();
-	const [data, setData] = useState(props.nodeInfo.page ? props.nodeInfo.page : props.nodeInfo.node.entity);
+	const [data, setData] = useState();
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		// here you can add your aos options
-		AOS.init({
-			duration: 1000,
-			easing: "ease-in-out",
-			once: true,
-			mirror: false,
-		});
+		let isMounted = true;
+		let abortController = new AbortController(); 
 
-		// Loading
-		const handleStart = () => {
-			setLoading(true);
-		};
+		if(isMounted) {
+			// here you can add your aos options
+			AOS.init({
+				duration: 1000,
+				easing: "ease-in-out",
+				once: true,
+				mirror: false,
+			});
 
-		const handleComplete = () => {
-			setLoading(false);
-		};
+			// Loading
+			const handleStart = () => {
+				setLoading(true);
+			};
 
-		router.events.on("routeChangeStart", handleStart);
-		router.events.on("routeChangeComplete", handleComplete);
-		router.events.on("routeChangeError", handleComplete);
-	}, [router]);
+			const handleComplete = () => {
+				setLoading(false);
+			};
+
+			setData(props.nodeInfo.page ? props.nodeInfo.page : props.nodeInfo.node.entity);
+
+			router.events.on("routeChangeStart", handleStart);
+			router.events.on("routeChangeComplete", handleComplete);
+			router.events.on("routeChangeError", handleComplete);
+		}
+
+		return () => {
+			isMounted = false;
+			setData();
+			abortController.abort();
+		}
+	}, [router, props]);
+
+	if(!data){
+		return <Loading/>
+	};
 
 	return (
 		<>

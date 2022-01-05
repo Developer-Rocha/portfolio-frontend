@@ -11,12 +11,20 @@ function Header({ data, urlEN, urlPT }) {
 	const router = useRouter();
 	const { pathname } = router;
 
-	const handleMenu = (e) => {
+	const handleMenu = (e, redirect = false) => {
 		e.preventDefault();
 
-		document.getElementsByTagName('body')[0].classList.toggle('mobile-nav-active');
-		e.currentTarget.classList.toggle('bi-list');
-		e.currentTarget.classList.toggle('bi-x');
+		if(redirect) {
+			document.getElementsByTagName('body')[0].classList.remove('mobile-nav-active');
+			e.currentTarget.classList.remove('bi-list');
+			e.currentTarget.classList.remove('bi-x');
+		}
+		else {
+			document.getElementsByTagName('body')[0].classList.toggle('mobile-nav-active');
+			e.currentTarget.classList.add('bi-list');
+			e.currentTarget.classList.toggle('bi-x');
+		}
+		
 	}
 
 	const renderList = (id, icon, index) => {
@@ -65,7 +73,7 @@ function Header({ data, urlEN, urlPT }) {
 					<ul>
 						{
 							router.query.slug ?
-							<li onClick={(e) => handleMenu(e)}>
+							<li onClick={(e) => handleMenu(e, true)}>
 								<Link prefetch={false} href={"/" + router.query.lang}>
 									<a className="nav-link scrollto active">
 										<i className="bx bx-home"></i> <span>Home</span>
