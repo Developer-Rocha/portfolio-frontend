@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import TagManager from 'react-gtm-module';
+import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import { BASE_URL } from "../utils/config";
 
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,7 +29,8 @@ const theme = {
 
 const App = ({ Component, pageProps }) => {
 	i18next.changeLanguage(pageProps.language);
-	const apolloClient = useApollo(pageProps)
+	const apolloClient = useApollo(pageProps);
+	const { asPath } = useRouter();
 
 	useEffect(() => {
 		let unmounted   = false;
@@ -68,6 +72,46 @@ const App = ({ Component, pageProps }) => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
 			</Head>
+			<NextSeo
+				title={pageProps.nodeInfo.page.seoTitle ? "DevRocha | " + pageProps.nodeInfo.page.seoTitle : "DevRocha"}
+				description={pageProps.description}
+				canonical={BASE_URL + asPath}
+				additionalLinkTags={[
+					{
+						rel: 'icon',
+						href: `${BASE_URL}/images/favicon/favicon.ico`
+					},
+					{
+						rel: 'apple-touch-icon',
+						href: `${BASE_URL}/images/favicon/touch-icon-ipad.png`,
+						sizes: '76x76'
+					},
+					// {
+					// 	rel: 'manifest',
+					// 	href: `${BASE_URL}/manifest.json`
+					// }
+				]}
+				openGraph={{
+					type: 'website',
+					url: BASE_URL + asPath,
+					title: pageProps.title,
+					description: pageProps.description,
+					images: [
+						{
+							url: `${BASE_URL}/images/logo_size_invert.jpg`,
+							width: 200,
+							height: 200,
+							alt: 'Developer Rocha - Creative Websites',
+						},
+						{
+							url: `${BASE_URL}/images/logo_size.jpg`,
+							width: 200,
+							height: 200,
+							alt: 'Developer Rocha - Creative Websites',
+						},
+					],
+				}}
+			/>
 			<GlobalStyle />
 
 			<ApolloProvider client={apolloClient}>
