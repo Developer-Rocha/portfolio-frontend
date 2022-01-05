@@ -17,6 +17,7 @@ export const PARAGRAPH_PORTFOLIO_FRAGMENTS = gql`
                 url {
                     path
                 }
+                title
             }
             description: body {
             value

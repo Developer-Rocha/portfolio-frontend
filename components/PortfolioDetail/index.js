@@ -86,7 +86,7 @@ function ModalContent({data}) {
                             ) : null }
 
                             {data.projectUrl.url.path ? (
-                                <li><strong>{i18next.t('project-url')}</strong>: <a target="_blank" href={data.projectUrl.url.path} rel="noreferrer">{data.client}</a></li>
+                                <li><strong>{i18next.t('project-url')}</strong>: <a target="_blank" href={data.projectUrl.url.path} rel="noreferrer">{data.projectUrl.title ? data.projectUrl.title : data.client}</a></li>
                             ) : null }
                         </ul>
                     </div>
