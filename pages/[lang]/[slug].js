@@ -44,7 +44,7 @@ export default function Pages( props ) {
 	}, [props]);
 
 	if (!state) {
-		return <h1>Erro ao carregar os conteúdos.</h1>;
+		return <Loading />
 	}
 
 	if (isFallback) {
