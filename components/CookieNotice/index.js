@@ -7,15 +7,15 @@ import { BASE_URL } from "../../utils/config";
 
 function CookieNotice() {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState("is-open");
+  const [isOpen, setIsOpen] = useState();
   const policyURL = router.query.lang === "en" ? BASE_URL + "/en/privacy-policy" : BASE_URL + "/pt/politica-de-privacidade";
 
   useEffect(() => {
 		let isActive = true;
 
 		if(isActive){
-			if( Cookies.get('cookieAccept') ) {
-        setIsOpen("");
+			if( !Cookies.get('cookieAccept') ) {
+        setIsOpen("is-open");
       }
 		}
 

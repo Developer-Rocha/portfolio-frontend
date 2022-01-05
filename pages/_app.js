@@ -3,9 +3,6 @@ import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import TagManager from 'react-gtm-module';
 
-//Components
-import CookieNotice from '../components/CookieNotice';
-
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -72,7 +69,7 @@ const App = ({ Component, pageProps }) => {
 				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
 			</Head>
 			<GlobalStyle />
-			<CookieNotice />
+
 			<ApolloProvider client={apolloClient}>
 				<ThemeProvider theme={theme}>
 					<Component {...pageProps} />

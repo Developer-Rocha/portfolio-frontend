@@ -13,7 +13,8 @@ import { NextSeo } from 'next-seo';
 // Components
 import Loading from "../components/Loading";
 import Header from "./Header";
-import Footer from './Footer';
+import Footer from "./Footer";
+import CookieNotice from "./CookieNotice";
 
 export default function Layout({ children, props }) {
 	const { asPath } = useRouter();
@@ -117,6 +118,7 @@ export default function Layout({ children, props }) {
 					<main>{children}</main>
 
 					<Footer socialLinks={props.socialLinks.social} />
+					<CookieNotice />
 				</div>
 			)}
 		</>
