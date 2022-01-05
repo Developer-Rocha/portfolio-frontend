@@ -90,10 +90,15 @@ function ModalContent({data}) {
                             ) : null }
                         </ul>
                     </div>
-                    <div className="portfolio-description">
-                        <h2>{i18next.t('detail')}</h2>
-                        <div dangerouslySetInnerHTML={{__html: data.description.value }}></div>
-                    </div>
+                    {
+                        data.description ?
+                        <div className="portfolio-description">
+                            <h2>{i18next.t('detail')}</h2>
+                            <div dangerouslySetInnerHTML={{__html: data.description }}></div>
+                        </div>
+                    : null
+                    }
+                    
                 </div>
                 </div>
             </div>

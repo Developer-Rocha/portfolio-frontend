@@ -6,6 +6,8 @@ export const ModalContentWrapper = styled.div`
     .portfolio-details-slider {
         img {
             width: 100%;
+            max-height: 450px;
+            object-fit: contain;
         }
 
         .swiper-pagination {
