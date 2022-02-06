@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
+import NextSeo from 'next-seo';
 import { BASE_URL } from "../utils/config";
 
 import i18next from 'i18next';
@@ -90,13 +90,14 @@ export default function Layout({ children, props }) {
 			) : (
 				<div>
 					<NextSeo
-						title={ seoTitle }
-						description={ seoDescription }
-						openGraph={{
-							type: 'website',
+						config={{
 							title: seoTitle,
 							description: seoDescription,
-						}}
+							openGraph: {
+								title: seoTitle,
+								description: seoDescription,
+							}
+						}} 
 					/>
 					<Header
 						data={data.fieldModules}
