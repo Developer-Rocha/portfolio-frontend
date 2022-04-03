@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import TagManager from 'react-gtm-module';
-import { NextSeo } from 'next-seo';
+import NextSeo from 'next-seo';
 import { useRouter } from 'next/router';
 import { BASE_URL } from "../utils/config";
+import { EN_TITLE, PT_TITLE, EN_DESCRIPTION, PT_DESCRIPTION } from '../utils/config';
 
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -30,9 +31,24 @@ const theme = {
 const App = ({ Component, pageProps }) => {
 	i18next.changeLanguage(pageProps.language);
 	const apolloClient = useApollo(pageProps);
-	const { asPath } = useRouter();
-	const [ seoTitle, setSeoTitle ] = useState("DevRocha");
-	const [ seoDescription, setSeoDescription ] = useState();
+	const { query } = useRouter();
+
+	const DEFAULT_SEO = {
+		title: pageProps.language === 'en' ? EN_TITLE : PT_TITLE,
+		description: pageProps.language === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
+		openGraph: {
+			type: 'website',
+			locale: query.lang,
+			url: 'https://devrocha.pt',
+			title: 'DevRocha',
+			description: pageProps.language === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
+			image:
+				'https://devrocha.pt/images/logo_size.jpg',
+			site_name: 'DevRocha',
+			imageWidth: 200,
+			imageHeight: 200
+		}
+	};
 
 	useEffect(() => {
 		let unmounted   = false;
@@ -46,26 +62,6 @@ const App = ({ Component, pageProps }) => {
 
 			// Set Scroll event
 			window.addEventListener('scroll', scrollHandler);
-
-			//Set SEO fields
-			if(pageProps.nodeInfo){
-				if(pageProps.nodeInfo.page){
-					setSeoTitle(pageProps.nodeInfo.page.SeoTitle);
-					setSeoDescription(pageProps.description);
-				}
-				else if(pageProps.nodeInfo.node){
-					setSeoTitle(pageProps.nodeInfo.node.entity.SeoTitle);
-					setSeoDescription(pageProps.description);
-				}
-				else {
-					return;
-				}
-			}
-			else if(pageProps.portfolio) {
-				setSeoTitle(pageProps.portfolio.portfolio.entity.title);
-				// Missing a field on backoffice to SEO Description in Portfolio node type.
-				setSeoDescription("");
-			}
 		}
 
 		return () => unmounted = true;
@@ -94,55 +90,12 @@ const App = ({ Component, pageProps }) => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/* <link rel="shortcut icon" href="/images/favicon/favicon.ico" /> */}
 			</Head>
-			{
-				pageProps ?
-
-				<NextSeo
-					title={ seoTitle }
-					description={ seoDescription }
-					canonical={BASE_URL + asPath}
-					additionalLinkTags={[
-						{
-							rel: 'icon',
-							href: `${BASE_URL}/images/favicon/favicon.ico`
-						},
-						{
-							rel: 'apple-touch-icon',
-							href: `${BASE_URL}/images/favicon/touch-icon-ipad.png`,
-							sizes: '76x76'
-						},
-						// {
-						// 	rel: 'manifest',
-						// 	href: `${BASE_URL}/manifest.json`
-						// }
-					]}
-					openGraph={{
-						type: 'website',
-						url: BASE_URL + asPath,
-						title: seoTitle,
-						description: seoDescription,
-						images: [
-							{
-								url: `${BASE_URL}/images/logo_size_invert.jpg`,
-								width: 200,
-								height: 200,
-								alt: 'Developer Rocha - Creative Websites',
-							},
-							{
-								url: `${BASE_URL}/images/logo_size.jpg`,
-								width: 200,
-								height: 200,
-								alt: 'Developer Rocha - Creative Websites',
-							},
-						],
-					}}
-				/>
-			: null
-			}
+			
 			<GlobalStyle />
 
 			<ApolloProvider client={apolloClient}>
 				<ThemeProvider theme={theme}>
+					<NextSeo config={DEFAULT_SEO} />
 					<Component {...pageProps} />
 				</ThemeProvider>
 			</ApolloProvider>

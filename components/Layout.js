@@ -1,10 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
-import { BASE_URL } from "../utils/config";
-
-import i18next from 'i18next';
 
 import AOS from "aos";
 
@@ -15,12 +11,9 @@ import Footer from "./Footer";
 import CookieNotice from "./CookieNotice";
 
 export default function Layout({ children, props }) {
-	const { asPath } = useRouter();
 	const router = useRouter();
 	const [data, setData] = useState();
 	const [loading, setLoading] = useState(false);
-	const [ seoTitle, setSeoTitle ] = useState("DevRocha");
-	const [ seoDescription, setSeoDescription ] = useState();
 
 	useEffect(() => {
 		let isMounted = true;
@@ -34,26 +27,6 @@ export default function Layout({ children, props }) {
 				once: true,
 				mirror: false,
 			});
-
-			//Set SEO fields
-			if(props.nodeInfo){
-				if(props.nodeInfo.page){
-					setSeoTitle(props.nodeInfo.page.SeoTitle);
-					setSeoDescription(props.description);
-				}
-				else if(props.nodeInfo.node){
-					setSeoTitle(props.nodeInfo.node.entity.SeoTitle);
-					setSeoDescription(props.description);
-				}
-				else {
-					return;
-				}
-			}
-			else if(props.portfolio) {
-				setSeoTitle(props.portfolio.portfolio.entity.title);
-				// Missing a field on backoffice to SEO Description in Portfolio node type.
-				setSeoDescription("");
-			}
 
 			// Loading
 			const handleStart = () => {
@@ -89,15 +62,6 @@ export default function Layout({ children, props }) {
 				<Loading loading={loading} />
 			) : (
 				<div>
-					<NextSeo
-						title={ seoTitle }
-						description={ seoDescription }
-						openGraph={{
-							type: 'website',
-							title: seoTitle,
-							description: seoDescription,
-						}}
-					/>
 					<Header
 						data={data.fieldModules}
 						urlEN={data.urlEN ? data.urlEN.url.path : false}
