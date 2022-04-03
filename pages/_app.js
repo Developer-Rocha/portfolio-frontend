@@ -5,6 +5,7 @@ import TagManager from 'react-gtm-module';
 import NextSeo from 'next-seo';
 import { useRouter } from 'next/router';
 import { BASE_URL } from "../utils/config";
+import { EN_TITLE, PT_TITLE, EN_DESCRIPTION, PT_DESCRIPTION } from '../utils/config';
 
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -33,14 +34,14 @@ const App = ({ Component, pageProps }) => {
 	const { query } = useRouter();
 
 	const DEFAULT_SEO = {
-		title: 'DevRocha',
-		description: 'Web development',
+		title: pageProps.language === 'en' ? EN_TITLE : PT_TITLE,
+		description: pageProps.language === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
 		openGraph: {
 			type: 'website',
 			locale: query.lang,
 			url: 'https://devrocha.pt',
 			title: 'DevRocha',
-			description: 'Freelancer Website development.',
+			description: pageProps.language === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
 			image:
 				'https://devrocha.pt/images/logo_size.jpg',
 			site_name: 'DevRocha',
