@@ -34,14 +34,14 @@ const App = ({ Component, pageProps }) => {
 	const { query } = useRouter();
 
 	const DEFAULT_SEO = {
-		title: pageProps.language === 'en' ? EN_TITLE : PT_TITLE,
-		description: pageProps.language === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
+		title: query.lang === 'en' ? EN_TITLE : PT_TITLE,
+		description: query.lang === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
 		openGraph: {
 			type: 'website',
 			locale: query.lang,
 			url: 'https://devrocha.pt',
 			title: 'DevRocha',
-			description: pageProps.language === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
+			description: query.lang === 'en' ? EN_DESCRIPTION : PT_DESCRIPTION,
 			image:
 				'https://devrocha.pt/images/logo_size.jpg',
 			site_name: 'DevRocha',
