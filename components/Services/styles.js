@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const ServicesWraper = styled.section`
+	.row {
+		justify-content: center;
+	}
 	.icon-box {
 		text-align: center;
 		padding: 70px 20px 80px 20px;
@@ -8,6 +11,7 @@ export const ServicesWraper = styled.section`
 		background: #fff;
 		box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
 		width: 100%;
+		margin-bottom: 20px;
 
 		.icon {
 			margin: 0 auto;
